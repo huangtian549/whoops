@@ -35,6 +35,8 @@
 		868A305F1A9E972700FC9EF9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 868A305E1A9E972700FC9EF9 /* Images.xcassets */; };
 		868A30621A9E972700FC9EF9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 868A30601A9E972700FC9EF9 /* LaunchScreen.xib */; };
 		868A306E1A9E972700FC9EF9 /* WhoopsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868A306D1A9E972700FC9EF9 /* WhoopsTests.swift */; };
+		8690039D1AA78F1000D46DED /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690039C1AA78F1000D46DED /* PostTableViewCell.swift */; };
+		86FE64B31AA7737300E4B2B1 /* MyPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE64B21AA7737300E4B2B1 /* MyPostsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,8 @@
 		868A30671A9E972700FC9EF9 /* WhoopsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhoopsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		868A306C1A9E972700FC9EF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		868A306D1A9E972700FC9EF9 /* WhoopsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoopsTests.swift; sourceTree = "<group>"; };
+		8690039C1AA78F1000D46DED /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		86FE64B21AA7737300E4B2B1 /* MyPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				239A38461A9FFB13000976E0 /* YRCommnentsCell.swift */,
+				8690039C1AA78F1000D46DED /* PostTableViewCell.swift */,
 				239A38471A9FFB13000976E0 /* YRCommnentsCell.xib */,
 				239A38481A9FFB13000976E0 /* YRImageZoomingView.swift */,
 				239A38491A9FFB13000976E0 /* YRJokeCell.swift */,
@@ -132,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				2363F9951AA00A1E009957D1 /* YRCommentsViewController.swift */,
+				86FE64B21AA7737300E4B2B1 /* MyPostsViewController.swift */,
 				2363F9961AA00A1E009957D1 /* YRImageViewController.swift */,
 				239A38431A9FF70E000976E0 /* YRMainViewController.swift */,
 				2363F99B1AA00FBC009957D1 /* YRNewPostViewController.swift */,
@@ -323,6 +329,7 @@
 				239581EE1AA0C34E0028188F /* KCTextView.m in Sources */,
 				239A383F1A9FF414000976E0 /* YRHttpRequest.swift in Sources */,
 				239A383E1A9FF414000976E0 /* UIImageViewWebExt.swift in Sources */,
+				86FE64B31AA7737300E4B2B1 /* MyPostsViewController.swift in Sources */,
 				2363F9981AA00A1E009957D1 /* YRImageViewController.swift in Sources */,
 				239A38401A9FF414000976E0 /* NSStringExt.swift in Sources */,
 				239A38421A9FF414000976E0 /* UIViewExt.swift in Sources */,
@@ -332,6 +339,7 @@
 				868A30561A9E972700FC9EF9 /* AppDelegate.swift in Sources */,
 				2363F99C1AA00FBC009957D1 /* YRNewPostViewController.swift in Sources */,
 				239A38521A9FFB13000976E0 /* YRRefreshView.swift in Sources */,
+				8690039D1AA78F1000D46DED /* PostTableViewCell.swift in Sources */,
 				239A38441A9FF70E000976E0 /* YRMainViewController.swift in Sources */,
 				239A384F1A9FFB13000976E0 /* YRImageZoomingView.swift in Sources */,
 				868A30581A9E972700FC9EF9 /* FirstViewController.swift in Sources */,
