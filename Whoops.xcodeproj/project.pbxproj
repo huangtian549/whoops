@@ -37,6 +37,7 @@
 		8690039D1AA78F1000D46DED /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690039C1AA78F1000D46DED /* PostTableViewCell.swift */; };
 		86933BD01AA8D206000FD60A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86933BCF1AA8D206000FD60A /* SearchViewController.swift */; };
 		86933BD21AA8F03C000FD60A /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86933BD11AA8F03C000FD60A /* SearchResultCell.swift */; };
+		8698ECBD1AAA16CE000E04E6 /* SearchHeadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8698ECBC1AAA16CE000E04E6 /* SearchHeadCell.swift */; };
 		86FE64B31AA7737300E4B2B1 /* MyPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE64B21AA7737300E4B2B1 /* MyPostsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		8690039C1AA78F1000D46DED /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		86933BCF1AA8D206000FD60A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		86933BD11AA8F03C000FD60A /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		8698ECBC1AAA16CE000E04E6 /* SearchHeadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeadCell.swift; sourceTree = "<group>"; };
 		86FE64B21AA7737300E4B2B1 /* MyPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +134,7 @@
 				2332725B1AA13FAA00B6666E /* YRSendViewCell.xib */,
 				2332728B1AA165D800B6666E /* YRSendViewCell.swift */,
 				86933BD11AA8F03C000FD60A /* SearchResultCell.swift */,
+				8698ECBC1AAA16CE000E04E6 /* SearchHeadCell.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				239A38521A9FFB13000976E0 /* YRRefreshView.swift in Sources */,
 				8690039D1AA78F1000D46DED /* PostTableViewCell.swift in Sources */,
 				239A38441A9FF70E000976E0 /* YRMainViewController.swift in Sources */,
+				8698ECBD1AAA16CE000E04E6 /* SearchHeadCell.swift in Sources */,
 				86933BD01AA8D206000FD60A /* SearchViewController.swift in Sources */,
 				239A384F1A9FFB13000976E0 /* YRImageZoomingView.swift in Sources */,
 				868A30581A9E972700FC9EF9 /* FirstViewController.swift in Sources */,
