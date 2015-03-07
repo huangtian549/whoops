@@ -17,7 +17,7 @@ class YRImageViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         // Custom initialization
-        self.title = "图片"
+        self.title = "Photo"
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -35,6 +35,7 @@ class YRImageViewController: UIViewController {
         self.imageZoongView = YRImageZoomingView(frame:self.view.frame)
         self.imageZoongView.imageURL = self.imageURL
         self.view.addSubview(self.imageZoongView)
+        self.view.backgroundColor = UIColor.clearColor()
     }
 
     override func didReceiveMemoryWarning() {

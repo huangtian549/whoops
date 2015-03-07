@@ -30,11 +30,15 @@
 		239A38531A9FFB13000976E0 /* YRRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 239A384C1A9FFB13000976E0 /* YRRefreshView.xib */; };
 		868A30561A9E972700FC9EF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868A30551A9E972700FC9EF9 /* AppDelegate.swift */; };
 		868A30581A9E972700FC9EF9 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868A30571A9E972700FC9EF9 /* FirstViewController.swift */; };
-		868A305A1A9E972700FC9EF9 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868A30591A9E972700FC9EF9 /* SecondViewController.swift */; };
 		868A305D1A9E972700FC9EF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 868A305B1A9E972700FC9EF9 /* Main.storyboard */; };
 		868A305F1A9E972700FC9EF9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 868A305E1A9E972700FC9EF9 /* Images.xcassets */; };
 		868A30621A9E972700FC9EF9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 868A30601A9E972700FC9EF9 /* LaunchScreen.xib */; };
 		868A306E1A9E972700FC9EF9 /* WhoopsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868A306D1A9E972700FC9EF9 /* WhoopsTests.swift */; };
+		8690039D1AA78F1000D46DED /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690039C1AA78F1000D46DED /* PostTableViewCell.swift */; };
+		86933BD01AA8D206000FD60A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86933BCF1AA8D206000FD60A /* SearchViewController.swift */; };
+		86933BD21AA8F03C000FD60A /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86933BD11AA8F03C000FD60A /* SearchResultCell.swift */; };
+		8698ECBD1AAA16CE000E04E6 /* SearchHeadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8698ECBC1AAA16CE000E04E6 /* SearchHeadCell.swift */; };
+		86FE64B31AA7737300E4B2B1 /* MyPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE64B21AA7737300E4B2B1 /* MyPostsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,13 +79,17 @@
 		868A30541A9E972700FC9EF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		868A30551A9E972700FC9EF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		868A30571A9E972700FC9EF9 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		868A30591A9E972700FC9EF9 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		868A305C1A9E972700FC9EF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		868A305E1A9E972700FC9EF9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		868A30611A9E972700FC9EF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		868A30671A9E972700FC9EF9 /* WhoopsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhoopsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		868A306C1A9E972700FC9EF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		868A306D1A9E972700FC9EF9 /* WhoopsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoopsTests.swift; sourceTree = "<group>"; };
+		8690039C1AA78F1000D46DED /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		86933BCF1AA8D206000FD60A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		86933BD11AA8F03C000FD60A /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		8698ECBC1AAA16CE000E04E6 /* SearchHeadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeadCell.swift; sourceTree = "<group>"; };
+		86FE64B21AA7737300E4B2B1 /* MyPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +123,7 @@
 		239A38361A9FF351000976E0 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				8690039C1AA78F1000D46DED /* PostTableViewCell.swift */,
 				239A38461A9FFB13000976E0 /* YRCommnentsCell.swift */,
 				239A38471A9FFB13000976E0 /* YRCommnentsCell.xib */,
 				239A38481A9FFB13000976E0 /* YRImageZoomingView.swift */,
@@ -124,6 +133,8 @@
 				239A384C1A9FFB13000976E0 /* YRRefreshView.xib */,
 				2332725B1AA13FAA00B6666E /* YRSendViewCell.xib */,
 				2332728B1AA165D800B6666E /* YRSendViewCell.swift */,
+				86933BD11AA8F03C000FD60A /* SearchResultCell.swift */,
+				8698ECBC1AAA16CE000E04E6 /* SearchHeadCell.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -132,9 +143,11 @@
 			isa = PBXGroup;
 			children = (
 				2363F9951AA00A1E009957D1 /* YRCommentsViewController.swift */,
+				86FE64B21AA7737300E4B2B1 /* MyPostsViewController.swift */,
 				2363F9961AA00A1E009957D1 /* YRImageViewController.swift */,
 				239A38431A9FF70E000976E0 /* YRMainViewController.swift */,
 				2363F99B1AA00FBC009957D1 /* YRNewPostViewController.swift */,
+				86933BCF1AA8D206000FD60A /* SearchViewController.swift */,
 			);
 			name = viewController;
 			sourceTree = "<group>";
@@ -179,7 +192,6 @@
 				239A38361A9FF351000976E0 /* view */,
 				868A30551A9E972700FC9EF9 /* AppDelegate.swift */,
 				868A30571A9E972700FC9EF9 /* FirstViewController.swift */,
-				868A30591A9E972700FC9EF9 /* SecondViewController.swift */,
 				868A305B1A9E972700FC9EF9 /* Main.storyboard */,
 				868A305E1A9E972700FC9EF9 /* Images.xcassets */,
 				2363F9991AA00AEF009957D1 /* avatar.jpg */,
@@ -319,10 +331,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				868A305A1A9E972700FC9EF9 /* SecondViewController.swift in Sources */,
 				239581EE1AA0C34E0028188F /* KCTextView.m in Sources */,
 				239A383F1A9FF414000976E0 /* YRHttpRequest.swift in Sources */,
 				239A383E1A9FF414000976E0 /* UIImageViewWebExt.swift in Sources */,
+				86FE64B31AA7737300E4B2B1 /* MyPostsViewController.swift in Sources */,
 				2363F9981AA00A1E009957D1 /* YRImageViewController.swift in Sources */,
 				239A38401A9FF414000976E0 /* NSStringExt.swift in Sources */,
 				239A38421A9FF414000976E0 /* UIViewExt.swift in Sources */,
@@ -332,11 +344,15 @@
 				868A30561A9E972700FC9EF9 /* AppDelegate.swift in Sources */,
 				2363F99C1AA00FBC009957D1 /* YRNewPostViewController.swift in Sources */,
 				239A38521A9FFB13000976E0 /* YRRefreshView.swift in Sources */,
+				8690039D1AA78F1000D46DED /* PostTableViewCell.swift in Sources */,
 				239A38441A9FF70E000976E0 /* YRMainViewController.swift in Sources */,
+				8698ECBD1AAA16CE000E04E6 /* SearchHeadCell.swift in Sources */,
+				86933BD01AA8D206000FD60A /* SearchViewController.swift in Sources */,
 				239A384F1A9FFB13000976E0 /* YRImageZoomingView.swift in Sources */,
 				868A30581A9E972700FC9EF9 /* FirstViewController.swift in Sources */,
 				239A38411A9FF414000976E0 /* FileUtility.swift in Sources */,
 				2363F9971AA00A1E009957D1 /* YRCommentsViewController.swift in Sources */,
+				86933BD21AA8F03C000FD60A /* SearchResultCell.swift in Sources */,
 				239A38501A9FFB13000976E0 /* YRJokeCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

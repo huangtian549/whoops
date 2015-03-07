@@ -10,9 +10,7 @@ import Foundation
 import UIKit
 import CoreLocation
 
-class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, CLLocationManagerDelegate,
-
-YRRefreshViewDelegate{
+class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, CLLocationManagerDelegate, YRRefreshViewDelegate{
     
     let identifier = "cell"
     var tableView:UITableView?
@@ -58,7 +56,10 @@ YRRefreshViewDelegate{
         self.tableView = UITableView(frame:CGRectMake(0,0,width,height-49))
         self.tableView!.delegate = self;
         self.tableView!.dataSource = self;
-        self.tableView!.separatorStyle = UITableViewCellSeparatorStyle.None
+        //self.tableView!.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.tableView?.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+        self.tableView?.separatorColor = UIColor.whiteColor()
+        self.tableView?.backgroundColor = UIColor.clearColor()
         var nib = UINib(nibName:"YRJokeCell", bundle: nil)
         
         self.tableView?.registerNib(nib, forCellReuseIdentifier: identifier)
@@ -78,8 +79,8 @@ YRRefreshViewDelegate{
     func addRefreshControl(){
         var fresh:UIRefreshControl = UIRefreshControl()
         fresh.addTarget(self, action: "actionRefreshHandler:", forControlEvents: UIControlEvents.ValueChanged)
-        fresh.tintColor = UIColor.redColor()
-        fresh.attributedTitle = NSAttributedString(string: "松开后自动刷新")
+        fresh.tintColor = UIColor.whiteColor()
+        //fresh.attributedTitle = NSAttributedString(string: "松开后自动刷新")
         self.tableView?.addSubview(fresh)
     }
     
