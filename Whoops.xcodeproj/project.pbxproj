@@ -123,8 +123,8 @@
 		239A38361A9FF351000976E0 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				239A38461A9FFB13000976E0 /* YRCommnentsCell.swift */,
 				8690039C1AA78F1000D46DED /* PostTableViewCell.swift */,
+				239A38461A9FFB13000976E0 /* YRCommnentsCell.swift */,
 				239A38471A9FFB13000976E0 /* YRCommnentsCell.xib */,
 				239A38481A9FFB13000976E0 /* YRImageZoomingView.swift */,
 				239A38491A9FFB13000976E0 /* YRJokeCell.swift */,

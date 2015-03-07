@@ -44,6 +44,8 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         self.tableView!.delegate = self;
         self.tableView!.dataSource = self;
         self.tableView!.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.tableView?.backgroundColor = UIColor.clearColor()
+        //self.tableView!.style = UITableViewStyle.Grouped
         var nib = UINib(nibName:"YRCommnentsCell", bundle: nil)
         
         self.tableView?.registerNib(nib, forCellReuseIdentifier: identifier)
@@ -102,6 +104,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? YRCommnentsCell
+        cell?.selectionStyle = UITableViewCellSelectionStyle.None
         var index = indexPath.row
         var data = self.dataArray[index] as NSDictionary
         cell!.data = data

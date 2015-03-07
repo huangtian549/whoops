@@ -16,9 +16,13 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var ContentLable: UILabel!
     var data :NSDictionary!
     var imgWidth :CGFloat!
+    var largeImageURL:String = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .None
+        var tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
+        self.PostImage.addGestureRecognizer(tap)
         // Initialization code
     }
 
@@ -42,6 +46,8 @@ class PostTableViewCell: UITableViewCell {
         var imgSrc = self.data.stringAttributeForKey("image") as NSString
         if imgSrc.length == 0 {
             self.PostImage.hidden = true
+            self.TimePosted.setY(self.ContentLable.bottom()+15)
+            self.Replies.setY(self.ContentLable.bottom()+15)
         }
         else
         {
@@ -50,7 +56,10 @@ class PostTableViewCell: UITableViewCell {
             var imagURL = "http://pic.qiushibaike.com/system/pictures/\(prefiximageId)/\(imageId)/small/\(imgSrc)"
             self.PostImage!.hidden = false
             self.PostImage!.setImage(imagURL,placeHolder: UIImage(named: "avatar.jpg"))
+            self.largeImageURL = "http://pic.qiushibaike.com/system/pictures/\(prefiximageId)/\(imageId)/medium/\(imgSrc)"
             self.PostImage.setY(self.ContentLable.bottom()+5)
+            self.TimePosted.setY(self.PostImage.bottom()+15)
+                self.Replies.setY(self.PostImage.bottom()+15)
 
         }
         
@@ -59,13 +68,19 @@ class PostTableViewCell: UITableViewCell {
     class func cellHeightByData(data:NSDictionary)->CGFloat
     {
         var content = data.stringAttributeForKey("content")
-        var height = content.stringHeightWith(17,width: 462)
+        var height = content.stringHeightWith(17,width: 300)
         var imgSrc = data.stringAttributeForKey("image") as NSString
         if imgSrc.length == 0
         {
-            return 59.0 + height + 150.0
+            return 59.0 + height + 60.0
         }
-        return 59.0 + height + 5.0 + 112.0 + 150.0
+        return 59.0 + height + 5.0 + 188.0 + 60.0
+    }
+    
+    func imageViewTapped(sender:UITapGestureRecognizer)
+    {
+        NSNotificationCenter.defaultCenter().postNotificationName("imageViewTapped", object:self.largeImageURL)
+        
     }
 
 }
