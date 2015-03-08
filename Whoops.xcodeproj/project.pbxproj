@@ -39,6 +39,7 @@
 		868A306E1A9E972700FC9EF9 /* WhoopsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868A306D1A9E972700FC9EF9 /* WhoopsTests.swift */; };
 		8690039D1AA78F1000D46DED /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690039C1AA78F1000D46DED /* PostTableViewCell.swift */; };
 		8698ECBD1AAA16CE000E04E6 /* SearchHeadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8698ECBC1AAA16CE000E04E6 /* SearchHeadCell.swift */; };
+		86A2E6481AAC9ECC00499C13 /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A2E6471AAC9ECC00499C13 /* UniversityViewController.swift */; };
 		86FE64B31AA7737300E4B2B1 /* MyPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE64B21AA7737300E4B2B1 /* MyPostsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,7 @@
 		868A306D1A9E972700FC9EF9 /* WhoopsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoopsTests.swift; sourceTree = "<group>"; };
 		8690039C1AA78F1000D46DED /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		8698ECBC1AAA16CE000E04E6 /* SearchHeadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeadCell.swift; sourceTree = "<group>"; };
+		86A2E6471AAC9ECC00499C13 /* UniversityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
 		86FE64B21AA7737300E4B2B1 /* MyPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,6 +152,7 @@
 				2363F9961AA00A1E009957D1 /* YRImageViewController.swift */,
 				239A38431A9FF70E000976E0 /* YRMainViewController.swift */,
 				2363F99B1AA00FBC009957D1 /* YRNewPostViewController.swift */,
+				86A2E6471AAC9ECC00499C13 /* UniversityViewController.swift */,
 			);
 			name = viewController;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				239A384D1A9FFB13000976E0 /* YRCommnentsCell.swift in Sources */,
 				2332728C1AA165D800B6666E /* YRSendViewCell.swift in Sources */,
 				2363F9941AA00913009957D1 /* NSDictionaryExt.swift in Sources */,
+				86A2E6481AAC9ECC00499C13 /* UniversityViewController.swift in Sources */,
 				868A30561A9E972700FC9EF9 /* AppDelegate.swift in Sources */,
 				2363F99C1AA00FBC009957D1 /* YRNewPostViewController.swift in Sources */,
 				738AA8101AABD4A7008E6649 /* SearchResultCell.swift in Sources */,
