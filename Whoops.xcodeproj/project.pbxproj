@@ -32,6 +32,7 @@
 		738AA80E1AABD48D008E6649 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AA80D1AABD48D008E6649 /* SearchViewController.swift */; };
 		738AA8101AABD4A7008E6649 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AA80F1AABD4A7008E6649 /* SearchResultCell.swift */; };
 		86450F3F1AACB254001D6CE8 /* MyPostCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86450F3E1AACB254001D6CE8 /* MyPostCommentViewController.swift */; };
+		86450F411AACDFB9001D6CE8 /* MyRepliesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86450F401AACDFB9001D6CE8 /* MyRepliesViewController.swift */; };
 		868A30561A9E972700FC9EF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868A30551A9E972700FC9EF9 /* AppDelegate.swift */; };
 		868A30581A9E972700FC9EF9 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868A30571A9E972700FC9EF9 /* FirstViewController.swift */; };
 		868A305D1A9E972700FC9EF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 868A305B1A9E972700FC9EF9 /* Main.storyboard */; };
@@ -82,6 +83,7 @@
 		738AA80D1AABD48D008E6649 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		738AA80F1AABD4A7008E6649 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		86450F3E1AACB254001D6CE8 /* MyPostCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostCommentViewController.swift; sourceTree = "<group>"; };
+		86450F401AACDFB9001D6CE8 /* MyRepliesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRepliesViewController.swift; sourceTree = "<group>"; };
 		868A30501A9E972700FC9EF9 /* Whoops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Whoops.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		868A30541A9E972700FC9EF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		868A30551A9E972700FC9EF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				2363F9951AA00A1E009957D1 /* YRCommentsViewController.swift */,
 				86FE64B21AA7737300E4B2B1 /* MyPostsViewController.swift */,
 				86450F3E1AACB254001D6CE8 /* MyPostCommentViewController.swift */,
+				86450F401AACDFB9001D6CE8 /* MyRepliesViewController.swift */,
 				2363F9961AA00A1E009957D1 /* YRImageViewController.swift */,
 				239A38431A9FF70E000976E0 /* YRMainViewController.swift */,
 				2363F99B1AA00FBC009957D1 /* YRNewPostViewController.swift */,
@@ -358,6 +361,7 @@
 				239A38521A9FFB13000976E0 /* YRRefreshView.swift in Sources */,
 				738AA80E1AABD48D008E6649 /* SearchViewController.swift in Sources */,
 				8690039D1AA78F1000D46DED /* PostTableViewCell.swift in Sources */,
+				86450F411AACDFB9001D6CE8 /* MyRepliesViewController.swift in Sources */,
 				239A38441A9FF70E000976E0 /* YRMainViewController.swift in Sources */,
 				8698ECBD1AAA16CE000E04E6 /* SearchHeadCell.swift in Sources */,
 				86450F3F1AACB254001D6CE8 /* MyPostCommentViewController.swift in Sources */,

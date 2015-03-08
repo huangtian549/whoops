@@ -186,7 +186,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vSA-3R-2bV" id="h9d-KI-Csj">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVs-nz-GM0">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVs-nz-GM0">
                                                     <rect key="frame" x="8" y="14" width="551" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -201,6 +201,7 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="NbL-di-IQz" firstAttribute="leading" secondItem="gVs-nz-GM0" secondAttribute="trailing" constant="13" id="9hp-JN-Hp4"/>
                                                 <constraint firstItem="gVs-nz-GM0" firstAttribute="leading" secondItem="h9d-KI-Csj" secondAttribute="leadingMargin" id="KUj-VO-nHu"/>
                                                 <constraint firstItem="NbL-di-IQz" firstAttribute="trailing" secondItem="h9d-KI-Csj" secondAttribute="trailingMargin" id="MSY-6w-kgC"/>
                                                 <constraint firstItem="gVs-nz-GM0" firstAttribute="top" secondItem="h9d-KI-Csj" secondAttribute="topMargin" constant="6" id="McP-Lu-dfx"/>
@@ -539,6 +540,9 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.64999999999999969"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <segue destination="Lvh-BA-oUc" kind="show" id="6Td-yh-RfJ"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="55" id="GQ1-0h-Oq9">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -570,6 +574,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XaZ-t6-j0k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="967" y="1274"/>
+        </scene>
+        <!--My Replies-->
+        <scene sceneID="AMO-52-gJd">
+            <objects>
+                <tableViewController title="My Replies" id="Lvh-BA-oUc" customClass="MyRepliesViewController" customModule="Whoops" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="WyW-h7-2Ut">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.094117656349999995" green="0.36470589040000001" blue="0.5647059083" alpha="1" colorSpace="deviceRGB"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3Sj-ZK-JRR">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Sj-ZK-JRR" id="eYX-TJ-EiH">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Lvh-BA-oUc" id="7Kn-Wc-3a7"/>
+                            <outlet property="delegate" destination="Lvh-BA-oUc" id="xAH-PT-fel"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QT0-la-cqq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="967" y="2038"/>
         </scene>
         <!--My Post-->
         <scene sceneID="Oqg-6V-erh">
