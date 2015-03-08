@@ -17,17 +17,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="A2Z-bp-gL3">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="A2Z-bp-gL3">
                                 <rect key="frame" x="0.0" y="58" width="600" height="606"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.1722183760107828" green="0.13255698961703483" blue="0.34696393416068583" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="A2Z-bp-gL3" secondAttribute="bottom" constant="-64" id="HOd-U5-0qe"/>
+                            <constraint firstAttribute="trailing" secondItem="A2Z-bp-gL3" secondAttribute="trailing" id="b5q-3j-QZj"/>
+                            <constraint firstItem="A2Z-bp-gL3" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="r8f-SZ-IoP"/>
+                            <constraint firstItem="A2Z-bp-gL3" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="topMargin" constant="58" id="ztM-BK-GUz"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1W5-vV-9HW">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="lYS-xv-nwK">
-                            <rect key="frame" x="207" y="8" width="187" height="29"/>
+                            <rect key="frame" x="206.5" y="7.5" width="187" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="New"/>
