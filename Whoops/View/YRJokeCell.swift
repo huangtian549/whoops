@@ -127,6 +127,7 @@ class YRJokeCell: UITableViewCell {
         if nickName == ""{
             contentLabel?.frame = CGRectMake(1, 1, 300, content.stringHeightWith(17,width:300))
         }else{
+            self.nickLabel!.text = "@" + nickName
             contentLabel?.frame = CGRectMake(20, 30, 300, content.stringHeightWith(17,width:300))
         }
         
@@ -134,7 +135,7 @@ class YRJokeCell: UITableViewCell {
         
         dislikeImage.frame = CGRectMake(mainWidth - 20 - 25, cellHeight * 0.7, 25, 25)
         
-        bottomView?.frame = CGRectMake(10, cellHeight - 45 , mainWidth-50, 40)
+        bottomView?.frame = CGRectMake(10, cellHeight - 35 , mainWidth-150, 30)
     
     }
     
@@ -146,9 +147,9 @@ class YRJokeCell: UITableViewCell {
         var imgSrc = data.stringAttributeForKey("image") as NSString
         if imgSrc.length == 0
         {
-            return 59.0 + height
+            return 59.0 + height + 10
         }
-        return 59.0 + height + 5.0 + 112.0
+        return 59.0 + height + 5.0 + 112.0 + 10
     }
     
     func imageViewTapped(sender:UITapGestureRecognizer)

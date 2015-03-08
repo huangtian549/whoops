@@ -14,8 +14,9 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
 YRRefreshViewDelegate{
     
+    @IBOutlet weak var tableView: UITableView!
     let identifier = "cell"
-    var tableView:UITableView?
+//    var tableView:UITableView?
     var dataArray = NSMutableArray()
     var page :Int = 1
     var refreshView:YRRefreshView?
@@ -61,7 +62,7 @@ YRRefreshViewDelegate{
     {
         var width = self.view.frame.size.width
         var height = self.view.frame.size.height
-        self.tableView = UITableView(frame:CGRectMake(0,0,width,height-49))
+//        self.tableView = UITableView(frame:CGRectMake(0,0,width,height-49))
         self.tableView!.delegate = self;
         self.tableView!.dataSource = self;
         self.tableView!.separatorStyle = UITableViewCellSeparatorStyle.SingleLineEtched
