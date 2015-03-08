@@ -84,7 +84,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
                 return
             }
             
-            var arr = data["items"] as NSArray
+            var arr = data["data"] as NSArray
             
             self.myPosts = NSMutableArray()
             for data : AnyObject  in arr
@@ -161,6 +161,17 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
         var index = indexPath.row
         var data = self.myPosts[index] as NSDictionary
         return  PostTableViewCell.cellHeightByData(data)
+    }
+    
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+     {
+        var postComment = segue.destinationViewController as MyPostCommentViewController
+        if let indexPath = self.PostTableView.indexPathForSelectedRow()
+        {
+            var comment = self.myPosts[indexPath.row] as NSDictionary
+            postComment.jokeId = comment.stringAttributeForKey("id")
+
+        }
     }
  
     /*
