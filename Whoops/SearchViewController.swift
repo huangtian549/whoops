@@ -150,5 +150,31 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         filteredTableData = array as [String]
         self.searchTableView.reloadData()
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var university = segue.destinationViewController as UniversityViewController
+        if let indexPath = self.searchTableView.indexPathForSelectedRow() {
+            if self.resultSearchController.active
+            {
+                let selectedUniversity = self.filteredTableData[indexPath.row]
+                university.currentUniversity = selectedUniversity
+                //self.resultSearchController.resignFirstResponder()
+            }
+            else
+            {
+                if indexPath.section == 0{
+                    let selectedUniversity = self.myFavorite[indexPath.row]
+                    university.currentUniversity = selectedUniversity
+                    //  self.resultSearchController.resignFirstResponder()
+                }
+                if indexPath.section == 1{
+                    let selectedUniversity = self.nearby[indexPath.row]
+                    university.currentUniversity = selectedUniversity
+                    //  self.resultSearchController.resignFirstResponder()
+                }
+            }
+        }
+    }
+
 
 }
