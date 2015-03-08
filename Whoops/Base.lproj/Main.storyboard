@@ -638,6 +638,7 @@
                                             <outlet property="PostImage" destination="ibD-lP-AqU" id="yXL-kl-X22"/>
                                             <outlet property="Replies" destination="OzR-yH-1sS" id="l7G-vc-dAG"/>
                                             <outlet property="TimePosted" destination="aB7-5X-Puy" id="0Uu-Hi-ksv"/>
+                                            <segue destination="XZl-wH-wcb" kind="show" id="JHd-3A-sDX"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -662,6 +663,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6FF-aB-QZY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1679" y="1274"/>
+        </scene>
+        <!--My Post Comment View Controller-->
+        <scene sceneID="u6x-EE-oO7">
+            <objects>
+                <tableViewController id="XZl-wH-wcb" customClass="MyPostCommentViewController" customModule="Whoops" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="aOL-FN-9JX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.17221837600000001" green="0.13255698960000001" blue="0.36251183710000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="WTU-sW-Txx">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WTU-sW-Txx" id="ZE8-b1-L6t">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="XZl-wH-wcb" id="tjR-8q-Vx8"/>
+                            <outlet property="delegate" destination="XZl-wH-wcb" id="ZgO-W1-eug"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v6N-WG-dWw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2437" y="1274"/>
         </scene>
         <!--Profile-->
         <scene sceneID="G8k-Al-hug">
