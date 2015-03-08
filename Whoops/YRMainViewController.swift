@@ -10,7 +10,9 @@ import Foundation
 import UIKit
 import CoreLocation
 
-class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, CLLocationManagerDelegate, YRRefreshViewDelegate{
+class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, CLLocationManagerDelegate,
+    
+YRRefreshViewDelegate{
     
     let identifier = "cell"
     var tableView:UITableView?
@@ -19,20 +21,26 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     var refreshView:YRRefreshView?
     let locationManager = CLLocationManager()
     
+    var lat:Double = 0
+    var lng:Double = 0
+    var school:Int = 0
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
+        
+        
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
             locationManager.requestWhenInUseAuthorization()
         } else {
             locationManager.startUpdatingLocation()
         }
-
+        
         setupViews()
-//        loadData()
+        //        loadData()
     }
     
     override func viewWillDisappear(animated: Bool)
@@ -56,10 +64,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.tableView = UITableView(frame:CGRectMake(0,0,width,height-49))
         self.tableView!.delegate = self;
         self.tableView!.dataSource = self;
-        //self.tableView!.separatorStyle = UITableViewCellSeparatorStyle.None
-        self.tableView?.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-        self.tableView?.separatorColor = UIColor.whiteColor()
-        self.tableView?.backgroundColor = UIColor.clearColor()
+        self.tableView!.separatorStyle = UITableViewCellSeparatorStyle.SingleLineEtched
         var nib = UINib(nibName:"YRJokeCell", bundle: nil)
         
         self.tableView?.registerNib(nib, forCellReuseIdentifier: identifier)
@@ -79,8 +84,8 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     func addRefreshControl(){
         var fresh:UIRefreshControl = UIRefreshControl()
         fresh.addTarget(self, action: "actionRefreshHandler:", forControlEvents: UIControlEvents.ValueChanged)
-        fresh.tintColor = UIColor.whiteColor()
-        //fresh.attributedTitle = NSAttributedString(string: "松开后自动刷新")
+        fresh.tintColor = UIColor.redColor()
+        fresh.attributedTitle = NSAttributedString(string: "松开后自动刷新")
         self.tableView?.addSubview(fresh)
     }
     
@@ -96,7 +101,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
                 return
             }
             
-            var arr = data["items"] as NSArray
+            var arr = data["data"] as NSArray
             
             self.dataArray = NSMutableArray()
             for data : AnyObject  in arr
@@ -124,7 +129,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
                 return
             }
             
-            var arr = data["items"] as NSArray
+            var arr = data["data"] as NSArray
             
             for data : AnyObject  in arr
             {
@@ -140,8 +145,15 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     func urlString()->String
     {
+        var url:String = FileUtility.getUrlDomain()
+        if(school == 0){
+            url += "post/listNewByLocation?latitude=\(lat)&longitude=\(lng)&pageNum=\(page)"
+        }else{
+            url += "post/listNewBySchool?schoolId=\(school)&pageNum=\(page)"
+        }
         
-        return "http://m2.qiushibaike.com/article/list/latest?count=20&page=\(page)"
+        //        url =  "http://m2.qiushibaike.com/article/list/latest?count=20&page=\(page)"
+        return url
     }
     
     override func didReceiveMemoryWarning() {
@@ -209,7 +221,8 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         var location:CLLocation = locations[locations.count-1] as CLLocation
         
         if (location.horizontalAccuracy > 0) {
-            println("horizontalAccuracy: \(location.horizontalAccuracy)" )
+            lat = location.coordinate.latitude
+            lng = location.coordinate.longitude
             loadData()
             self.locationManager.stopUpdatingLocation()
             println(location.coordinate)
@@ -222,7 +235,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         println(error)
         //        self.textLabel.text = "get location error"
     }
-
+    
     
     
 }

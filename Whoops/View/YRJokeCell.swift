@@ -19,8 +19,17 @@ class YRJokeCell: UITableViewCell {
     @IBOutlet var dislikeLabel:UILabel?
     @IBOutlet var commentLabel:UILabel?
     @IBOutlet var bottomView:UIView?
+    
+    @IBOutlet weak var likeImage: UIImageView!
+    
+    
+   
+    @IBOutlet weak var dislikeImage: UIImageView!
+    
     var largeImageURL:String = ""
     var data :NSDictionary!
+    
+    var mainWidth:CGFloat = 0
     
     //let avatarPlaceHolder = UIImage(named: "avatar.jpg")
     
@@ -33,8 +42,8 @@ class YRJokeCell: UITableViewCell {
         super.awakeFromNib()
         
         self.selectionStyle = .None
-        
-        
+        mainWidth = UIScreen.mainScreen().bounds.width
+       
         var tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
         self.pictureView!.addGestureRecognizer(tap)
     }
@@ -42,40 +51,34 @@ class YRJokeCell: UITableViewCell {
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
+       // // Configure the view for the selected state
     }
     
     override func layoutSubviews()
     {
         super.layoutSubviews()
         // var uid = self.data["id"] as String
-        var user : AnyObject!  = self.data["user"]
-        
-        if user as NSObject != NSNull()
-        {
-            var userDict = user as NSDictionary
-            self.nickLabel!.text = userDict["login"] as NSString
-            
-            var icon : AnyObject! = userDict["icon"] //as NSString
-            if icon as NSObject != NSNull()
-            {
-                var userIcon = icon as String
-                var userId =  userDict["id"] as NSString
-                var prefixUserId = userId.substringToIndex(3)
-                var userImageURL = "http://pic.moumentei.com/system/avtnew/\(prefixUserId)/\(userId)/thumb/\(userIcon)"
-//                self.avatarView!.setImage(userImageURL,placeHolder: UIImage(named: "avatar.jpg"))
-            }
-            else
-            {
-//                self.avatarView!.image =  UIImage(named: "avatar.jpg")
-            }
-        }
-        else
-        {
-            self.nickLabel!.text = "匿名"
-//            self.avatarView!.image =  UIImage(named: "avatar.jpg")
-            
-        }
+//        var user : AnyObject!  = self.data["user"]
+//        
+//        if user as NSObject != NSNull()
+//        {
+//            var userDict = user as NSDictionary
+//            userDict["login"] as NSString
+//            
+//            var icon : AnyObject! = userDict["icon"] //as NSString
+//            if icon as NSObject != NSNull()
+//            {
+//                var userIcon = icon as String
+//                var userId =  userDict["id"] as NSString
+//                var prefixUserId = userId.substringToIndex(3)
+//                var userImageURL = "http://pic.moumentei.com/system/avtnew/\(prefixUserId)/\(userId)/thumb/\(userIcon)"
+////                self.avatarView!.setImage(userImageURL,placeHolder: UIImage(named: "avatar.jpg"))
+//            }
+//            else
+//            {
+////                self.avatarView!.image =  UIImage(named: "avatar.jpg")
+//            }
+        self.nickLabel!.text = self.data.stringAttributeForKey("nickName")
         var content = self.data.stringAttributeForKey("content")
         var height = content.stringHeightWith(17,width:300)
         
@@ -100,27 +103,39 @@ class YRJokeCell: UITableViewCell {
             self.bottomView!.setY(self.pictureView!.bottom())
         }
         
-        var votes :AnyObject!  = self.data["votes"]
-        if votes as NSObject == NSNull()
-        {
+       
+        if self.data.stringAttributeForKey("likeNum") == NSNull(){
             self.likeLabel!.text = "顶(0)"
-            self.dislikeLabel!.text = "踩(0)"
-            // self.likeLabel!.text = "评论(0)"
+        }else{
+            self.likeLabel!.text = self.data.stringAttributeForKey("likeNum")
         }
-        else
-        {
-            var votesDict = votes as NSDictionary
-            var like  = votesDict.stringAttributeForKey("up") as String
-            var disLike  = votesDict.stringAttributeForKey("down") as String
-            self.likeLabel!.text = "顶(\(like))"
-            self.dislikeLabel!.text = "踩(\(disLike))"
-        }//comments_count
-        var commentCount = self.data.stringAttributeForKey("comments_count") as String
+            
+        if self.data.stringAttributeForKey("dislikeNum") == NSNull(){
+            self.dislikeLabel!.text = "踩(0)"
+        }else{
+            self.dislikeLabel!.text = self.data.stringAttributeForKey("dislikeNum")
+        }
+        
+        
+        var commentCount = self.data.stringAttributeForKey("commentsCount") as String
         self.commentLabel!.text = "评论(\(commentCount))"
         
         
+        var cellHeight:CGFloat = YRJokeCell.cellHeightByData(self.data);
         
+        var nickName = self.data.stringAttributeForKey("nickName") as String
+        if nickName == ""{
+            contentLabel?.frame = CGRectMake(1, 1, 300, content.stringHeightWith(17,width:300))
+        }else{
+            contentLabel?.frame = CGRectMake(20, 30, 300, content.stringHeightWith(17,width:300))
+        }
         
+        likeImage.frame = CGRectMake(mainWidth - 20 - 25, cellHeight * 0.2, 25, 25)
+        
+        dislikeImage.frame = CGRectMake(mainWidth - 20 - 25, cellHeight * 0.7, 25, 25)
+        
+        bottomView?.frame = CGRectMake(10, cellHeight - 45 , mainWidth-50, 40)
+    
     }
     
     
@@ -131,9 +146,9 @@ class YRJokeCell: UITableViewCell {
         var imgSrc = data.stringAttributeForKey("image") as NSString
         if imgSrc.length == 0
         {
-            return 59.0 + height + 40.0
+            return 59.0 + height
         }
-        return 59.0 + height + 5.0 + 112.0 + 40.0
+        return 59.0 + height + 5.0 + 112.0
     }
     
     func imageViewTapped(sender:UITapGestureRecognizer)
