@@ -56,9 +56,9 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             
             for data : AnyObject  in arr
             {
-                self.nearby.addObject(data)
+                target.addObject(data)
             }
-            //self.PostTableView.reloadData()
+            self.searchTableView.reloadData()
             // self.refreshView!.stopLoading()
             //self.page++
         })
