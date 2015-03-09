@@ -11,17 +11,9 @@ import UIKit
 class YRCommnentsCell: UITableViewCell {
 
     
-    @IBOutlet var avatarView:UIImageView?
-    @IBOutlet var nickLabel:UILabel?
-    @IBOutlet var contentLabel:UILabel?
-    @IBOutlet var floorLabel:UILabel?
-    @IBOutlet var dateLabel:UILabel?
    
-  
+    
     var data :NSDictionary!
-
-    
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,50 +30,32 @@ class YRCommnentsCell: UITableViewCell {
     {
         super.layoutSubviews()
         // var uid = self.data["id"] as String
-        var user : AnyObject!  = self.data["user"]
-        
-        if user as NSObject != NSNull()
-        {
-            var userDict = user as NSDictionary
-            self.nickLabel!.text = userDict["login"] as NSString
-            
-            var icon : AnyObject! = userDict["icon"]
-            if icon as NSObject != NSNull()
-            {
-                var userIcon = icon as String
-                var userId =  userDict["id"] as NSString
-                var prefixUserId = userId.substringToIndex(3)
-                var userImageURL = "http://pic.moumentei.com/system/avtnew/\(prefixUserId)/\(userId)/thumb/\(userIcon)"
-                self.avatarView!.setImage(userImageURL,placeHolder: UIImage(named: "avatar.jpg"))
-            }
-            else
-            {
-                self.avatarView!.image =  UIImage(named: "avatar.jpg")
-            }
-            
-            var timeStamp = userDict.stringAttributeForKey("created_at")
-            var date = timeStamp.dateStringFromTimestamp(timeStamp)
-            self.dateLabel!.text = date
-            
-        }
-        else
-        {
-            self.nickLabel!.text = "匿名"
-            self.avatarView!.image =  UIImage(named: "avatar.jpg")
-            self.dateLabel!.text = ""
-            
-        }
-        var content = self.data.stringAttributeForKey("content")
+                var content = self.data.stringAttributeForKey("content")
         var height = content.stringHeightWith(17,width:300)
-        self.contentLabel!.setHeight(height)
-        self.contentLabel!.text = content
-        self.dateLabel!.setY(self.contentLabel!.bottom())
-        var floor = self.data.stringAttributeForKey("floor")
-        self.floorLabel!.text = "\(floor)楼"
+//        self.contentLabel!.setHeight(height)
+//        self.contentLabel!.text = content
+//        self.dateLabel!.setY(self.contentLabel!.bottom())
+//        var floor = self.data.stringAttributeForKey("floor")
+//        self.floorLabel!.text = "\(floor)楼"
     }
 
     
+    @IBAction func likeImageClick(){
+        let myalert = UIAlertView()
+        myalert.title = "准备好了吗"
+        myalert.message = "准备好开始了吗？"
+        myalert.addButtonWithTitle("Ready, go!")
+        myalert.show()
+    }
     
+    @IBAction func unlikeImageClick(){
+        let myalert = UIAlertView()
+        myalert.title = "准备好了吗"
+        myalert.message = "准备好开始了吗？"
+        myalert.addButtonWithTitle("Ready, go!")
+        myalert.show()
+    }
+
     
     
     class func cellHeightByData(data:NSDictionary)->CGFloat

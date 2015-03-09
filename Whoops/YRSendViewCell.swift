@@ -18,37 +18,21 @@ class YRSendViewCell: UIView, UIImagePickerControllerDelegate,UINavigationContro
         //先设定sourceType为相机，然后判断相机是否可用（ipod）没相机，不可用将sourceType设定为相片库
         
         
-        
         var sourceType = UIImagePickerControllerSourceType.Camera
         
-        
-        
         if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
-            
-            
-            
             sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-            
-            
             
         }
         
         
         var picker = UIImagePickerController()
-        
-        
-        
+ 
         picker.delegate = self
-        
-        
-        
+
         picker.allowsEditing = true//设置可编辑
         
-        
-        
         picker.sourceType = sourceType
-        
-        
         
 //        self.presentViewController(picker, animated: true, completion: nil)//进入照相界面
 
