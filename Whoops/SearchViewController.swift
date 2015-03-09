@@ -11,12 +11,17 @@ import UIKit
 class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating{
 
     @IBOutlet weak var searchTableView: UITableView!
-    var _db = ["Johns Hopkins University", "George Washington University", "GeorgeTown University", "American University", "New York University"]
-    var filteredTableData = [String]()
+    //var _db = ["Johns Hopkins University", "George Washington University", "GeorgeTown University", "American University", "New York University"]
+    //var filteredTableData = [String]()
+    var _db = NSMutableArray()
+    var filteredTableData = NSMutableArray()
     var myFavorite = ["Johns Hopkins University", "George Washington University"]
-    var nearby = ["GeorgeTown University"]
+    //var nearby = ["GeorgeTown University"]
+    var nearby = NSMutableArray()
     var resultSearchController = UISearchController()
 
+    let dbUrl = "http://104.131.91.181:8080/whoops/school/getAll"
+    let nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=37.9&longitude=-122.4"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +35,33 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             return controller
         })()
         self.searchTableView.reloadData()
+        loadDB(dbUrl, target: _db)
+        loadDB(nearbyUrl, target: nearby)
+    }
+    
+    func loadDB(var url:String, var target: NSMutableArray)
+    {
+        //var url = "http://104.131.91.181:8080/whoops/school/getAll"
+        YRHttpRequest.requestWithURL(url,completionHandler:{ data in
+            
+            if data as NSObject == NSNull()
+            {
+                let myAltert=UIAlertController(title: "Alert", message: "No Network Access", preferredStyle: UIAlertControllerStyle.Alert)
+                myAltert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(myAltert, animated: true, completion: nil)
+                return
+            }
+            
+            var arr = data["data"] as NSArray
+            
+            for data : AnyObject  in arr
+            {
+                target.addObject(data)
+            }
+            //self.PostTableView.reloadData()
+            // self.refreshView!.stopLoading()
+            //self.page++
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -101,7 +133,9 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         
         if self.resultSearchController.active
         {
-            cell.title.text = self.filteredTableData[row]
+            var data = self.filteredTableData[row] as NSDictionary
+            cell.title.text = data.stringAttributeForKey("nameEn")
+            //cell.title.text = self.filteredTableData[row]
             cell.isHighLighted = false
             cell.backgroundView = nil
             cell.backgroundColor = UIColor.clearColor()
@@ -126,7 +160,10 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             
             if indexPath.section == 1
             {
-                cell.title.text = self.nearby[row]
+                //cell.title.text = self.nearby[row]
+                var data = self.nearby[row] as NSDictionary
+                cell.title.text = data.stringAttributeForKey("nameEn")
+                
                 cell.isHighLighted = false
                 cell.backgroundView = nil
                 cell.backgroundColor = UIColor.clearColor()
@@ -142,12 +179,21 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         
     }
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        filteredTableData.removeAll(keepCapacity: false)
+    func updateSearchResultsForSearchController(searchController: UISearchController)
+    {
+        //filteredTableData.removeAll(keepCapacity: false)
+        //filteredTableData.removeAllObjects()
+        //loadDB()
+        filteredTableData = _db
         
-        let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text)
-        let array = (_db as NSArray).filteredArrayUsingPredicate(searchPredicate!)
-        filteredTableData = array as [String]
+        //let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text)
+        //let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", argumentArray: _db)
+        
+        //let array = (_db as NSArray).filteredArrayUsingPredicate(searchPredicate!)
+        //let array = _db.filteredArrayUsingPredicate(searchPredicate!)
+        //filteredTableData = array as [String]
+        
+        //filteredTableData.filterUsingPredicate(searchPredicate)
         self.searchTableView.reloadData()
     }
     
@@ -156,7 +202,10 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         if let indexPath = self.searchTableView.indexPathForSelectedRow() {
             if self.resultSearchController.active
             {
-                let selectedUniversity = self.filteredTableData[indexPath.row]
+                var data = self.filteredTableData[indexPath.row] as NSDictionary
+                //let selectedUniversity = self.filteredTableData[indexPath.row]
+                let selectedUniversity = data.stringAttributeForKey("nameEn")
+                
                 university.currentUniversity = selectedUniversity
                 //self.resultSearchController.resignFirstResponder()
             }
@@ -168,8 +217,12 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                     //  self.resultSearchController.resignFirstResponder()
                 }
                 if indexPath.section == 1{
-                    let selectedUniversity = self.nearby[indexPath.row]
+                    //let selectedUniversity = self.nearby[indexPath.row]
+                    var data = self.nearby[indexPath.row] as NSDictionary
+                    let selectedUniversity = data.stringAttributeForKey("nameEn")
+                    
                     university.currentUniversity = selectedUniversity
+                    
                     //  self.resultSearchController.resignFirstResponder()
                 }
             }

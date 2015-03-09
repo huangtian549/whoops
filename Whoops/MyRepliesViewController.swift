@@ -96,6 +96,7 @@ class MyRepliesViewController: UITableViewController, YRRefreshViewDelegate {
     func urlString()->String
     {
         return "http://m2.qiushibaike.com/article/list/latest?count=20&page=\(page)"
+        //return "http://104.131.91.181:8080/whoops/post/listByCommentAndUid?uid=1&pageNum=\(page)"
     }
     
     func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)
@@ -137,6 +138,7 @@ class MyRepliesViewController: UITableViewController, YRRefreshViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as YRJokeCell
         var index = indexPath.row
         cell.data = self.dataArray[index] as NSDictionary
+       // cell.textLabel?.text = self.dataArray[index]
         return cell
     }
     
