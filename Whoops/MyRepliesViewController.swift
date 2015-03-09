@@ -140,6 +140,14 @@ class MyRepliesViewController: UITableViewController, YRRefreshViewDelegate {
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var index = indexPath.row
+        var data = self.dataArray[index] as NSDictionary
+        var commentsVC = YRCommentsViewController(nibName :nil, bundle: nil)
+        commentsVC.jokeId = data.stringAttributeForKey("id")
+        self.navigationController?.pushViewController(commentsVC, animated: true)
+    }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var index = indexPath.row
         var data = self.dataArray[index] as NSDictionary

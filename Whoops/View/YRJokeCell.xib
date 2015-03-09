@@ -28,10 +28,6 @@
                         <color key="textColor" red="0.054901964962482452" green="0.88627457618713379" blue="0.364705890417099" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="jo1-pm-TMV">
-                        <rect key="frame" x="8" y="55" width="126" height="112"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Like" id="aDL-6I-hrH">
                         <rect key="frame" x="255" y="25" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -72,6 +68,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.094117656349999995" green="0.36470589040000001" blue="0.5647059083" alpha="1" colorSpace="deviceRGB"/>
                     </view>
+                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="jo1-pm-TMV">
+                        <rect key="frame" x="10" y="55" width="126" height="112"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" red="0.094117656350135803" green="0.364705890417099" blue="0.56470590829849243" alpha="1" colorSpace="deviceRGB"/>
             </tableViewCellContentView>
