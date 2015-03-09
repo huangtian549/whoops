@@ -82,7 +82,7 @@ extension UIView  {
         var alert = UIAlertView()
         alert.title = title
         alert.message = message
-        alert.addButtonWithTitle("好")
+        alert.addButtonWithTitle("OK")
         alert.show()
 
     }

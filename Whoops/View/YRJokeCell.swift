@@ -188,7 +188,9 @@ class YRJokeCell: UITableViewCell {
                 return 59.0 + height + 10
             }
         }
-        return 59.0 + height + 5.0 + 112.0 + 10
+        
+        return 59.0 + height + 5.0 + 140.0 + 100
+        
     }
     
     func imageViewTapped(sender:UITapGestureRecognizer)
