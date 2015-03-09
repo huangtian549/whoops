@@ -82,7 +82,7 @@ class YRJokeCell: UITableViewCell {
         var content = self.data.stringAttributeForKey("content")
         var width = self.contentLabel?.width()
         var height = content.stringHeightWith(17,width:width!)
-        
+
         self.contentLabel!.setHeight(height)
         self.contentLabel!.text = content
         
@@ -123,6 +123,8 @@ class YRJokeCell: UITableViewCell {
         
         
         var cellHeight:CGFloat = YRJokeCell.cellHeightByData(self.data);
+        //self.dislikeLabel?.setY(cellHeight/2)
+        
         
         var nickName = self.data.stringAttributeForKey("nickName") as String
         if nickName == ""{
