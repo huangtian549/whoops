@@ -84,7 +84,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
                 return
             }
             
-            var arr = data["data"] as NSArray
+            var arr = data["items"] as NSArray
             
             self.myPosts = NSMutableArray()
             for data : AnyObject  in arr
