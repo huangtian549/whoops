@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import CoreLocation
 
-class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, CLLocationManagerDelegate,
+class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, CLLocationManagerDelegate, YRRefreshViewDelegate{
+
     
-YRRefreshViewDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     let identifier = "cell"
@@ -25,6 +25,7 @@ YRRefreshViewDelegate{
     var lat:Double = 0
     var lng:Double = 0
     var school:Int = 0
+    var userId:String = "0"
     
     override func viewDidLoad()
     {
@@ -40,8 +41,9 @@ YRRefreshViewDelegate{
             locationManager.startUpdatingLocation()
         }
         
+        userId = FileUtility.getUserId()
         setupViews()
-        //        loadData()
+        
     }
     
     override func viewWillDisappear(animated: Bool)

@@ -10,19 +10,22 @@ import UIKit
 
 class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,YRRefreshViewDelegate {
 
-    let identifier = "cell"
     var tableView:UITableView?
+    let identifier = "cell"
+    
     var dataArray = NSMutableArray()
     var page :Int = 1
     var refreshView:YRRefreshView?
     var jokeId:String!
 
-    
+    var postData:NSDictionary!
+    var headerView:YRJokeCell?
+  
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         // Custom initialization
-        self.title = "评论"
+        self.title = "Detail"
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -43,25 +46,33 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         self.tableView = UITableView(frame:CGRectMake(0,0,width,height))
         self.tableView!.delegate = self;
         self.tableView!.dataSource = self;
-        self.tableView!.separatorStyle = UITableViewCellSeparatorStyle.None
+//        self.tableView!.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView?.backgroundColor = UIColor.clearColor()
         //self.tableView!.style = UITableViewStyle.Grouped
-        var nib = UINib(nibName:"YRCommnentsCell", bundle: nil)
+        var nib = UINib(nibName:"YRJokeCell", bundle: nil)
         
         self.tableView?.registerNib(nib, forCellReuseIdentifier: identifier)
         
-        var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
-        self.refreshView = arr[0] as? YRRefreshView
-        self.refreshView!.delegate = self
         
-        self.tableView!.tableFooterView = self.refreshView
+        loadPostData()
+        
+//        headerView.initData()
+
+       
+      
+        
+//        var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
+//        self.refreshView = arr[0] as? YRRefreshView
+//        self.refreshView!.delegate = self
+//        
+//        self.tableView!.tableFooterView = self.refreshView
         self.view.addSubview(self.tableView!)
     }
     
     func loadData()
     {
-        var url = "http://m2.qiushibaike.com/article/\(self.jokeId)/comments?count=20&page=\(self.page)"
-        self.refreshView!.startLoading()
+        var url = FileUtility.getUrlDomain() + "comment/getCommentByPostId?postId=\(jokeId)"
+//        self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
             if data as NSObject == NSNull()
@@ -69,8 +80,8 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
                 UIView.showAlertView("提示",message:"加载失败")
                 return
             }
-
-            var arr = data["items"] as NSArray
+            
+            var arr = data["data"] as NSArray
             if arr.count  == 0
             {
                 UIView.showAlertView("提示",message:"暂无新评论哦")
@@ -81,11 +92,42 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
                 self.dataArray.addObject(data)
             }
             self.tableView!.reloadData()
-            self.refreshView!.stopLoading()
+//            self.refreshView!.stopLoading()
             self.page++
+
+
+            
+            
             })
 
     }
+    
+    func loadPostData()
+    {
+        var url = FileUtility.getUrlDomain() + "post/get?id=\(self.jokeId)"
+        
+        YRHttpRequest.requestWithURL(url,completionHandler:{ data in
+            
+            if data as NSObject == NSNull()
+            {
+                UIView.showAlertView("提示",message:"加载失败")
+                return
+            }
+            
+            
+            
+            var arrHeader =  NSBundle.mainBundle().loadNibNamed("YRJokeCell" ,owner: self, options: nil) as Array
+            
+            self.headerView = arrHeader[0] as? YRJokeCell
+            var post = data["data"] as NSDictionary
+            self.headerView?.data = post
+            self.headerView?.frame = CGRectMake(0, 0, self.view.frame.size.width,YRJokeCell.cellHeightByData(post))
+
+            self.tableView!.tableHeaderView = self.headerView
+        })
+        
+    }
+
     
     
     func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
@@ -103,13 +145,18 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? YRCommnentsCell
-        cell?.selectionStyle = UITableViewCellSelectionStyle.None
+        var cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? YRJokeCell
         var index = indexPath.row
         var data = self.dataArray[index] as NSDictionary
         cell!.data = data
         return cell!
     }
+    
+//    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
+//        
+//        
+//    }
+
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat
     {
