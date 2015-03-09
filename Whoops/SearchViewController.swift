@@ -35,8 +35,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             return controller
         })()
         self.searchTableView.reloadData()
-        loadDB(dbUrl, target: _db)
         loadDB(nearbyUrl, target: nearby)
+        loadDB(dbUrl, target: _db)
     }
     
     func loadDB(var url:String, var target: NSMutableArray)
@@ -56,7 +56,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             
             for data : AnyObject  in arr
             {
-                target.addObject(data)
+                self.nearby.addObject(data)
             }
             //self.PostTableView.reloadData()
             // self.refreshView!.stopLoading()
