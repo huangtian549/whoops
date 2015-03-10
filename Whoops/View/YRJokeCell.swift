@@ -60,27 +60,7 @@ class YRJokeCell: UITableViewCell {
     override func layoutSubviews()
     {
         super.layoutSubviews()
-        // var uid = self.data["id"] as String
-//        var user : AnyObject!  = self.data["user"]
-//        
-//        if user as NSObject != NSNull()
-//        {
-//            var userDict = user as NSDictionary
-//            userDict["login"] as NSString
-//            
-//            var icon : AnyObject! = userDict["icon"] //as NSString
-//            if icon as NSObject != NSNull()
-//            {
-//                var userIcon = icon as String
-//                var userId =  userDict["id"] as NSString
-//                var prefixUserId = userId.substringToIndex(3)
-//                var userImageURL = "http://pic.moumentei.com/system/avtnew/\(prefixUserId)/\(userId)/thumb/\(userIcon)"
-////                self.avatarView!.setImage(userImageURL,placeHolder: UIImage(named: "avatar.jpg"))
-//            }
-//            else
-//            {
-////                self.avatarView!.image =  UIImage(named: "avatar.jpg")
-//            }
+        
         self.nickLabel!.text = self.data.stringAttributeForKey("nickName")
         var content = self.data.stringAttributeForKey("content")
         var width = self.contentLabel?.width()
@@ -123,7 +103,10 @@ class YRJokeCell: UITableViewCell {
         
         
         var commentCount = self.data.stringAttributeForKey("commentsCount") as String
-        self.commentLabel!.text = "评论(\(commentCount))"
+        if commentCount == "" {
+            commentCount = "0"
+        }
+        self.commentLabel!.text = "\(commentCount) Repies"
         
         
         var cellHeight:CGFloat = YRJokeCell.cellHeightByData(self.data);
@@ -137,6 +120,7 @@ class YRJokeCell: UITableViewCell {
             self.nickLabel!.text = "@" + nickName
             //contentLabel?.frame = CGRectMake(20, 30, 300, content.stringHeightWith(17,width:300))
         }
+        self.dateTimeLabel!.text = self.data.stringAttributeForKey("createDateLabel") as String
         
        postId = self.data.stringAttributeForKey("id") as String
     

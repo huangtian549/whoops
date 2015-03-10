@@ -10,20 +10,25 @@ import UIKit
 
 class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate,UITextViewDelegate,UINavigationControllerDelegate{
     
-    @IBOutlet weak var textField: UITextField!
+   
 
     @IBOutlet weak var contentTextView: UITextView!
  
     @IBOutlet weak var sendItem: UIBarButtonItem!
 
+    @IBOutlet weak var nickName: UITextField!
     
     @IBOutlet weak var photoButton: UIButton!
+    @IBOutlet weak var nickNameText: UITextField!
     
     
     var imgView = UIImageView()
-    
-    
     var img = UIImage()
+    
+    var schoolId:String = "0"
+    
+    var latitude:Float = 0.0
+    var longitude:Float = 0.0
 
     
     override func viewDidLoad() {
@@ -99,6 +104,8 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
                 
             }else{
                 println(contentTextView.text)
+                createNewPost()
+//                uploadImageOne()
             }
             println("aaaaccccc")
         }
@@ -109,6 +116,154 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func createNewPost(){
+        var content = contentTextView.text;
+        var url = FileUtility.getUrlDomain() + "post/addNoPic?content=\(content)"
+        var nickName:String = nickNameText.text
+        if !nickName.isEmpty{
+            url += "&nickName=\(nickName)"
+        }
+        
+        if schoolId == "0" {
+            url += "&latitude=\(latitude)&longitude=\(longitude)"
+        }else{
+            url += "&schoolId=\(schoolId)"
+        }
+        
+        YRHttpRequest.requestWithURL(url,completionHandler:{ data in
+            
+            if data as NSObject == NSNull()
+            {
+                UIView.showAlertView("WARNING",message:"Failed")
+                return
+            }
+            
+            
+        })
+
+    }
+    
+    
+    func uploadImageOne(){
+        var imageData = UIImagePNGRepresentation(imgView.image)
+        
+        if imageData != nil{
+            var url:String = FileUtility.getUrlDomain() + "post/add?"
+            var nsurl = NSURL(fileURLWithPath: url)
+            var request = NSMutableURLRequest(URL:nsurl!)
+            request.HTTPMethod = "POST"
+            
+            var bodyData = "content="+contentTextView.text
+            
+            
+            request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
+            request.HTTPBody = NSData(data: UIImagePNGRepresentation(imgView.image))
+            println("miraqui \(request.debugDescription)")
+            var response: AutoreleasingUnsafeMutablePointer<NSURLResponse?>=nil
+            var HTTPError: NSError? = nil
+            var JSONError: NSError? = nil
+            
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
+                data, response, error in
+                
+                if error != nil {
+                    // handle error here
+                    return
+                }
+                
+                // if response was JSON, then parse it
+                
+                var parseError: NSError?
+                let responseObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &parseError)
+                
+                if let responseDictionary = responseObject as? NSDictionary {
+                    // handle the parsed dictionary here
+                } else {
+                    // handle parsing error here
+                }
+                
+                // if response was text or html, then just convert it to a string
+                //
+                // let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+                // println("responseString = \(responseString)")
+                
+                // note, if you want to update the UI, make sure to dispatch that to the main queue, e.g.:
+                //
+                // dispatch_async(dispatch_get_main_queue()) {
+                //     // update your UI and model objects here
+                // }
+            })
+            task.resume()
+            
+//            var dataVal: NSData? =  NSURLConnection.sendSynchronousRequest(request, returningResponse: response, error: &HTTPError)
+//            
+//            if ((dataVal != nil) && (HTTPError == nil)) {
+//                var jsonResult = NSJSONSerialization.JSONObjectWithData(dataVal!, options: NSJSONReadingOptions.MutableContainers, error: &JSONError)
+//                
+//                if (JSONError != nil) {
+//                    println("Bad JSON")
+//                } else {
+//                    println("Synchronous\(jsonResult)")
+//                }
+//            } else if (HTTPError != nil) {
+//                println("Request failed")
+//            } else {
+//                println("No Data returned")
+//            }
+            
+//            var url:String = FileUtility.getUrlDomain() + "post/add?content=\(contentTextView.text)"
+//            var nsurl = NSURL(fileURLWithPath: url)
+//            var request = NSMutableURLRequest(URL: nsurl!)
+//            var session = NSURLSession.sharedSession()
+//            
+//            request.HTTPMethod = "POST"
+//            
+//            var boundary = NSString(format: "---------------------------14737809831466499882746641449")
+//            var contentType = NSString(format: "multipart/form-data; boundary=%@",boundary)
+//            //  println("Content Type \(contentType)")
+//            request.addValue(contentType, forHTTPHeaderField: "Content-Type")
+//            
+//            var body = NSMutableData.alloc()
+//            
+//            // Title
+//            body.appendData(NSString(format: "\r\n--%@\r\n",boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
+//            body.appendData(NSString(format:"Content-Disposition: form-data; name=\"title\"\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+//            body.appendData("Hello World".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!)
+//            
+//            // Image
+//            body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
+//            body.appendData(NSString(format:"Content-Disposition: form-data; name=\"profile_img\"; filename=\"img.jpg\"\\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+//            body.appendData(NSString(format: "Content-Type: application/octet-stream\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+//            body.appendData(imageData)
+//            body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
+//            
+//            
+//            
+//            request.HTTPBody = body
+//            
+//            let task = NSURLSession.sharedSession().uploadTaskWithRequest(request, fromData: imageData, completionHandler: {data, response, error -> Void in
+//                
+//                println(request)
+//                println(response)
+//                // println(payload)
+//                
+//            })
+//            task.resume()
+            
+//            var returnData = NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil)
+//            
+//            if returnData != nil{
+//                var returnString = NSString(data: returnData!, encoding: NSUTF8StringEncoding)
+//            
+//                println("returnString \(returnString)")
+//            }
+        }
+        
+        
+    }
+
     
     
 }

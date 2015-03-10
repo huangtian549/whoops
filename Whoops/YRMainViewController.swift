@@ -27,6 +27,8 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     var school:Int = 0
     var userId:String = "0"
     
+    var type:String = "new"
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -88,7 +90,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         var fresh:UIRefreshControl = UIRefreshControl()
         fresh.addTarget(self, action: "actionRefreshHandler:", forControlEvents: UIControlEvents.ValueChanged)
         fresh.tintColor = UIColor.redColor()
-        fresh.attributedTitle = NSAttributedString(string: "松开后自动刷新")
+        fresh.attributedTitle = NSAttributedString(string: "reloading")
         self.tableView?.addSubview(fresh)
     }
     
@@ -150,12 +152,19 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     {
         var url:String = FileUtility.getUrlDomain()
         if(school == 0){
-            url += "post/listNewByLocation?latitude=\(lat)&longitude=\(lng)&pageNum=\(page)"
+            if self.type == "new"{
+                url += "post/listNewByLocation?latitude=\(lat)&longitude=\(lng)&pageNum=\(page)"
+            }else{
+                url += "post/listHotByLocation?latitude=\(lat)&longitude=\(lng)&pageNum=\(page)"
+            }
         }else{
-            url += "post/listNewBySchool?schoolId=\(school)&pageNum=\(page)"
+            if self.type == "new" {
+                url += "post/listNewBySchool?schoolId=\(school)&pageNum=\(page)"
+            }else{
+                url += "post/listHotBySchool?schoolId=\(school)&pageNum=\(page)"
+            }
         }
         
-        //        url =  "http://m2.qiushibaike.com/article/list/latest?count=20&page=\(page)"
         return url
     }
     
@@ -240,6 +249,19 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         //        self.textLabel.text = "get location error"
     }
     
-    
+    @IBAction func newClick(){
+        self.type = "new"
+        page = 1
+        self.dataArray = NSMutableArray()
+        loadData()
+    }
+
+    @IBAction func hotClick(){
+        self.type = "hot"
+        page = 1
+        self.dataArray = NSMutableArray()
+        loadData()
+    }
+
     
 }

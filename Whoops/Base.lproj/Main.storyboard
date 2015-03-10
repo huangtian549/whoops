@@ -33,13 +33,17 @@
                     <navigationItem key="navigationItem" id="1W5-vV-9HW">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="lYS-xv-nwK">
-                            <rect key="frame" x="206.5" y="7.5" width="187" height="29"/>
+                            <rect key="frame" x="207" y="8" width="187" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="New"/>
                                 <segment title="Hot"/>
                             </segments>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="hotClick" destination="9pv-A4-QxB" eventType="valueChanged" id="79K-DH-slG"/>
+                                <action selector="newClick" destination="9pv-A4-QxB" eventType="valueChanged" id="Qdz-vy-2Gl"/>
+                            </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="Item" style="done" id="y8T-52-dIo">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ClA-FF-eLR">
@@ -323,8 +327,11 @@
                                     <action selector="photoButtonClick:" destination="laY-OX-8v4" eventType="touchUpInside" id="ywz-OI-abL"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zwK-Yo-wLK">
-                                <rect key="frame" x="97" y="349" width="97" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="108.png" translatesAutoresizingMaskIntoConstraints="NO" id="q2J-0l-e2o">
+                                <rect key="frame" x="87" y="347" width="28" height="30"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zwK-Yo-wLK">
+                                <rect key="frame" x="147" y="349" width="97" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="97" id="Ba2-iA-FuW"/>
                                 </constraints>
@@ -334,7 +341,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.17221837600000001" green="0.13255698960000001" blue="0.36251183710000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="zwK-Yo-wLK" firstAttribute="leading" secondItem="5rU-iV-n28" secondAttribute="trailing" constant="35" id="BWU-Ek-saW"/>
+                            <constraint firstItem="zwK-Yo-wLK" firstAttribute="leading" secondItem="5rU-iV-n28" secondAttribute="trailing" constant="50" id="BWU-Ek-saW"/>
                             <constraint firstItem="dwa-jf-uwl" firstAttribute="top" secondItem="zwK-Yo-wLK" secondAttribute="bottom" constant="239" id="CRd-dt-s4s"/>
                             <constraint firstAttribute="trailing" secondItem="Aev-Gh-xwJ" secondAttribute="trailing" id="LqY-oW-PPK"/>
                             <constraint firstItem="5rU-iV-n28" firstAttribute="leading" secondItem="AIl-w3-FlR" secondAttribute="leadingMargin" constant="11" id="Tc6-Md-edy"/>
@@ -359,9 +366,9 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="contentTextView" destination="Aev-Gh-xwJ" id="o9U-Gw-hnW"/>
+                        <outlet property="nickNameText" destination="zwK-Yo-wLK" id="AaG-VL-U7x"/>
                         <outlet property="photoButton" destination="5rU-iV-n28" id="nCD-10-VL3"/>
                         <outlet property="sendItem" destination="9B2-8O-Yug" id="uMN-ma-Frw"/>
-                        <outlet property="textField" destination="zwK-Yo-wLK" id="512-Ut-EWc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VIH-bb-Rjs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -755,6 +762,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="108.png" width="89" height="110"/>
         <image name="Home" width="33" height="32"/>
         <image name="Likes" width="33" height="30"/>
         <image name="Logo" width="448" height="448"/>

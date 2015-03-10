@@ -32,6 +32,7 @@
 		738AA80E1AABD48D008E6649 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AA80D1AABD48D008E6649 /* SearchViewController.swift */; };
 		738AA8101AABD4A7008E6649 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AA80F1AABD4A7008E6649 /* SearchResultCell.swift */; };
 		73BB084B1AADED0800F8C878 /* user.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73BB084A1AADED0800F8C878 /* user.plist */; };
+		73BB89FE1AAF4A1E00CAECB5 /* 108.png in Resources */ = {isa = PBXBuildFile; fileRef = 73BB89FD1AAF4A1E00CAECB5 /* 108.png */; };
 		86450F3F1AACB254001D6CE8 /* MyPostCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86450F3E1AACB254001D6CE8 /* MyPostCommentViewController.swift */; };
 		86450F411AACDFB9001D6CE8 /* MyRepliesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86450F401AACDFB9001D6CE8 /* MyRepliesViewController.swift */; };
 		868A30561A9E972700FC9EF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868A30551A9E972700FC9EF9 /* AppDelegate.swift */; };
@@ -84,6 +85,7 @@
 		738AA80D1AABD48D008E6649 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		738AA80F1AABD4A7008E6649 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		73BB084A1AADED0800F8C878 /* user.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = user.plist; sourceTree = "<group>"; };
+		73BB89FD1AAF4A1E00CAECB5 /* 108.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 108.png; sourceTree = "<group>"; };
 		86450F3E1AACB254001D6CE8 /* MyPostCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostCommentViewController.swift; sourceTree = "<group>"; };
 		86450F401AACDFB9001D6CE8 /* MyRepliesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRepliesViewController.swift; sourceTree = "<group>"; };
 		868A30501A9E972700FC9EF9 /* Whoops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Whoops.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +209,7 @@
 				868A30571A9E972700FC9EF9 /* FirstViewController.swift */,
 				868A305B1A9E972700FC9EF9 /* Main.storyboard */,
 				868A305E1A9E972700FC9EF9 /* Images.xcassets */,
+				73BB89FD1AAF4A1E00CAECB5 /* 108.png */,
 				2363F9991AA00AEF009957D1 /* avatar.jpg */,
 				868A30601A9E972700FC9EF9 /* LaunchScreen.xib */,
 				868A30531A9E972700FC9EF9 /* Supporting Files */,
@@ -290,9 +293,11 @@
 				TargetAttributes = {
 					868A304F1A9E972700FC9EF9 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = K94UR8LM3V;
 					};
 					868A30661A9E972700FC9EF9 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = K94UR8LM3V;
 						TestTargetID = 868A304F1A9E972700FC9EF9;
 					};
 				};
@@ -322,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				868A305D1A9E972700FC9EF9 /* Main.storyboard in Resources */,
+				73BB89FE1AAF4A1E00CAECB5 /* 108.png in Resources */,
 				2363F99A1AA00AEF009957D1 /* avatar.jpg in Resources */,
 				2332725C1AA13FAA00B6666E /* YRSendViewCell.xib in Resources */,
 				738AA80C1AABD411008E6649 /* 112.png in Resources */,
@@ -518,6 +524,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -529,6 +537,7 @@
 				INFOPLIST_FILE = WhoopsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Whoops.app/Whoops";
 			};
 			name = Debug;
@@ -537,6 +546,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -544,6 +555,7 @@
 				INFOPLIST_FILE = WhoopsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Whoops.app/Whoops";
 			};
 			name = Release;
