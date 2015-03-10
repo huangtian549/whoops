@@ -15,6 +15,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     //var filteredTableData = [String]()
     var _db = NSMutableArray()
     var filteredTableData = []
+    //var myFavorite = NSMutableArray()
     var myFavorite = ["Johns Hopkins University", "George Washington University"]
     //var nearby = ["GeorgeTown University"]
     var nearby = NSMutableArray()
@@ -22,6 +23,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
 
     let dbUrl = "http://104.131.91.181:8080/whoops/school/getAll"
     let nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=37.9&longitude=-122.4"
+    let myFavoriteUrl = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=1"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         self.searchTableView.reloadData()
         loadDB(nearbyUrl, target: nearby)
         loadDB(dbUrl, target: _db)
+        //loadDB(myFavoriteUrl, target: myFavorite)
     }
     
     func loadDB(var url:String, var target: NSMutableArray)
@@ -150,6 +153,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             {
                 cell.favorite = self.myFavorite
                 cell.title.text = self.myFavorite[row]
+                //var data = self.myFavorite[row] as NSDictionary
+                
                 cell.isHighLighted = true
                 cell.backgroundView = nil
                 cell.backgroundColor = UIColor.clearColor()
