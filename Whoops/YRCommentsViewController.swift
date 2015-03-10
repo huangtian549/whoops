@@ -162,7 +162,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     {
         var index = indexPath!.row
         var data = self.dataArray[index] as NSDictionary
-        return  YRCommnentsCell.cellHeightByData(data)
+        return  YRJokeCell.cellHeightByData(data)
     }
 //    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
 //    {

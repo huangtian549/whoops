@@ -95,10 +95,10 @@ class FileUtility: NSObject {
             dict.setObject(userId, forKey: "userid")
             
             //...
-            //writing to GameData.plist
+            //writing to user.plist
             dict.writeToFile(path, atomically: false)
             let resultDictionary = NSMutableDictionary(contentsOfFile: path)
-            println("Saved user.plist file is --> \(resultDictionary?.description)")
+          
             
         })
 
