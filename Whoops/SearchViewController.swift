@@ -12,13 +12,9 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     
     @IBOutlet weak var searchTableView: UITableView!
-    //var _db = ["Johns Hopkins University", "George Washington University", "GeorgeTown University", "American University", "New York University"]
-    //var filteredTableData = [String]()
     var _db = NSMutableArray()
     var filteredTableData = []
     var myFavorite = NSMutableArray()
-    //var myFavorite = ["Johns Hopkins University", "George Washington University"]
-    //var nearby = ["GeorgeTown University"]
     var nearby = NSMutableArray()
     var resultSearchController = UISearchController()
 
@@ -145,6 +141,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             cell.title.text = data.stringAttributeForKey("nameEn")
             //cell.title.text = self.filteredTableData[row]
             cell.data = data
+            cell.uid = FileUtility.getUserId()
             
             cell.isHighLighted = false
             cell.backgroundView = nil
@@ -162,7 +159,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 var data = self.myFavorite[row] as NSDictionary
                 cell.title.text = data.stringAttributeForKey("nameEn")
                 cell.data = data
-                var uid = FileUtility.getUserId()
+                cell.uid = FileUtility.getUserId()
                 
                 cell.isHighLighted = true
                 cell.backgroundView = nil
@@ -171,6 +168,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 //if cell.flag {
                 //    loadDB(myFavoriteUrl, target: myFavorite)
                 //    self.searchTableView.reloadData()
+                //    cell.flag = false
                 //}
                 
                 cell.likeButton.setImage(UIImage(named: "Like"), forState: UIControlState.Normal)
@@ -184,6 +182,12 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 var data = self.nearby[row] as NSDictionary
                 cell.title.text = data.stringAttributeForKey("nameEn")
                 cell.data = data
+                cell.uid = FileUtility.getUserId()
+                
+                //if cell.flag{
+                //    self.searchTableView.reloadData()
+                //    cell.flag = false
+                //}
                 
                 cell.isHighLighted = false
                 cell.backgroundView = nil
@@ -222,6 +226,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 var data = self.filteredTableData[indexPath.row] as NSDictionary
                 //let selectedUniversity = self.filteredTableData[indexPath.row]
                 let selectedUniversity = data.stringAttributeForKey("nameEn")
+                university.schoolId = data.stringAttributeForKey("schoolId")
                 
                 university.currentUniversity = selectedUniversity
                 self.resultSearchController.resignFirstResponder()
@@ -235,6 +240,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                     var data = self.myFavorite[indexPath.row] as NSDictionary
                     let selectedUniversity = data.stringAttributeForKey("nameEn")
                     
+                    university.schoolId = data.stringAttributeForKey("schoolId")
                     university.currentUniversity = selectedUniversity
                     //  self.resultSearchController.resignFirstResponder()
                 }
@@ -243,6 +249,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                     var data = self.nearby[indexPath.row] as NSDictionary
                     let selectedUniversity = data.stringAttributeForKey("nameEn")
                     
+                    university.schoolId = data.stringAttributeForKey("schoolId")
                     university.currentUniversity = selectedUniversity
                     
                     //  self.resultSearchController.resignFirstResponder()

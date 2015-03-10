@@ -10,7 +10,7 @@ import UIKit
 
 class SearchResultCell: UITableViewCell {
     var isHighLighted = Bool()
-    var flag = false
+    var flag = true
     var currentIndex = Int()
     var favorite = []
     var data = NSDictionary()
@@ -27,7 +27,7 @@ class SearchResultCell: UITableViewCell {
             if self.isHighLighted == false
             {
                 self.schoolId = self.data.stringAttributeForKey("id")
-                var url = "http://104.131.91.181:8080/whoops/favorSchool/add?uid=1&schoolId=\(self.schoolId)"
+                var url = "http://104.131.91.181:8080/whoops/favorSchool/add?uid=\(self.uid)&schoolId=\(self.schoolId)"
                 self.flag = true
                 YRHttpRequest.requestWithURL(url,completionHandler:{ data in
                     
@@ -46,7 +46,7 @@ class SearchResultCell: UITableViewCell {
             else
             {
                 self.schoolId = self.data.stringAttributeForKey("schoolId")
-                var url = "http://104.131.91.181:8080/whoops/favorSchool/delete?uid=1&schoolId=\(self.schoolId)"
+                var url = "http://104.131.91.181:8080/whoops/favorSchool/delete?uid=\(self.uid)&schoolId=\(self.schoolId)"
                 self.flag = true
                 
                 YRHttpRequest.requestWithURL(url,completionHandler:{ data in
