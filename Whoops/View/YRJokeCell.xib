@@ -59,7 +59,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.094117656349999995" green="0.36470589040000001" blue="0.5647059083" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.17221837600000001" green="0.13255698960000001" blue="0.36251183710000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="OFI-Qo-aHk" firstAttribute="centerY" secondItem="iYk-1Q-8ds" secondAttribute="centerY" id="TTt-Qd-Hv6"/>
                             <constraint firstAttribute="height" constant="35" id="tx6-iQ-Kov"/>
@@ -102,7 +102,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" red="0.094117656350135803" green="0.364705890417099" blue="0.56470590829849243" alpha="1" colorSpace="deviceRGB"/>
+                <color key="backgroundColor" red="0.17221837600000001" green="0.13255698960000001" blue="0.36251183710000001" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="jo1-pm-TMV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="21" id="590-pw-GsA"/>
                     <constraint firstAttribute="trailingMargin" secondItem="VB7-a2-rsE" secondAttribute="trailing" constant="44" id="5fF-tu-lk8"/>

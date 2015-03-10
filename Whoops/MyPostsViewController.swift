@@ -12,8 +12,8 @@ import CoreLocation
 
 class MyPostsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, YRRefreshViewDelegate{
 
-    var myPosts = NSMutableArray()
-    let identifier = "myPost"
+    var dataArray = NSMutableArray()
+    let identifier = "cell"
     var page:Int = 1
     var refreshView: YRRefreshView?
     var uid = String()
@@ -23,7 +23,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
-        setupRefresh()
+        setupViews()
         //uid = FileUtility.getUserId()
         //self.uid = "1"
         //self.addRefreshControl()
@@ -55,7 +55,9 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
-    func setupRefresh(){
+    func setupViews(){
+        var nib = UINib(nibName:"YRJokeCell", bundle: nil)
+        self.PostTableView.registerNib(nib, forCellReuseIdentifier: identifier)
         var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
         self.refreshView = arr[0] as? YRRefreshView
         self.refreshView?.delegate = self
@@ -89,10 +91,10 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
             
             var arr = data["data"] as NSArray
             
-            self.myPosts = NSMutableArray()
+            self.dataArray = NSMutableArray()
             for data : AnyObject  in arr
             {
-                self.myPosts.addObject(data)
+                self.dataArray.addObject(data)
                 
             }
             self.PostTableView.reloadData()
@@ -119,7 +121,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
             
             for data : AnyObject  in arr
             {
-                self.myPosts.addObject(data)
+                self.dataArray.addObject(data)
             }
             self.PostTableView.reloadData()
            // self.refreshView!.stopLoading()
@@ -142,15 +144,14 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.myPosts.count ?? 0
+        return self.dataArray.count ?? 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //var cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? PostTableViewCell
-        var cell = tableView.dequeueReusableCellWithIdentifier(identifier) as PostTableViewCell
-        
-        var data = self.myPosts[indexPath.row] as NSDictionary
-        cell.data = data
+        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as YRJokeCell
+        var index = indexPath.row
+        cell.data = self.dataArray[index] as NSDictionary
         return cell
         
     }
@@ -162,19 +163,27 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var index = indexPath.row
-        var data = self.myPosts[index] as NSDictionary
+        var data = self.dataArray[index] as NSDictionary
         return  PostTableViewCell.cellHeightByData(data)
     }
     
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+     /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
      {
         var postComment = segue.destinationViewController as MyPostCommentViewController
         if let indexPath = self.PostTableView.indexPathForSelectedRow()
         {
-            var comment = self.myPosts[indexPath.row] as NSDictionary
+            var comment = self.dataArray[indexPath.row] as NSDictionary
             postComment.jokeId = comment.stringAttributeForKey("id")
 
         }
+    }*/
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var index = indexPath.row
+        var data = self.dataArray[index] as NSDictionary
+        var commentsVC = YRCommentsViewController(nibName :nil, bundle: nil)
+        commentsVC.jokeId = data.stringAttributeForKey("id")
+        self.navigationController?.pushViewController(commentsVC, animated: true)
     }
  
     /*
