@@ -15,14 +15,15 @@ class YRJokeCell: UITableViewCell {
     @IBOutlet var pictureView:UIImageView?
     @IBOutlet var nickLabel:UILabel?
     @IBOutlet var contentLabel:UILabel?
-    @IBOutlet var likeLabel:UILabel?
-    @IBOutlet var dislikeLabel:UILabel?
+ 
     @IBOutlet var commentLabel:UILabel?
     @IBOutlet var bottomView:UIView?
     
     @IBOutlet weak var likeImage: UIImageView!
     
     
+    @IBOutlet weak var likeHotLabel: UILabel!
+    @IBOutlet weak var dateTimeLabel: UILabel!
    
     @IBOutlet weak var dislikeImage: UIImageView!
     
@@ -31,6 +32,8 @@ class YRJokeCell: UITableViewCell {
     
     var mainWidth:CGFloat = 0
     
+    var likeHot:String = "0"
+    var postId:String = ""
     //let avatarPlaceHolder = UIImage(named: "avatar.jpg")
     
     @IBAction func shareBtnClicked()
@@ -106,15 +109,16 @@ class YRJokeCell: UITableViewCell {
         
        
         if self.data.stringAttributeForKey("likeNum") == NSNull(){
-            self.likeLabel!.text = "顶(0)"
+            self.likeHotLabel!.text = "0"
         }else{
-            self.likeLabel!.text = self.data.stringAttributeForKey("likeNum")
+            self.likeHotLabel!.text = self.data.stringAttributeForKey("likeNum")
+            likeHot = self.data.stringAttributeForKey("likeNum")
         }
             
         if self.data.stringAttributeForKey("dislikeNum") == NSNull(){
-            self.dislikeLabel!.text = "踩(0)"
+            self.dateTimeLabel!.text = "0"
         }else{
-            self.dislikeLabel!.text = self.data.stringAttributeForKey("dislikeNum")
+            self.dateTimeLabel!.text = self.data.stringAttributeForKey("dislikeNum")
         }
         
         
@@ -128,25 +132,26 @@ class YRJokeCell: UITableViewCell {
         
         var nickName = self.data.stringAttributeForKey("nickName") as String
         if nickName == ""{
-            //contentLabel?.frame = CGRectMake(1, 1, 300, content.stringHeightWith(17,width:300))
+           contentLabel?.frame = CGRectMake(0, 0, cellContentWidth(), content.stringHeightWith(17,width:cellContentWidth()))
         }else{
             self.nickLabel!.text = "@" + nickName
             //contentLabel?.frame = CGRectMake(20, 30, 300, content.stringHeightWith(17,width:300))
         }
         
-        //likeImage.frame = CGRectMake(mainWidth - 20 - 25, cellHeight * 0.2, 25, 25)
-        
-        //dislikeImage.frame = CGRectMake(mainWidth - 20 - 25, cellHeight * 0.7, 25, 25)
-        
-        //bottomView?.frame = CGRectMake(10, cellHeight - 35 , mainWidth-150, 30)
+       postId = self.data.stringAttributeForKey("id") as String
     
     }
     
+    func cellContentWidth()->CGFloat{
+        let mainWidth = UIScreen.mainScreen().bounds.width
+        return mainWidth - 80
+    }
     
     class func cellHeightByData(data:NSDictionary)->CGFloat
     {
         let mainWidth = UIScreen.mainScreen().bounds.width
-        
+
+        var nickName = data.stringAttributeForKey("nickName")
         var content = data.stringAttributeForKey("content")
         var height = content.stringHeightWith(17,width:mainWidth-100)
         var imgSrc = data.stringAttributeForKey("image") as NSString
@@ -154,9 +159,16 @@ class YRJokeCell: UITableViewCell {
         
         if imgSrc.length == 0
         {
-            //return 59.0 + height + 10
-            value = 59.0 + height + 60
-            if value < 140 {return 140} else {return value}
+            if nickName == "" {
+                value = 59.0 + height + 40
+            }else{
+                value = 59.0 + height + 60
+            }
+            if value < 140 {
+                return 140
+            } else {
+                return value
+            }
         }
         
         return 59.0 + height + 5.0 + 140.0 + 100
@@ -169,6 +181,52 @@ class YRJokeCell: UITableViewCell {
         
     }
     
+    var likeCilcke:Bool = true
+    var unLikeClick:Bool = true
     
+    @IBAction func likeImageClick(){
+        if likeCilcke {
+            var url = FileUtility.getUrlDomain() + "post/like?postId=\(postId)&likeNum=\(likeHot)"
+            
+            YRHttpRequest.requestWithURL(url,completionHandler:{ data in
+                
+                if data as NSObject == NSNull()
+                {
+                    UIView.showAlertView("提示",message:"加载失败")
+                    return
+                }
+
+                
+            })
+            
+            var intLikeHot:Int =  likeHot.toInt()!
+            self.likeHotLabel!.text = String(intLikeHot + 1)
+            
+            likeCilcke = false
+        }
+        
+    }
+    
+    @IBAction func unlikeImageClick(){
+        if likeCilcke {
+            var url = FileUtility.getUrlDomain() + "post/unlike?postId=\(postId)&dislikeNum=\(likeHot)"
+            
+            YRHttpRequest.requestWithURL(url,completionHandler:{ data in
+                
+                if data as NSObject == NSNull()
+                {
+                    UIView.showAlertView("提示",message:"加载失败")
+                    return
+                }
+                
+                
+            })
+            
+            var intLikeHot:Int =  likeHot.toInt()!
+            self.likeHotLabel!.text = String(intLikeHot - 1)
+            
+            likeCilcke = false
+        }
+    }
     
 }
