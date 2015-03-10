@@ -9,7 +9,8 @@
 import UIKit
 
 class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating{
-
+    
+    
     @IBOutlet weak var searchTableView: UITableView!
     //var _db = ["Johns Hopkins University", "George Washington University", "GeorgeTown University", "American University", "New York University"]
     //var filteredTableData = [String]()
@@ -21,9 +22,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     var nearby = NSMutableArray()
     var resultSearchController = UISearchController()
 
-    let dbUrl = "http://104.131.91.181:8080/whoops/school/getAll"
-    let nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=37.9&longitude=-122.4"
-    let myFavoriteUrl = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=1"
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +35,12 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             self.searchTableView.tableHeaderView = controller.searchBar
             return controller
         })()
+        
+        var uid = FileUtility.getUserId()
+        let dbUrl = "http://104.131.91.181:8080/whoops/school/getAll"
+        let nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=37.9&longitude=-122.4"
+        let myFavoriteUrl = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(uid)"
+        
         self.searchTableView.reloadData()
         loadDB(nearbyUrl, target: nearby)
         loadDB(dbUrl, target: _db)
@@ -162,6 +167,11 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 cell.backgroundView = nil
                 cell.backgroundColor = UIColor.clearColor()
                 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+                if cell.flag {
+                    loadDB(myFavoriteUrl, target: myFavorite)
+                    self.searchTableView.reloadData()
+                }
+                
                 cell.likeButton.setImage(UIImage(named: "Like"), forState: UIControlState.Normal)
 
                 return cell
