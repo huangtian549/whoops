@@ -15,8 +15,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     //var filteredTableData = [String]()
     var _db = NSMutableArray()
     var filteredTableData = []
-    //var myFavorite = NSMutableArray()
-    var myFavorite = ["Johns Hopkins University", "George Washington University"]
+    var myFavorite = NSMutableArray()
+    //var myFavorite = ["Johns Hopkins University", "George Washington University"]
     //var nearby = ["GeorgeTown University"]
     var nearby = NSMutableArray()
     var resultSearchController = UISearchController()
@@ -39,7 +39,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         self.searchTableView.reloadData()
         loadDB(nearbyUrl, target: nearby)
         loadDB(dbUrl, target: _db)
-        //loadDB(myFavoriteUrl, target: myFavorite)
+        loadDB(myFavoriteUrl, target: myFavorite)
     }
     
     func loadDB(var url:String, var target: NSMutableArray)
@@ -139,6 +139,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             var data = self.filteredTableData[row] as NSDictionary
             cell.title.text = data.stringAttributeForKey("nameEn")
             //cell.title.text = self.filteredTableData[row]
+            cell.data = data
             
             cell.isHighLighted = false
             cell.backgroundView = nil
@@ -152,8 +153,10 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             if indexPath.section == 0
             {
                 cell.favorite = self.myFavorite
-                cell.title.text = self.myFavorite[row]
-                //var data = self.myFavorite[row] as NSDictionary
+                //cell.title.text = self.myFavorite[row]
+                var data = self.myFavorite[row] as NSDictionary
+                cell.title.text = data.stringAttributeForKey("nameEn")
+                cell.data = data
                 
                 cell.isHighLighted = true
                 cell.backgroundView = nil
@@ -169,6 +172,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 //cell.title.text = self.nearby[row]
                 var data = self.nearby[row] as NSDictionary
                 cell.title.text = data.stringAttributeForKey("nameEn")
+                cell.data = data
                 
                 cell.isHighLighted = false
                 cell.backgroundView = nil
@@ -189,7 +193,6 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     {
         //filteredTableData.removeAll(keepCapacity: false)
         //filteredTableData.removeAllObjects()
-        //loadDB()
         
         let searchPredicate = NSPredicate(format: "nameEn contains[cd] %@", searchController.searchBar.text)
         
@@ -197,7 +200,6 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         let array = _db.filteredArrayUsingPredicate(searchPredicate!)
         filteredTableData = array
         
-        //filteredTableData.filterUsingPredicate(searchPredicate)
         self.searchTableView.reloadData()
     }
     
@@ -218,7 +220,10 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             else
             {
                 if indexPath.section == 0{
-                    let selectedUniversity = self.myFavorite[indexPath.row]
+                    //let selectedUniversity = self.myFavorite[indexPath.row]
+                    var data = self.myFavorite[indexPath.row] as NSDictionary
+                    let selectedUniversity = data.stringAttributeForKey("nameEn")
+                    
                     university.currentUniversity = selectedUniversity
                     //  self.resultSearchController.resignFirstResponder()
                 }
