@@ -185,7 +185,6 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         //filteredTableData.removeAll(keepCapacity: false)
         //filteredTableData.removeAllObjects()
         //loadDB()
-        //filteredTableData = _db
         
         let searchPredicate = NSPredicate(format: "nameEn contains[cd] %@", searchController.searchBar.text)
         
