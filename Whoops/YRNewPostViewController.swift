@@ -29,7 +29,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     var latitude:Float = 0.0
     var longitude:Float = 0.0
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +44,8 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         
         
         self.view.addSubview(imgView)
+        
+                
 
         
     }

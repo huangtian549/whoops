@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,YRRefreshViewDelegate {
+class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,YRRefreshViewDelegate ,UITextFieldDelegate{
 
     var tableView:UITableView?
     let identifier = "cell"
@@ -20,6 +20,8 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
 
     var postData:NSDictionary!
     var headerView:YRJokeCell?
+    
+    var sendView:YRSendComment?
   
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -52,7 +54,15 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         var nib = UINib(nibName:"YRJokeCell", bundle: nil)
         
         self.tableView?.registerNib(nib, forCellReuseIdentifier: identifier)
+        self.view.addSubview(self.tableView!)
         
+        
+        var arr =  NSBundle.mainBundle().loadNibNamed("YRSendComment" ,owner: self, options: nil) as Array
+        self.sendView = arr[0] as? YRSendComment
+        
+        self.sendView?.frame = CGRectMake(0, height - 50 , width, 50)
+        self.view.addSubview(sendView!)
+
         
         loadPostData()
         
@@ -66,7 +76,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
 //        self.refreshView!.delegate = self
 //        
 //        self.tableView!.tableFooterView = self.refreshView
-        self.view.addSubview(self.tableView!)
+        
     }
     
     func loadData()
@@ -77,17 +87,12 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
             
             if data as NSObject == NSNull()
             {
-                UIView.showAlertView("提示",message:"加载失败")
+                UIView.showAlertView("WARNING",message:"Network error!")
                 return
             }
             
             var arr = data["data"] as NSArray
-            if arr.count  == 0
-            {
-                UIView.showAlertView("提示",message:"暂无新评论哦")
-                self.tableView!.tableFooterView = nil
-            }
-            for data : AnyObject  in arr
+                        for data : AnyObject  in arr
             {
                 self.dataArray.addObject(data)
             }
