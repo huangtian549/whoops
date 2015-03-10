@@ -16,6 +16,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     let identifier = "myPost"
     var page:Int = 1
     var refreshView: YRRefreshView?
+    var uid = String()
     
     @IBOutlet weak var PostTableView: UITableView!
     
@@ -23,6 +24,8 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         loadData()
         setupRefresh()
+        //uid = FileUtility.getUserId()
+        //self.uid = "1"
         //self.addRefreshControl()
         // Do any additional setup after loading the view.
     }

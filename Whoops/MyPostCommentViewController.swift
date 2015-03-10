@@ -35,7 +35,9 @@ class MyPostCommentViewController: UITableViewController, YRRefreshViewDelegate 
     
     func loadData()
     {
-        var url = "http://m2.qiushibaike.com/article/\(self.jokeId)/comments?count=20&page=\(self.page)"
+        //var url = "http://m2.qiushibaike.com/article/\(self.jokeId)/comments?count=20&page=\(self.page)"
+        //var url = FileUtility.getUrlDomain() + "post/get?id=\(self.jokeId)"
+        var url = "http://104.131.91.181:8080/whoops/comment/getCommentByPostId?postId=\(self.jokeId)"
         self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
@@ -45,7 +47,7 @@ class MyPostCommentViewController: UITableViewController, YRRefreshViewDelegate 
                 return
             }
             
-            var arr = data["items"] as NSArray
+            var arr = data["data"] as NSArray
             if arr.count  == 0
             {
                 UIView.showAlertView("Oops",message:"No more Comments T_T")

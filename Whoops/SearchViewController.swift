@@ -14,7 +14,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     //var _db = ["Johns Hopkins University", "George Washington University", "GeorgeTown University", "American University", "New York University"]
     //var filteredTableData = [String]()
     var _db = NSMutableArray()
-    var filteredTableData = NSMutableArray()
+    var filteredTableData = []
     var myFavorite = ["Johns Hopkins University", "George Washington University"]
     //var nearby = ["GeorgeTown University"]
     var nearby = NSMutableArray()
@@ -136,6 +136,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             var data = self.filteredTableData[row] as NSDictionary
             cell.title.text = data.stringAttributeForKey("nameEn")
             //cell.title.text = self.filteredTableData[row]
+            
             cell.isHighLighted = false
             cell.backgroundView = nil
             cell.backgroundColor = UIColor.clearColor()
@@ -184,14 +185,13 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         //filteredTableData.removeAll(keepCapacity: false)
         //filteredTableData.removeAllObjects()
         //loadDB()
-        filteredTableData = _db
+        //filteredTableData = _db
         
-        //let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text)
-        //let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", argumentArray: _db)
+        let searchPredicate = NSPredicate(format: "nameEn contains[cd] %@", searchController.searchBar.text)
         
         //let array = (_db as NSArray).filteredArrayUsingPredicate(searchPredicate!)
-        //let array = _db.filteredArrayUsingPredicate(searchPredicate!)
-        //filteredTableData = array as [String]
+        let array = _db.filteredArrayUsingPredicate(searchPredicate!)
+        filteredTableData = array
         
         //filteredTableData.filterUsingPredicate(searchPredicate)
         self.searchTableView.reloadData()
@@ -207,7 +207,9 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 let selectedUniversity = data.stringAttributeForKey("nameEn")
                 
                 university.currentUniversity = selectedUniversity
-                //self.resultSearchController.resignFirstResponder()
+                self.resultSearchController.resignFirstResponder()
+                //self.searchDisplayController?.searchBar.resignFirstResponder()
+                
             }
             else
             {
