@@ -183,6 +183,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
         var data = self.dataArray[index] as NSDictionary
         var commentsVC = YRCommentsViewController(nibName :nil, bundle: nil)
         commentsVC.jokeId = data.stringAttributeForKey("id")
+        commentsVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(commentsVC, animated: true)
     }
  

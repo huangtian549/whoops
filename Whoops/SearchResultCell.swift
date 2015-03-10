@@ -12,6 +12,8 @@ class SearchResultCell: UITableViewCell {
     var isHighLighted = Bool()
     var currentIndex = Int()
     var favorite = []
+    var data = NSDictionary()
+    
     @IBOutlet weak var frontImg: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var likeButton: UIButton!
