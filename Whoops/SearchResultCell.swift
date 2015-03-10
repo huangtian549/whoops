@@ -15,6 +15,7 @@ class SearchResultCell: UITableViewCell {
     var favorite = []
     var data = NSDictionary()
     var schoolId = String()
+    var uid = String()
     
     @IBOutlet weak var frontImg: UIImageView!
     @IBOutlet weak var title: UILabel!

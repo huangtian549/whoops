@@ -162,15 +162,16 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 var data = self.myFavorite[row] as NSDictionary
                 cell.title.text = data.stringAttributeForKey("nameEn")
                 cell.data = data
+                var uid = FileUtility.getUserId()
                 
                 cell.isHighLighted = true
                 cell.backgroundView = nil
                 cell.backgroundColor = UIColor.clearColor()
                 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-                if cell.flag {
-                    loadDB(myFavoriteUrl, target: myFavorite)
-                    self.searchTableView.reloadData()
-                }
+                //if cell.flag {
+                //    loadDB(myFavoriteUrl, target: myFavorite)
+                //    self.searchTableView.reloadData()
+                //}
                 
                 cell.likeButton.setImage(UIImage(named: "Like"), forState: UIControlState.Normal)
 
