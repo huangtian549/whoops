@@ -167,7 +167,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
         return  PostTableViewCell.cellHeightByData(data)
     }
     
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+     /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
      {
         var postComment = segue.destinationViewController as MyPostCommentViewController
         if let indexPath = self.PostTableView.indexPathForSelectedRow()
@@ -176,6 +176,14 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
             postComment.jokeId = comment.stringAttributeForKey("id")
 
         }
+    }*/
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var index = indexPath.row
+        var data = self.dataArray[index] as NSDictionary
+        var commentsVC = YRCommentsViewController(nibName :nil, bundle: nil)
+        commentsVC.jokeId = data.stringAttributeForKey("id")
+        self.navigationController?.pushViewController(commentsVC, animated: true)
     }
  
     /*

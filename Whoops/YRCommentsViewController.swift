@@ -36,6 +36,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         super.viewDidLoad()
         setupViews()
         loadData()
+        //self.tableView?.backgroundColor = UIColor(red: 0.173, green: 0.133, blue: 0.361, alpha: 1.0)
         // Do any additional setup after loading the view.
     }
     
@@ -43,12 +44,11 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     {
         var width = self.view.frame.size.width
         var height = self.view.frame.size.height
-        self.tableView = UITableView(frame:CGRectMake(0,0,width,height))
+        self.tableView = UITableView(frame:CGRectMake(0,0,width,height), style:.Grouped)
         self.tableView!.delegate = self;
         self.tableView!.dataSource = self;
 //        self.tableView!.separatorStyle = UITableViewCellSeparatorStyle.None
-        self.tableView?.backgroundColor = UIColor.clearColor()
-        //self.tableView!.style = UITableViewStyle.Grouped
+        self.tableView?.backgroundColor = UIColor(red: 0.173, green: 0.133, blue: 0.361, alpha: 1.0)
         var nib = UINib(nibName:"YRJokeCell", bundle: nil)
         
         self.tableView?.registerNib(nib, forCellReuseIdentifier: identifier)

@@ -19,6 +19,7 @@ class MyPostCommentViewController: UITableViewController, YRRefreshViewDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Comments"
+        self.tableView.backgroundColor = UIColor(red: 0.173, green: 0.133, blue: 0.361, alpha: 1.0)
         setupViews()
         loadData()
     }
