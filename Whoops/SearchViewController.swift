@@ -8,16 +8,20 @@
 
 import UIKit
 
-class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating{
+class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating,YRRefreshViewDelegate{
     
     
     @IBOutlet weak var searchTableView: UITableView!
     var _db = NSMutableArray()
-    var filteredTableData = []
     var myFavorite = NSMutableArray()
     var nearby = NSMutableArray()
+    var filteredTableData = []
     var resultSearchController = UISearchController()
+    var refreshView: YRRefreshView?
 
+    var uid = String()
+    var lat = Double()
+    var lng = Double()
 
     
     override func viewDidLoad() {
@@ -25,27 +29,92 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         self.resultSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
-            controller.dimsBackgroundDuringPresentation = false
+            controller.searchBar.backgroundColor = UIColor.clearColor()
+            controller.dimsBackgroundDuringPresentation = true
             controller.searchBar.sizeToFit()
             controller.searchBar.placeholder = "Search your School"
             self.searchTableView.tableHeaderView = controller.searchBar
             return controller
         })()
+        self.lat = 37.9
+        self.lng = -122.4
         
-        var uid = FileUtility.getUserId()
+        self.uid = FileUtility.getUserId()
         let dbUrl = "http://104.131.91.181:8080/whoops/school/getAll"
-        let nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=37.9&longitude=-122.4"
-        let myFavoriteUrl = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(uid)"
+        let nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
+        let myFavoriteUrl = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(self.uid)"
         
         self.searchTableView.reloadData()
         loadDB(nearbyUrl, target: nearby)
         loadDB(dbUrl, target: _db)
         loadDB(myFavoriteUrl, target: myFavorite)
+        
+        
+        var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
+        self.refreshView = arr[0] as? YRRefreshView
+        self.refreshView?.delegate = self
+        self.addRefreshControl()
+    }
+    
+    func addRefreshControl(){
+        
+        
+        var refresh = UIRefreshControl()
+        refresh.addTarget(self, action: "actionRefreshHandler:", forControlEvents: UIControlEvents.ValueChanged)
+        refresh.tintColor = UIColor.whiteColor()
+        self.searchTableView.addSubview(refresh)
+    }
+    
+    func actionRefreshHandler(sender: UIRefreshControl)
+    {
+
+        var url = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(self.uid)"
+        self.myFavorite.removeAllObjects()
+        self.refreshView!.startLoading()
+        
+        YRHttpRequest.requestWithURL(url,completionHandler:{ data in
+            
+            if data as NSObject == NSNull()
+            {
+                UIView.showAlertView("Opps",message:"Loading Failed")
+                return
+            }
+            
+            var arr = data["data"] as NSArray
+            
+            self.myFavorite = NSMutableArray()
+            for data : AnyObject  in arr
+            {
+                self.myFavorite.addObject(data)
+                
+            }
+            self.searchTableView.reloadData()
+        })
+        
+        /*self.refreshView?.startLoading()
+        self.myFavorite.removeAllObjects()
+        self.nearby.removeAllObjects()
+        let nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
+        let myFavoriteUrl = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(self.uid)"
+        loadDB(myFavoriteUrl, target: self.myFavorite)
+        loadDB(nearbyUrl, target: self.nearby)*/
+        
+        //self.searchTableView.reloadData()
+        self.refreshView!.stopLoading()
+        
+        sender.endRefreshing()
+
+    }
+    
+    func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)
+    {
+        //refreshView.startLoading()
+        //loadData()
     }
     
     func loadDB(var url:String, var target: NSMutableArray)
     {
-        //var url = "http://104.131.91.181:8080/whoops/school/getAll"
+        //if target === self.myFavorite {self.myFavorite.removeAllObjects()}
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
             if data as NSObject == NSNull()
@@ -67,6 +136,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             //self.page++
         })
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -137,12 +207,14 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         
         if self.resultSearchController.active
         {
+            //let myFavoriteUrl = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(self.uid)"
+            //loadDB(myFavoriteUrl, target: self.myFavorite)
             var data = self.filteredTableData[row] as NSDictionary
             cell.title.text = data.stringAttributeForKey("nameEn")
             //cell.title.text = self.filteredTableData[row]
             cell.data = data
-            cell.uid = FileUtility.getUserId()
-            
+            cell.uid = self.uid
+                
             cell.isHighLighted = false
             cell.backgroundView = nil
             cell.backgroundColor = UIColor.clearColor()
@@ -159,7 +231,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 var data = self.myFavorite[row] as NSDictionary
                 cell.title.text = data.stringAttributeForKey("nameEn")
                 cell.data = data
-                cell.uid = FileUtility.getUserId()
+                //cell.uid = FileUtility.getUserId()
+                cell.uid = self.uid
                 
                 cell.isHighLighted = true
                 cell.backgroundView = nil
@@ -182,7 +255,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 var data = self.nearby[row] as NSDictionary
                 cell.title.text = data.stringAttributeForKey("nameEn")
                 cell.data = data
-                cell.uid = FileUtility.getUserId()
+                //cell.uid = FileUtility.getUserId()
+                cell.uid = self.uid
                 
                 //if cell.flag{
                 //    self.searchTableView.reloadData()
@@ -198,61 +272,50 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 return cell
             }
         }
-        //cell.textLabel?.text = "Search Result"
-        //cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
         
     }
     
     func updateSearchResultsForSearchController(searchController: UISearchController)
     {
-        //filteredTableData.removeAll(keepCapacity: false)
-        //filteredTableData.removeAllObjects()
         
         let searchPredicate = NSPredicate(format: "nameEn contains[cd] %@", searchController.searchBar.text)
-        
-        //let array = (_db as NSArray).filteredArrayUsingPredicate(searchPredicate!)
         let array = _db.filteredArrayUsingPredicate(searchPredicate!)
         filteredTableData = array
-        
         self.searchTableView.reloadData()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var university = segue.destinationViewController as UniversityViewController
+        let nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
+        self.nearby.removeAllObjects()
+        
         if let indexPath = self.searchTableView.indexPathForSelectedRow() {
             if self.resultSearchController.active
             {
                 var data = self.filteredTableData[indexPath.row] as NSDictionary
-                //let selectedUniversity = self.filteredTableData[indexPath.row]
                 let selectedUniversity = data.stringAttributeForKey("nameEn")
-                university.schoolId = data.stringAttributeForKey("schoolId")
-                
+                university.schoolId = data.stringAttributeForKey("id")
                 university.currentUniversity = selectedUniversity
                 self.resultSearchController.resignFirstResponder()
-                //self.searchDisplayController?.searchBar.resignFirstResponder()
+                loadDB(nearbyUrl, target: self.nearby)
                 
             }
             else
             {
                 if indexPath.section == 0{
-                    //let selectedUniversity = self.myFavorite[indexPath.row]
                     var data = self.myFavorite[indexPath.row] as NSDictionary
                     let selectedUniversity = data.stringAttributeForKey("nameEn")
-                    
                     university.schoolId = data.stringAttributeForKey("schoolId")
                     university.currentUniversity = selectedUniversity
-                    //  self.resultSearchController.resignFirstResponder()
+                    loadDB(nearbyUrl, target: self.nearby)
                 }
                 if indexPath.section == 1{
-                    //let selectedUniversity = self.nearby[indexPath.row]
                     var data = self.nearby[indexPath.row] as NSDictionary
                     let selectedUniversity = data.stringAttributeForKey("nameEn")
-                    
-                    university.schoolId = data.stringAttributeForKey("schoolId")
+                    university.schoolId = data.stringAttributeForKey("id")
                     university.currentUniversity = selectedUniversity
-                    
-                    //  self.resultSearchController.resignFirstResponder()
+                    loadDB(nearbyUrl, target: self.nearby)
                 }
             }
         }

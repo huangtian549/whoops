@@ -41,6 +41,7 @@ class SearchResultCell: UITableViewCell {
                 
                 self.isHighLighted = true
                 self.likeButton.setImage(UIImage(named: "Like"), forState: UIControlState.Normal)
+                //SearchViewController.reloadMyFavorite()
                 
             }
             else
