@@ -59,6 +59,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         
         var arr =  NSBundle.mainBundle().loadNibNamed("YRSendComment" ,owner: self, options: nil) as Array
         self.sendView = arr[0] as? YRSendComment
+        self.sendView?.setPostId(jokeId)
         
         self.sendView?.frame = CGRectMake(0, height - 50 , width, 50)
         self.view.addSubview(sendView!)

@@ -153,7 +153,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         
         if imageData != nil{
             var url:String = FileUtility.getUrlDomain() + "post/add?"
-            var nsurl = NSURL(fileURLWithPath: url)
+            var nsurl = NSURL(string: url)
             var request = NSMutableURLRequest(URL:nsurl!)
             request.HTTPMethod = "POST"
             
