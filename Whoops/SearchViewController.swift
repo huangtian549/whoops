@@ -30,7 +30,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
             controller.searchBar.backgroundColor = UIColor.clearColor()
-            controller.dimsBackgroundDuringPresentation = true
+            controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.sizeToFit()
             controller.searchBar.placeholder = "Search your School"
             self.searchTableView.tableHeaderView = controller.searchBar
@@ -287,19 +287,15 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var university = segue.destinationViewController as UniversityViewController
-        let nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
-        self.nearby.removeAllObjects()
-        
         if let indexPath = self.searchTableView.indexPathForSelectedRow() {
             if self.resultSearchController.active
             {
+                //let selectedUniversity = self.filteredTableData[indexPath.row]
                 var data = self.filteredTableData[indexPath.row] as NSDictionary
                 let selectedUniversity = data.stringAttributeForKey("nameEn")
                 university.schoolId = data.stringAttributeForKey("id")
                 university.currentUniversity = selectedUniversity
-                self.resultSearchController.resignFirstResponder()
-                loadDB(nearbyUrl, target: self.nearby)
-                
+                //self.resultSearchController.resignFirstResponder()
             }
             else
             {
@@ -308,14 +304,12 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                     let selectedUniversity = data.stringAttributeForKey("nameEn")
                     university.schoolId = data.stringAttributeForKey("schoolId")
                     university.currentUniversity = selectedUniversity
-                    loadDB(nearbyUrl, target: self.nearby)
                 }
                 if indexPath.section == 1{
                     var data = self.nearby[indexPath.row] as NSDictionary
                     let selectedUniversity = data.stringAttributeForKey("nameEn")
                     university.schoolId = data.stringAttributeForKey("id")
                     university.currentUniversity = selectedUniversity
-                    loadDB(nearbyUrl, target: self.nearby)
                 }
             }
         }

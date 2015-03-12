@@ -181,7 +181,7 @@
                                             <outlet property="frontImg" destination="cA2-ik-IRr" id="c4s-2p-2GM"/>
                                             <outlet property="likeButton" destination="914-KR-5Pw" id="GNi-9m-3mD"/>
                                             <outlet property="title" destination="fis-Jg-Pax" id="AH9-hs-kCV"/>
-                                            <segue destination="n3u-xl-SSi" kind="show" id="LHq-0u-7ty"/>
+                                            <segue destination="n3u-xl-SSi" kind="show" id="8fZ-xn-1KT"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="headCell" rowHeight="50" id="vSA-3R-2bV" customClass="SearchHeadCell" customModule="Whoops" customModuleProvider="target">
@@ -474,7 +474,7 @@
         <scene sceneID="WJO-tS-lou">
             <objects>
                 <tableViewController id="24e-KE-UrJ" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="924-8a-1Jn">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="924-8a-1Jn">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.17221837600000001" green="0.13255698960000001" blue="0.36251183710000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -483,7 +483,7 @@
                         <sections>
                             <tableViewSection id="eMt-7Y-x7v">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="250" id="PnX-vB-X04">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="250" id="PnX-vB-X04">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PnX-vB-X04" id="2ek-YG-TdZ">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -501,7 +501,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.64999999999999969"/>
-                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
