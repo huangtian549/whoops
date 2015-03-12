@@ -14,6 +14,7 @@ class MyRepliesViewController: UITableViewController, YRRefreshViewDelegate {
     var dataArray = NSMutableArray()
     var page :Int = 1
     var refreshView:YRRefreshView?
+    var uid = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +97,8 @@ class MyRepliesViewController: UITableViewController, YRRefreshViewDelegate {
     func urlString()->String
     {
         //return "http://m2.qiushibaike.com/article/list/latest?count=20&page=\(page)"
-        return "http://104.131.91.181:8080/whoops/post/listByCommentAndUid?uid=1&pageNum=\(page)"
+        self.uid = FileUtility.getUserId()
+        return "http://104.131.91.181:8080/whoops/post/listByCommentAndUid?uid=\(self.uid)&pageNum=\(page)"
     }
     
     func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)

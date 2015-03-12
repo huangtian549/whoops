@@ -15,6 +15,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate {
     var page :Int = 1
     var refreshView:YRRefreshView?
     var currentUniversity = String()
+    var schoolId = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,7 +98,7 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate {
     
     func urlString()->String
     {
-        return "http://104.131.91.181:8080/whoops/post/listNewBySchool?schoolId=1&pageNum=\(page)"
+        return "http://104.131.91.181:8080/whoops/post/listNewBySchool?schoolId=\(self.schoolId)&pageNum=\(page)"
     }
     
     func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)

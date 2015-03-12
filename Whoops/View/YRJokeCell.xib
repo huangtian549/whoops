@@ -30,13 +30,13 @@
                         <color key="textColor" red="0.054901964962482452" green="0.88627457618713379" blue="0.364705890417099" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jo1-pm-TMV">
+                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jo1-pm-TMV">
                         <rect key="frame" x="29" y="99" width="217" height="140"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="140" id="hqd-xu-lr1"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VB7-a2-rsE">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VB7-a2-rsE">
                         <rect key="frame" x="21" y="247" width="270" height="35"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="103" translatesAutoresizingMaskIntoConstraints="NO" id="OFI-Qo-aHk">
@@ -66,10 +66,10 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFH-9f-fRa">
-                        <rect key="frame" x="296" y="26" width="25" height="25"/>
+                        <rect key="frame" x="286" y="26" width="35" height="35"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="25" id="DmO-14-dQs"/>
-                            <constraint firstAttribute="height" constant="25" id="yeX-9s-52d"/>
+                            <constraint firstAttribute="width" constant="35" id="DmO-14-dQs"/>
+                            <constraint firstAttribute="height" constant="35" id="yeX-9s-52d"/>
                         </constraints>
                         <state key="normal" title="Button" image="Like">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -79,10 +79,10 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlm-bn-DKo">
-                        <rect key="frame" x="296" y="247" width="25" height="25"/>
+                        <rect key="frame" x="286" y="237" width="35" height="35"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="FS4-JI-yhq"/>
-                            <constraint firstAttribute="width" constant="25" id="IKJ-Ka-xAs"/>
+                            <constraint firstAttribute="height" constant="35" id="FS4-JI-yhq"/>
+                            <constraint firstAttribute="width" constant="35" id="IKJ-Ka-xAs"/>
                         </constraints>
                         <state key="normal" title="Button" image="112.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -92,7 +92,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H9I-yD-XFR">
-                        <rect key="frame" x="291" y="134" width="34" height="21"/>
+                        <rect key="frame" x="286" y="134" width="34" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="Xbj-p0-5tz"/>
                             <constraint firstAttribute="height" constant="21" id="bcW-vn-uxh"/>

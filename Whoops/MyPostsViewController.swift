@@ -131,7 +131,8 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func urlString() ->String{
         //return "http://m2.qiushibaike.com/article/list/latest?count=20&page=\(page)"
-        return "http://104.131.91.181:8080/whoops/post/listByUid?uid=1&pageNum=\(page)"
+        self.uid = FileUtility.getUserId()
+        return "http://104.131.91.181:8080/whoops/post/listByUid?uid=\(self.uid)&pageNum=\(page)"
     }
     
     override func didReceiveMemoryWarning() {
