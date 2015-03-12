@@ -280,7 +280,9 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     {
         
         let searchPredicate = NSPredicate(format: "nameEn contains[cd] %@", searchController.searchBar.text)
+        //var searchPredicate = NSPredicate(format: ("nameEn contains[cd] %@" || "nameCn contains[cd] %@"), searchController.searchBar.text)
         let array = _db.filteredArrayUsingPredicate(searchPredicate!)
+        
         filteredTableData = array
         self.searchTableView.reloadData()
     }
@@ -290,12 +292,11 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         if let indexPath = self.searchTableView.indexPathForSelectedRow() {
             if self.resultSearchController.active
             {
-                //let selectedUniversity = self.filteredTableData[indexPath.row]
+                self.resultSearchController.resignFirstResponder()
                 var data = self.filteredTableData[indexPath.row] as NSDictionary
                 let selectedUniversity = data.stringAttributeForKey("nameEn")
                 university.schoolId = data.stringAttributeForKey("id")
                 university.currentUniversity = selectedUniversity
-                //self.resultSearchController.resignFirstResponder()
             }
             else
             {
