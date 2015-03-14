@@ -24,6 +24,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         loadData()
         setupViews()
+        self.title = "我的状态"
         //uid = FileUtility.getUserId()
         //self.uid = "1"
         //self.addRefreshControl()
