@@ -46,6 +46,54 @@ class YRHttpRequest: NSObject {
         })
     }
     
+   
+    class func postWithURL(#urlString:String,paramData:String)->NSMutableArray{
     
+    
+        var data:NSMutableArray = NSMutableArray()
+        var url1:NSURL = NSURL(string: urlString)!
+    
+        var postData:NSData = paramData.dataUsingEncoding(NSUTF8StringEncoding)!
+    
+        var postLength:NSString = String( postData.length )
+    
+        var request:NSMutableURLRequest = NSMutableURLRequest(URL: url1)
+        request.HTTPMethod = "POST"
+        request.HTTPBody = postData
+        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+    
+    
+        var reponseError: NSError?
+        var response: NSURLResponse?
+    
+        var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
+    
+        if ( urlData != nil ) {
+            let res = response as NSHTTPURLResponse!;
+            NSLog("Response code: %ld", res.statusCode);
+    
+            if (res.statusCode >= 200 && res.statusCode < 300)
+            {
+                var responseData:NSString  = NSString(data:urlData!, encoding:NSUTF8StringEncoding)!
+    
+                NSLog("Response ==> %@", responseData);
+    
+                var error: NSError?
+    
+                let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers , error: &error) as NSDictionary
+    
+                
+    
+                
+            } else {
+                NSLog("Login failed2");
+            }
+        } else {
+            NSLog("Login failed3");
+        }
+        return data
+    }
     
 }

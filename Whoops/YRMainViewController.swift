@@ -211,8 +211,19 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         commentsVC.jokeId = data.stringAttributeForKey("id")
         commentsVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(commentsVC, animated: true)
-    }
     
+//    self.performSegueWithIdentifier("showComment", sender:data.stringAttributeForKey("id"))
+    
+    }
+
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        var postId:String = sender as String;
+//        
+//        var commentViewController:YRCommentsViewController =  segue.destinationViewController as YRCommentsViewController;
+//        commentViewController.postId = postId
+//    }
+
+
     func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)
     {
         //refreshView.startLoading()

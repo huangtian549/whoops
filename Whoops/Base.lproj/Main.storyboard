@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -33,7 +33,7 @@
                     <navigationItem key="navigationItem" id="1W5-vV-9HW">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="lYS-xv-nwK">
-                            <rect key="frame" x="206.5" y="7.5" width="187" height="29"/>
+                            <rect key="frame" x="207" y="8" width="187" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="New"/>
@@ -60,6 +60,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="A2Z-bp-gL3" id="qOz-MJ-8fT"/>
+                        <segue destination="RhR-4p-SGt" kind="show" identifier="showComment" id="p84-es-z4M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -446,6 +447,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Shf-ew-b4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1698" y="-172"/>
+        </scene>
+        <!--Comments View Controller-->
+        <scene sceneID="BTZ-3J-g1k">
+            <objects>
+                <viewController id="RhR-4p-SGt" customClass="YRCommentsViewController" customModule="Whoops" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZlE-LE-22k"/>
+                        <viewControllerLayoutGuide type="bottom" id="8is-z4-fZ4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="du0-HF-7ot">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5v1-f6-IsW">
+                                <rect key="frame" x="-14" y="539" width="614" height="61"/>
+                                <color key="backgroundColor" red="0.094117656349999995" green="0.36470589040000001" blue="0.5647059083" alpha="1" colorSpace="deviceRGB"/>
+                            </containerView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o9V-AO-0Dk">
+                                <rect key="frame" x="65" y="550" width="363" height="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Y8-SM-Bb1">
+                                <rect key="frame" x="502" y="555" width="60" height="30"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Chf-qu-Qgv">
+                                <rect key="frame" x="0.0" y="74" width="600" height="463"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="commentTableView" destination="Chf-qu-Qgv" id="ZgH-Qa-3i7"/>
+                        <outlet property="sendButton" destination="4Y8-SM-Bb1" id="fyL-JN-zqc"/>
+                        <outlet property="sendView" destination="5v1-f6-IsW" id="F5P-Wy-H3u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dhq-0V-KZB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="380" y="-852"/>
         </scene>
         <!--Post-->
         <scene sceneID="4Oz-rV-w9i">

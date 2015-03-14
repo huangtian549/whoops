@@ -28,6 +28,7 @@
 		239A38511A9FFB13000976E0 /* YRJokeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 239A384A1A9FFB13000976E0 /* YRJokeCell.xib */; };
 		239A38521A9FFB13000976E0 /* YRRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239A384B1A9FFB13000976E0 /* YRRefreshView.swift */; };
 		239A38531A9FFB13000976E0 /* YRRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 239A384C1A9FFB13000976E0 /* YRRefreshView.xib */; };
+		732E123E1AB3A57C00E7F925 /* NSMutableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732E123D1AB3A57C00E7F925 /* NSMutableData.swift */; };
 		738AA80C1AABD411008E6649 /* 112.png in Resources */ = {isa = PBXBuildFile; fileRef = 738AA80B1AABD411008E6649 /* 112.png */; };
 		738AA80E1AABD48D008E6649 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AA80D1AABD48D008E6649 /* SearchViewController.swift */; };
 		738AA8101AABD4A7008E6649 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738AA80F1AABD4A7008E6649 /* SearchResultCell.swift */; };
@@ -83,6 +84,7 @@
 		239A384A1A9FFB13000976E0 /* YRJokeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YRJokeCell.xib; path = View/YRJokeCell.xib; sourceTree = "<group>"; };
 		239A384B1A9FFB13000976E0 /* YRRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YRRefreshView.swift; path = View/YRRefreshView.swift; sourceTree = "<group>"; };
 		239A384C1A9FFB13000976E0 /* YRRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YRRefreshView.xib; path = View/YRRefreshView.xib; sourceTree = "<group>"; };
+		732E123D1AB3A57C00E7F925 /* NSMutableData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableData.swift; sourceTree = "<group>"; };
 		738AA80B1AABD411008E6649 /* 112.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 112.png; sourceTree = "<group>"; };
 		738AA80D1AABD48D008E6649 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		738AA80F1AABD4A7008E6649 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
@@ -161,11 +163,11 @@
 			isa = PBXGroup;
 			children = (
 				738AA80D1AABD48D008E6649 /* SearchViewController.swift */,
-				2363F9951AA00A1E009957D1 /* YRCommentsViewController.swift */,
 				86FE64B21AA7737300E4B2B1 /* MyPostsViewController.swift */,
 				86450F3E1AACB254001D6CE8 /* MyPostCommentViewController.swift */,
 				86450F401AACDFB9001D6CE8 /* MyRepliesViewController.swift */,
 				2363F9961AA00A1E009957D1 /* YRImageViewController.swift */,
+				2363F9951AA00A1E009957D1 /* YRCommentsViewController.swift */,
 				239A38431A9FF70E000976E0 /* YRMainViewController.swift */,
 				2363F99B1AA00FBC009957D1 /* YRNewPostViewController.swift */,
 				86A2E6471AAC9ECC00499C13 /* UniversityViewController.swift */,
@@ -182,6 +184,7 @@
 				239A383B1A9FF414000976E0 /* NSStringExt.swift */,
 				239A383C1A9FF414000976E0 /* FileUtility.swift */,
 				239A383D1A9FF414000976E0 /* UIViewExt.swift */,
+				732E123D1AB3A57C00E7F925 /* NSMutableData.swift */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				8698ECBD1AAA16CE000E04E6 /* SearchHeadCell.swift in Sources */,
 				86450F3F1AACB254001D6CE8 /* MyPostCommentViewController.swift in Sources */,
 				239A384F1A9FFB13000976E0 /* YRImageZoomingView.swift in Sources */,
+				732E123E1AB3A57C00E7F925 /* NSMutableData.swift in Sources */,
 				868A30581A9E972700FC9EF9 /* FirstViewController.swift in Sources */,
 				239A38411A9FF414000976E0 /* FileUtility.swift in Sources */,
 				2363F9971AA00A1E009957D1 /* YRCommentsViewController.swift in Sources */,
