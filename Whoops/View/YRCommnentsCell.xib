@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILL-7J-eVR">
-                        <rect key="frame" x="18" y="15" width="197" height="19"/>
+                        <rect key="frame" x="18" y="15" width="255" height="19"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -77,10 +77,14 @@
                     <constraint firstItem="ILL-7J-eVR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="fUM-Y7-jUa"/>
                     <constraint firstAttribute="bottomMargin" secondItem="mtY-j1-ta6" secondAttribute="bottom" constant="0.5" id="g1x-Ot-qZr"/>
                     <constraint firstItem="1YG-iM-DiQ" firstAttribute="leading" secondItem="72H-D1-efx" secondAttribute="trailing" constant="8" id="gaC-CO-pzR"/>
+                    <constraint firstItem="yWG-Mm-NXY" firstAttribute="leading" secondItem="ILL-7J-eVR" secondAttribute="trailing" constant="8" id="pCU-x7-gLF"/>
                     <constraint firstItem="yWG-Mm-NXY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="sBd-bv-ODC"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.17221837600000001" green="0.13255698960000001" blue="0.36251183710000001" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="contenLabel" destination="ILL-7J-eVR" id="iuD-p5-QA7"/>
+            </connections>
             <point key="canvasLocation" x="212" y="178.5"/>
         </tableViewCell>
     </objects>

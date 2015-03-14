@@ -9,6 +9,8 @@
 import UIKit
 
 class YRCommnentsCell: UITableViewCell {
+    
+    @IBOutlet weak var contentLabel: UILabel!
 
     
    
@@ -30,8 +32,13 @@ class YRCommnentsCell: UITableViewCell {
     {
         super.layoutSubviews()
         // var uid = self.data["id"] as String
-                var content = self.data.stringAttributeForKey("content")
-        var height = content.stringHeightWith(17,width:300)
+        var content = self.data.stringAttributeForKey("content")
+        var width = self.contentLabel.width()
+        var height = content.stringHeightWith(17,width:width)
+        
+        self.contentLabel.setHeight(height)
+        self.contentLabel.text = content
+        
 //        self.contentLabel!.setHeight(height)
 //        self.contentLabel!.text = content
 //        self.dateLabel!.setY(self.contentLabel!.bottom())
