@@ -51,7 +51,8 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         self.tableView!.dataSource = self;
 //        self.tableView!.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView?.backgroundColor = UIColor(red: 0.173, green: 0.133, blue: 0.361, alpha: 1.0)
-        var nib = UINib(nibName:"YRJokeCell", bundle: nil)
+        //var nib = UINib(nibName:"YRJokeCell", bundle: nil)
+        var nib = UINib(nibName: "YRCommnentsCell", bundle: nil)
         
         self.tableView?.registerNib(nib, forCellReuseIdentifier: identifier)
         self.view.addSubview(self.tableView!)
@@ -152,11 +153,12 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? YRJokeCell
+        //var cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? YRJokeCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as YRCommnentsCell
         var index = indexPath.row
         var data = self.dataArray[index] as NSDictionary
-        cell!.data = data
-        return cell!
+        cell.data = data
+        return cell
     }
     
 //    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
