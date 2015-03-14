@@ -22,7 +22,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="sendBtnClicked" destination="iN0-l3-epB" eventType="touchUpInside" id="pJH-gd-4dc"/>
+                        <action selector="sendBtnClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="dLt-46-z8a"/>
                     </connections>
                 </button>
             </subviews>

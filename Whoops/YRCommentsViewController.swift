@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,YRRefreshViewDelegate ,UITextFieldDelegate{
+class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource ,YRRefreshViewDelegate ,UITextFieldDelegate,YRRefreshCommentViewDelegate{
 
     var tableView:UITableView?
     let identifier = "cell"
@@ -59,6 +59,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         
         var arr =  NSBundle.mainBundle().loadNibNamed("YRSendComment" ,owner: self, options: nil) as Array
         self.sendView = arr[0] as? YRSendComment
+        self.sendView?.delegate = self
         self.sendView?.setPostId(jokeId)
         
         self.sendView?.frame = CGRectMake(0, height - 50 , width, 50)
@@ -181,7 +182,15 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     {
         //refreshView.startLoading()
         loadData()
-    }    
+    }
+    
+    
+    func refreshCommentView(refreshView:YRSendComment,didClickButton btn:UIButton){
+        loadData()
+        var width = self.view.frame.size.width
+        var height = self.view.frame.size.height
+        self.sendView?.frame = CGRectMake(0, height - 50 , width, 50)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
