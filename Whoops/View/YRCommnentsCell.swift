@@ -11,6 +11,11 @@ import UIKit
 class YRCommnentsCell: UITableViewCell {
     
     @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var createdDate: UILabel!
+    @IBOutlet weak var likeHotLabel: UILabel!
+    
+    var likeClick:Bool = true
+    var likeHot = Int()
     var data :NSDictionary!
     
     override func awakeFromNib() {
@@ -33,23 +38,76 @@ class YRCommnentsCell: UITableViewCell {
         
         self.contentLabel.setHeight(height)
         self.contentLabel.text = content
+        
+        self.createdDate.text = self.data.stringAttributeForKey("createDate") as String
+        
+        if self.data.stringAttributeForKey("likeNum") == NSNull(){
+            self.likeHot = 0
+        } else {
+            self.likeHot = self.data.stringAttributeForKey("likeNum").toInt()!
+        }
+        
+        if self.data.stringAttributeForKey("dislikeNum") != NSNull(){
+            self.likeHot = self.likeHot - self.data.stringAttributeForKey("dislikeNum").toInt()!
+        }
+        
+        self.likeHotLabel.text = String(self.likeHot)
+        
     }
 
     
     @IBAction func likeImageClick(){
-        let myalert = UIAlertView()
+        /*let myalert = UIAlertView()
         myalert.title = "准备好了吗"
         myalert.message = "准备好开始了吗？"
         myalert.addButtonWithTitle("Ready, go!")
-        myalert.show()
+        myalert.show()*/
+        var postId = self.data.stringAttributeForKey("postId")
+        var like = self.data.stringAttributeForKey("likeNum")
+        if self.likeClick {
+            var url = FileUtility.getUrlDomain() + "comment/like?postId=\(postId)&likeNum=\(like)"
+            YRHttpRequest.requestWithURL(url,completionHandler:{ data in
+                
+                if data as NSObject == NSNull()
+                {
+                    UIView.showAlertView("提示",message:"加载失败")
+                    return
+                }
+                
+                
+            })
+            
+            self.likeHotLabel.text = String(self.likeHot + 1)
+            self.likeClick = false
+        }
+        
     }
     
     @IBAction func unlikeImageClick(){
-        let myalert = UIAlertView()
+        /*let myalert = UIAlertView()
         myalert.title = "准备好了吗"
         myalert.message = "准备好开始了吗？"
         myalert.addButtonWithTitle("Ready, go!")
-        myalert.show()
+        myalert.show()*/
+        
+        var postId = self.data.stringAttributeForKey("postId")
+        var dislike = self.data.stringAttributeForKey("dislikeNum")
+        if self.likeClick {
+            var url = FileUtility.getUrlDomain() + "comment/like?postId=\(postId)&likeNum=\(dislike)"
+            YRHttpRequest.requestWithURL(url,completionHandler:{ data in
+                
+                if data as NSObject == NSNull()
+                {
+                    UIView.showAlertView("提示",message:"加载失败")
+                    return
+                }
+                
+                
+            })
+            
+            self.likeHotLabel.text = String(self.likeHot - 1)
+            self.likeClick = false
+        }
     }
 
     

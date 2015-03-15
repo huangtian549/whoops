@@ -16,8 +16,12 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     var myFavorite = NSMutableArray()
     var nearby = NSMutableArray()
     var filteredTableData = []
+    var dbUrl = String()
+    var nearbyUrl = String()
+    var myFavoriteUrl = String()
     var resultSearchController = UISearchController()
     var refreshView: YRRefreshView?
+    //var sendFavorite:YRSendComment?
 
     var uid = String()
     var lat = Double()
@@ -39,10 +43,11 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         self.lat = 37.9
         self.lng = -122.4
         
+        //self.sendFavorite?.delegate = self
         self.uid = FileUtility.getUserId()
-        let dbUrl = "http://104.131.91.181:8080/whoops/school/getAll"
-        let nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
-        let myFavoriteUrl = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(self.uid)"
+        self.dbUrl = "http://104.131.91.181:8080/whoops/school/getAll"
+        self.nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
+        self.myFavoriteUrl = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(self.uid)"
         
         self.searchTableView.reloadData()
         loadDB(nearbyUrl, target: nearby)
@@ -110,6 +115,10 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     {
         //refreshView.startLoading()
         //loadData()
+    }
+    
+    func refreshCommentView(refreshView:YRSendComment,didClickButton btn:UIButton){
+        loadDB(myFavoriteUrl, target: myFavorite)
     }
     
     func loadDB(var url:String, var target: NSMutableArray)
