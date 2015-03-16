@@ -9,7 +9,7 @@
 import UIKit
 import MobileCoreServices
 
-class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate,UITextViewDelegate,UINavigationControllerDelegate{
+class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate,UITextViewDelegate,UINavigationControllerDelegate,UIActionSheetDelegate{
     
    
 
@@ -23,6 +23,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var nickNameText: UITextField!
     
     
+    
     var imgView = UIImageView()
     var img = UIImage()
     
@@ -30,33 +31,20 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     var latitude:Float = 0.0
     var longitude:Float = 0.0
-    
+    let pickerViewArray = ["相机","图片库","取消"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.textViewDidChangeSelection(contentTextView)
-     
-        
-//        var footNib:UINib = UINib(nibName: "YRSendViewCell", bundle: NSBundle.mainBundle())
-//        var yrSendViewCell:YRSendViewCell = footNib.instantiateWithOwner(nil, options: nil).last as YRSendViewCell
-//        self.view.addSubview(yrSendViewCell)
+
         imgView.frame = CGRectMake(100, 240, 100, 100)
         
         
         self.view.addSubview(imgView)
         
-                
-
-        
     }
     
-//    func textViewDidChangeSelection(textView: UITextView) {
-//        var range:NSRange = NSRange(location: 0, length: 0)
-//        range.location = 0
-//        range.length = 0
-//        textView.selectedRange = range
-//    }
+
     
     @IBAction func unwindToList(segue:UIStoryboardSegue){
         println("bbb")
@@ -65,12 +53,28 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     
     @IBAction func photoButtonClick(sender: AnyObject) {
-        //先设定sourceType为相机，然后判断相机是否可用（ipod）没相机，不可用将sourceType设定为相片库
+        var actionSheet = UIActionSheet()
+        actionSheet.addButtonWithTitle("取消")
+        actionSheet.addButtonWithTitle("打开照相机")
+        actionSheet.addButtonWithTitle("从手机相册选择")
+        actionSheet.cancelButtonIndex = 0
+        actionSheet.delegate = self
+        
+        actionSheet.showInView(self.view)
+        
+        
+        
+    }
+    
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         var sourceType = UIImagePickerControllerSourceType.Camera
-        if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
+        if buttonIndex == actionSheet.cancelButtonIndex {
+            return
+        }else if buttonIndex == 1{
+            sourceType = UIImagePickerControllerSourceType.Camera
+        }else{
             sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         }
-        
         
         var picker = UIImagePickerController()
         picker.delegate = self
@@ -78,9 +82,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         picker.sourceType = sourceType
         
         self.presentViewController(picker, animated: true, completion: nil)//进入照相界面
-        
     }
-    
     
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]){
@@ -196,7 +198,8 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         
         let boundary = generateBoundaryString()
         
-        let url:String = "http://192.168.1.4:8080/whoops/" + "post/add?"
+        let url:String = FileUtility.getUrlDomain() + "post/add?"
+//        let url:String = "http://192.168.1.4:8080/whoops/" + "post/add?"
         let nsurl = NSURL(string: url)
         let request = NSMutableURLRequest(URL: nsurl!)
         request.HTTPMethod = "POST"

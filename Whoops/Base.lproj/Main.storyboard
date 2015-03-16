@@ -303,7 +303,7 @@
         <!--Post-->
         <scene sceneID="SHS-f2-jMm">
             <objects>
-                <viewController id="laY-OX-8v4" customClass="YRNewPostViewController" customModule="Whoops" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="laY-OX-8v4" customClass="YRNewPostViewController" customModule="Whoops" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rTB-1f-ENa"/>
                         <viewControllerLayoutGuide type="bottom" id="dwa-jf-uwl"/>
