@@ -306,6 +306,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 let selectedUniversity = data.stringAttributeForKey("nameCn")
                 university.schoolId = data.stringAttributeForKey("id")
                 university.currentUniversity = selectedUniversity
+                self.resultSearchController.active = false
             }
             else
             {
