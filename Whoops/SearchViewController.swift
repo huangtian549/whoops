@@ -189,8 +189,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         else
         {
             switch (section){
-            case 0: headCell.header.text = "My Favorite"
-            case 1: headCell.header.text = "Nearby"
+            case 0: headCell.header.text = "我喜欢的"
+            case 1: headCell.header.text = "附近的"
             default: headCell.header.text = nil
             }
             
@@ -219,7 +219,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             //let myFavoriteUrl = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(self.uid)"
             //loadDB(myFavoriteUrl, target: self.myFavorite)
             var data = self.filteredTableData[row] as NSDictionary
-            cell.title.text = data.stringAttributeForKey("nameEn")
+            cell.title.text = data.stringAttributeForKey("nameCn")
             //cell.title.text = self.filteredTableData[row]
             cell.data = data
             cell.uid = self.uid
@@ -238,7 +238,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 cell.favorite = self.myFavorite
                 //cell.title.text = self.myFavorite[row]
                 var data = self.myFavorite[row] as NSDictionary
-                cell.title.text = data.stringAttributeForKey("nameEn")
+                cell.title.text = data.stringAttributeForKey("nameCn")
                 cell.data = data
                 //cell.uid = FileUtility.getUserId()
                 cell.uid = self.uid
@@ -262,7 +262,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             {
                 //cell.title.text = self.nearby[row]
                 var data = self.nearby[row] as NSDictionary
-                cell.title.text = data.stringAttributeForKey("nameEn")
+                cell.title.text = data.stringAttributeForKey("nameCn")
                 cell.data = data
                 //cell.uid = FileUtility.getUserId()
                 cell.uid = self.uid
@@ -303,7 +303,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             {
                 self.resultSearchController.resignFirstResponder()
                 var data = self.filteredTableData[indexPath.row] as NSDictionary
-                let selectedUniversity = data.stringAttributeForKey("nameEn")
+                let selectedUniversity = data.stringAttributeForKey("nameCn")
                 university.schoolId = data.stringAttributeForKey("id")
                 university.currentUniversity = selectedUniversity
             }
@@ -311,13 +311,13 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             {
                 if indexPath.section == 0{
                     var data = self.myFavorite[indexPath.row] as NSDictionary
-                    let selectedUniversity = data.stringAttributeForKey("nameEn")
+                    let selectedUniversity = data.stringAttributeForKey("nameCn")
                     university.schoolId = data.stringAttributeForKey("schoolId")
                     university.currentUniversity = selectedUniversity
                 }
                 if indexPath.section == 1{
                     var data = self.nearby[indexPath.row] as NSDictionary
-                    let selectedUniversity = data.stringAttributeForKey("nameEn")
+                    let selectedUniversity = data.stringAttributeForKey("nameCn")
                     university.schoolId = data.stringAttributeForKey("id")
                     university.currentUniversity = selectedUniversity
                 }

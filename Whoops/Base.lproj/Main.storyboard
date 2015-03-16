@@ -313,14 +313,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aev-Gh-xwJ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aev-Gh-xwJ">
                                 <rect key="frame" x="0.0" y="64" width="375" height="277"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="277" id="arM-FN-Sg1"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rU-iV-n28">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rU-iV-n28">
                                 <rect key="frame" x="27" y="349" width="35" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="CO8-2n-r65"/>
@@ -333,12 +336,12 @@
                                     <action selector="photoButtonClick:" destination="laY-OX-8v4" eventType="touchUpInside" id="ywz-OI-abL"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zwK-Yo-wLK">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zwK-Yo-wLK">
                                 <rect key="frame" x="121" y="349" width="212" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="@" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVx-rt-BNH">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVx-rt-BNH">
                                 <rect key="frame" x="87" y="344" width="26" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="26" id="Fjs-Bk-PcD"/>
@@ -353,14 +356,14 @@
                         <constraints>
                             <constraint firstItem="OVx-rt-BNH" firstAttribute="leading" secondItem="5rU-iV-n28" secondAttribute="trailing" constant="25" id="0Yk-Kq-rIn"/>
                             <constraint firstItem="zwK-Yo-wLK" firstAttribute="leading" secondItem="OVx-rt-BNH" secondAttribute="trailing" constant="8" id="6Wm-wQ-bKn"/>
-                            <constraint firstItem="OVx-rt-BNH" firstAttribute="top" secondItem="Aev-Gh-xwJ" secondAttribute="bottom" constant="3" id="DSd-jN-Q5B"/>
+                            <constraint firstItem="Aev-Gh-xwJ" firstAttribute="top" secondItem="rTB-1f-ENa" secondAttribute="bottom" id="E68-GU-yBF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zwK-Yo-wLK" secondAttribute="trailing" constant="26" id="ECO-zz-hS4"/>
-                            <constraint firstAttribute="trailing" secondItem="Aev-Gh-xwJ" secondAttribute="trailing" id="LqY-oW-PPK"/>
-                            <constraint firstItem="5rU-iV-n28" firstAttribute="top" secondItem="Aev-Gh-xwJ" secondAttribute="bottom" constant="8" id="OUl-bk-jfN"/>
-                            <constraint firstItem="Aev-Gh-xwJ" firstAttribute="top" secondItem="rTB-1f-ENa" secondAttribute="bottom" id="YBp-k7-zjt"/>
-                            <constraint firstItem="zwK-Yo-wLK" firstAttribute="top" secondItem="Aev-Gh-xwJ" secondAttribute="bottom" constant="8" id="Zg2-db-JzW"/>
+                            <constraint firstItem="zwK-Yo-wLK" firstAttribute="top" secondItem="Aev-Gh-xwJ" secondAttribute="bottom" constant="8" symbolic="YES" id="LoP-Z1-Reb"/>
+                            <constraint firstAttribute="trailing" secondItem="Aev-Gh-xwJ" secondAttribute="trailing" id="Rzu-QN-R95"/>
                             <constraint firstItem="5rU-iV-n28" firstAttribute="leading" secondItem="AIl-w3-FlR" secondAttribute="leadingMargin" constant="11" id="fIA-Mh-MsN"/>
-                            <constraint firstItem="Aev-Gh-xwJ" firstAttribute="leading" secondItem="AIl-w3-FlR" secondAttribute="leading" id="nya-pK-HAU"/>
+                            <constraint firstItem="5rU-iV-n28" firstAttribute="top" secondItem="Aev-Gh-xwJ" secondAttribute="bottom" constant="8" symbolic="YES" id="qKE-uE-4W7"/>
+                            <constraint firstItem="Aev-Gh-xwJ" firstAttribute="leading" secondItem="AIl-w3-FlR" secondAttribute="leading" id="ujx-U2-pCR"/>
+                            <constraint firstItem="OVx-rt-BNH" firstAttribute="top" secondItem="Aev-Gh-xwJ" secondAttribute="bottom" constant="3" id="ym9-DB-u83"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="发状态" id="ILZ-GR-WW9">
