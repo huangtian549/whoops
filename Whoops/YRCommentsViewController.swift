@@ -49,6 +49,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         self.tableView = UITableView(frame:CGRectMake(0,0,width,height), style:.Grouped)
         self.tableView!.delegate = self;
         self.tableView!.dataSource = self;
+        
 //        self.tableView!.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView?.backgroundColor = UIColor(red: 0.173, green: 0.133, blue: 0.361, alpha: 1.0)
         //var nib = UINib(nibName:"YRJokeCell", bundle: nil)
@@ -158,6 +159,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         var index = indexPath.row
         var data = self.dataArray[index] as NSDictionary
         cell.data = data
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         return cell
     }
     

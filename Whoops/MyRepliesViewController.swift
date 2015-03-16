@@ -18,6 +18,7 @@ class MyRepliesViewController: UITableViewController, YRRefreshViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "我的回复"
         setupViews()
         loadData()
     }

@@ -79,7 +79,7 @@ class YRSendComment:UIView , UITextFieldDelegate{
         
         commentText.text = ""
         self.delegate.refreshCommentView(self,didClickButton:sender)
-        
+        self.commentText.resignFirstResponder()
     }
     
 }
