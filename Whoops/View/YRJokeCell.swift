@@ -77,12 +77,11 @@ class YRJokeCell: UITableViewCell {
         }
         else
         {
-            var imageId = self.data.stringAttributeForKey("id") as NSString
-            var prefiximageId = imageId.substringToIndex(5)
-            var imagURL = "http://pic.qiushibaike.com/system/pictures/\(prefiximageId)/\(imageId)/small/\(imgSrc)"
+            
+            var imagURL = FileUtility.getUrlImage() + imgSrc
             self.pictureView!.hidden = false
             self.pictureView!.setImage(imagURL,placeHolder: UIImage(named: "avatar.jpg"))
-            self.largeImageURL = "http://pic.qiushibaike.com/system/pictures/\(prefiximageId)/\(imageId)/medium/\(imgSrc)"
+            self.largeImageURL = FileUtility.getUrlDomain() + imgSrc
             //self.pictureView!.setY(self.contentLabel!.bottom()+5)
             //self.bottomView!.setY(self.pictureView!.bottom())
         }

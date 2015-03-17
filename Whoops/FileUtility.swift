@@ -121,6 +121,11 @@ class FileUtility: NSObject {
         return urlDomain
     }
     
+    class func getUrlImage()->String{
+        let urlDomain = "http://104.131.91.181/"
+        return urlDomain
+    }
+    
     
     
 }
