@@ -154,8 +154,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)
     {
-        //refreshView.startLoading()
-        //loadData()
+
     }
     
     func refreshCommentView(refreshView:YRSendComment,didClickButton btn:UIButton){

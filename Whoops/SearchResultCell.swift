@@ -52,6 +52,8 @@ class SearchResultCell: UITableViewCell {
                         return
                     }
                     
+                    self.delegate!.refreshSearchView()
+                    
                 })
                 
                 self.isHighLighted = true
@@ -76,6 +78,7 @@ class SearchResultCell: UITableViewCell {
                         return
                     }
                     
+                    self.delegate!.refreshSearchView()
                 })
                 
                 self.isHighLighted = false
@@ -84,8 +87,6 @@ class SearchResultCell: UITableViewCell {
             
             
         })
-        
-        self.delegate!.refreshSearchView()
     }
     
     override func awakeFromNib() {
