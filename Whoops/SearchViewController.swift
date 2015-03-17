@@ -329,10 +329,13 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     func updateSearchResultsForSearchController(searchController: UISearchController)
     {
         
-        let searchPredicate = NSPredicate(format: "nameCn contains[cd] %@", searchController.searchBar.text)
-        //var searchPredicate = NSPredicate(format: ("nameEn contains[cd] %@" || "nameCn contains[cd] %@"), searchController.searchBar.text)
-        let array = _db.filteredArrayUsingPredicate(searchPredicate!)
+        let searchPredicateCn = NSPredicate(format: "(nameCn contains[cd] %@)", searchController.searchBar.text)
+        let searchPredicateEn = NSPredicate(format: "(nameEn contains[cd] %@)", searchController.searchBar.text)
+        var predicate = NSCompoundPredicate(type: NSCompoundPredicateType.OrPredicateType, subpredicates: [searchPredicateCn!, searchPredicateEn!])
         
+        //var searchPredicate = NSPredicate(format: ("nameEn contains[cd] %@" || "nameCn contains[cd] %@"), searchController.searchBar.text)
+        let array = _db.filteredArrayUsingPredicate(predicate)
+
         filteredTableData = array
         self.searchTableView.reloadData()
     }
