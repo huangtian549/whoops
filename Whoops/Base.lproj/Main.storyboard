@@ -34,7 +34,7 @@
                         <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title="返回" id="enM-dw-bci"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="lYS-xv-nwK">
-                            <rect key="frame" x="207" y="7" width="187" height="30"/>
+                            <rect key="frame" x="206.5" y="7" width="187" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="最新"/>
@@ -333,8 +333,8 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                             </textView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="obV-Az-6ZH">
-                                <rect key="frame" x="0.0" y="240" width="375" height="72"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="obV-Az-6ZH">
+                                <rect key="frame" x="0.0" y="301" width="375" height="72"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zwK-Yo-wLK">
                                         <rect key="frame" x="147" y="22" width="137" height="30"/>
@@ -364,11 +364,17 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.17221837600000001" green="0.13255698960000001" blue="0.36251183710000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="3NB-ex-PIh"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.094117656349999995" green="0.36470589040000001" blue="0.5647059083" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
+                            <constraint firstItem="dwa-jf-uwl" firstAttribute="top" secondItem="obV-Az-6ZH" secondAttribute="bottom" constant="250" id="BKQ-fT-Nsp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="obV-Az-6ZH" secondAttribute="trailing" constant="-16" id="DcL-Xp-a6g"/>
                             <constraint firstItem="Aev-Gh-xwJ" firstAttribute="top" secondItem="rTB-1f-ENa" secondAttribute="bottom" id="E68-GU-yBF"/>
+                            <constraint firstItem="obV-Az-6ZH" firstAttribute="leading" secondItem="AIl-w3-FlR" secondAttribute="leadingMargin" constant="-16" id="PyI-ZF-pis"/>
                             <constraint firstAttribute="trailing" secondItem="Aev-Gh-xwJ" secondAttribute="trailing" id="Rzu-QN-R95"/>
                             <constraint firstItem="Aev-Gh-xwJ" firstAttribute="leading" secondItem="AIl-w3-FlR" secondAttribute="leading" id="ujx-U2-pCR"/>
                         </constraints>

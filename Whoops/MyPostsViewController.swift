@@ -77,8 +77,8 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func actionRefreshHandler(sender:UIRefreshControl){
         
-        page = 1
-        var url = urlString()
+        //page = 1
+        var url = "http://104.131.91.181:8080/whoops/post/listByUid?uid=\(self.uid)&pageNum=1"
         self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
