@@ -46,7 +46,7 @@ class SearchResultCell: UITableViewCell {
             }
             else
             {
-                self.schoolId = self.data.stringAttributeForKey("schoolId")
+                self.schoolId = self.data.stringAttributeForKey("id")
                 var url = "http://104.131.91.181:8080/whoops/favorSchool/delete?uid=\(self.uid)&schoolId=\(self.schoolId)"
                 self.flag = true
                 
