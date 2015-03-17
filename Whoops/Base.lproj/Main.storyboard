@@ -278,7 +278,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarId" id="49e-Tb-3d3" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="zH2-Hw-o0x"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
@@ -375,7 +375,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="发送" id="9B2-8O-Yug">
                             <connections>
-                                <segue destination="49e-Tb-3d3" kind="presentation" identifier="sendSegue" id="CYy-P5-4WF"/>
+                                <action selector="sendButtonClick:" destination="laY-OX-8v4" id="Vwc-m7-e5J"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -831,8 +831,5 @@
         <image name="Search" width="27" height="27"/>
         <image name="Settings" width="34" height="34"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="hXm-LX-KlJ"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
