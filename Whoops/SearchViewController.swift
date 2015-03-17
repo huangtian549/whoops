@@ -24,8 +24,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     //var sendFavorite:YRSendComment?
 
     var uid = String()
-    var lat = Double()
-    var lng = Double()
+    var lat: Double = 37.9
+    var lng: Double = -122.4
 
     
     override func viewDidLoad() {
@@ -40,8 +40,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             self.searchTableView.tableHeaderView = controller.searchBar
             return controller
         })()
-        self.lat = 37.9
-        self.lng = -122.4
+        //self.lat = 37.9
+        //self.lng = -122.4
         
         //self.sendFavorite?.delegate = self
         self.uid = FileUtility.getUserId()
@@ -58,7 +58,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
         self.refreshView = arr[0] as? YRRefreshView
         self.refreshView?.delegate = self
-//        self.addRefreshControl()
+        self.addRefreshControl()
         
     }
     
@@ -74,8 +74,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     func actionRefreshHandler(sender: UIRefreshControl)
     {
 
-        var url = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(self.uid)"
-        self.myFavorite.removeAllObjects()
+        var url = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
+        self.nearby.removeAllObjects()
         self.refreshView!.startLoading()
         
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
@@ -88,10 +88,10 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             
             var arr = data["data"] as NSArray
             
-            self.myFavorite = NSMutableArray()
+            self.nearby = NSMutableArray()
             for data : AnyObject  in arr
             {
-                self.myFavorite.addObject(data)
+                self.nearby.addObject(data)
                 
             }
             self.searchTableView.reloadData()
@@ -114,39 +114,12 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     
     func refreshSearchView(){
-        var url = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(self.uid)"
+        
         self.myFavorite.removeAllObjects()
-        self.refreshView!.startLoading()
-        
-        YRHttpRequest.requestWithURL(url,completionHandler:{ data in
-            
-            if data as NSObject == NSNull()
-            {
-                UIView.showAlertView("Opps",message:"Loading Failed")
-                return
-            }
-            
-            var arr = data["data"] as NSArray
-            
-            self.myFavorite = NSMutableArray()
-            for data : AnyObject  in arr
-            {
-                self.myFavorite.addObject(data)
-                
-            }
-            self.searchTableView.reloadData()
-        })
-        
-        /*self.refreshView?.startLoading()
-        self.myFavorite.removeAllObjects()
-        self.nearby.removeAllObjects()
-        let nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
-        let myFavoriteUrl = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(self.uid)"
-        loadDB(myFavoriteUrl, target: self.myFavorite)
-        loadDB(nearbyUrl, target: self.nearby)*/
-        
-        //self.searchTableView.reloadData()
-        self.refreshView!.stopLoading()
+        //self.nearby.removeAllObjects()
+        loadDB(myFavoriteUrl, target: myFavorite)
+        //loadDB(nearbyUrl, target: nearby)
+        //self.refreshView!.stopLoading()
         
         
 
@@ -157,9 +130,6 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
 
     }
     
-    func refreshCommentView(refreshView:YRSendComment,didClickButton btn:UIButton){
-        loadDB(myFavoriteUrl, target: myFavorite)
-    }
     
     func loadDB(var url:String, var target: NSMutableArray)
     {
@@ -333,7 +303,6 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         let searchPredicateEn = NSPredicate(format: "(nameEn contains[cd] %@)", searchController.searchBar.text)
         var predicate = NSCompoundPredicate(type: NSCompoundPredicateType.OrPredicateType, subpredicates: [searchPredicateCn!, searchPredicateEn!])
         
-        //var searchPredicate = NSPredicate(format: ("nameEn contains[cd] %@" || "nameCn contains[cd] %@"), searchController.searchBar.text)
         let array = _db.filteredArrayUsingPredicate(predicate)
 
         filteredTableData = array
