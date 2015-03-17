@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import CoreLocation
 
+
+
 class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, CLLocationManagerDelegate, YRRefreshViewDelegate{
 
     
@@ -28,6 +30,8 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     var userId:String = "0"
     
     var type:String = "new"
+    
+ 
     
     override func viewDidLoad()
     {
@@ -222,6 +226,8 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
 //        var commentViewController:YRCommentsViewController =  segue.destinationViewController as YRCommentsViewController;
 //        commentViewController.postId = postId
 //    }
+
+    
 
 
     func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)

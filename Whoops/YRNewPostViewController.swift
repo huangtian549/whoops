@@ -8,8 +8,11 @@
 
 import UIKit
 import MobileCoreServices
+import CoreLocation
 
-class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate,UITextViewDelegate,UINavigationControllerDelegate,UIActionSheetDelegate{
+
+
+class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate,UITextViewDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,CLLocationManagerDelegate{
     
    
 
@@ -22,34 +25,51 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var nickNameText: UITextField!
     
-    
+    let locationManager = CLLocationManager()
+ 
     
     var imgView = UIImageView()
     var img = UIImage()
     
     var schoolId:String = "0"
     
-    var latitude:Float = 0.0
-    var longitude:Float = 0.0
+    var latitude:Double = 0.0
+    var longitude:Double = 0.0
     let pickerViewArray = ["相机","图片库","取消"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         imgView.frame = CGRectMake(100, 240, 100, 100)
-        
-        
         self.view.addSubview(imgView)
         
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        } else {
+            locationManager.startUpdatingLocation()
+        }
+
+        
     }
     
-
     
-    @IBAction func unwindToList(segue:UIStoryboardSegue){
-        println("bbb")
-
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!){
+        
+        var location:CLLocation = locations[locations.count-1] as CLLocation
+        
+        if (location.horizontalAccuracy > 0) {
+            latitude = location.coordinate.latitude
+            longitude = location.coordinate.longitude
+            
+            self.locationManager.stopUpdatingLocation()
+            println(location.coordinate)
+            
+            println("latitude \(location.coordinate.latitude) longitude \(location.coordinate.longitude)")
+        }
     }
+
     
     
     @IBAction func photoButtonClick(sender: AnyObject) {
@@ -104,18 +124,26 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "sendSegue" {
-            if (contentTextView!.text.isEmpty) {
+            var content:String = contentTextView!.text
+            println(content)
+            if countElements(content) == 0 {
                 UIView.showAlertView("提示",message:"内容不能为空")
                 
             }else{
-                println(contentTextView.text)
-//                createNewPost()
-//                uploadImageOne()
-                postWithPic()
+                if imgView.image == nil {
+                    createNewPost()
+                }else{
+                    postWithPic()
+                }
             }
-            println("aaaaccccc")
+            
         }
         
+    }
+    
+    func updateLocation(latitude:Double, longitude:Double) {
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,75 +154,76 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     func createNewPost(){
         var content = contentTextView.text;
-        var url = FileUtility.getUrlDomain() + "post/addNoPic?content=\(content)"
+        var url = FileUtility.getUrlDomain() + "post/addNoPic?"
+        var paraData = "content=\(content)"
         var nickName:String = nickNameText.text
-        if !nickName.isEmpty{
-            url += "&nickName=\(nickName)"
+        if countElements(nickName) > 0{
+            paraData += "&nickName=\(nickName)"
         }
         
         if schoolId == "0" {
-            url += "&latitude=\(latitude)&longitude=\(longitude)"
+            paraData += "&latitude=\(latitude)&longitude=\(longitude)"
         }else{
-            url += "&schoolId=\(schoolId)"
+            paraData += "&schoolId=\(schoolId)"
         }
         
-        YRHttpRequest.requestWithURL(url,completionHandler:{ data in
-            
-            if data as NSObject == NSNull()
-            {
-                UIView.showAlertView("WARNING",message:"Failed")
-                return
-            }
-            
-            
-        })
+        
+        
+        var data:NSMutableArray = YRHttpRequest.postWithURL(urlString: url, paramData: paraData)
 
     }
     func postWithPic(){
         var content = contentTextView.text;
         var nickName:String = nickNameText.text
         var request = createRequest(content: content, nickName: nickName)
+        NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil)
+
         
-        println(request.debugDescription)
-        
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
-            data, response, error in
-            
-            if error != nil {
-                // handle error here
-                return
-            }
-            
-            // if response was JSON, then parse it
-            
-            var parseError: NSError?
-            let responseObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &parseError)
-            
-            if let responseDictionary = responseObject as? NSDictionary {
-                // handle the parsed dictionary here
-            } else {
-                // handle parsing error here
-            }
-            
-            // if response was text or html, then just convert it to a string
-            //
-            // let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
-            // println("responseString = \(responseString)")
-            
-            // note, if you want to update the UI, make sure to dispatch that to the main queue, e.g.:
-            //
-            // dispatch_async(dispatch_get_main_queue()) {
-            //     // update your UI and model objects here
-            // }
-        })
-        task.resume()
+//        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
+//            data, response, error in
+//            
+//            if error != nil {
+//                // handle error here
+//                return
+//            }
+//            
+//            // if response was JSON, then parse it
+//            
+//            var parseError: NSError?
+//            let responseObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &parseError)
+//            
+//            if let responseDictionary = responseObject as? NSDictionary {
+//                // handle the parsed dictionary here
+//            } else {
+//                // handle parsing error here
+//            }
+//            
+//            // if response was text or html, then just convert it to a string
+//            //
+//            // let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+//            // println("responseString = \(responseString)")
+//            
+//            // note, if you want to update the UI, make sure to dispatch that to the main queue, e.g.:
+//            //
+//            // dispatch_async(dispatch_get_main_queue()) {
+//            //     // update your UI and model objects here
+//            // }
+//        })
+//        task.resume()
         
     }
     
     func createRequest (#content: String, nickName: String) -> NSURLRequest {
-        let param = [
+        var param = [
             "content"  : content,
-            "nickName" : nickName]  // build your dictionary however appropriate
+            "nickName" : nickName
+            ]  // build your dictionary however appropriate
+        if schoolId == "0" {
+            param["latitude"] = toString(self.latitude)
+            param["longitude"] = toString(self.longitude)
+        }else{
+            param["schoolId"] = toString(self.schoolId)
+        }
         
         let boundary = generateBoundaryString()
         
