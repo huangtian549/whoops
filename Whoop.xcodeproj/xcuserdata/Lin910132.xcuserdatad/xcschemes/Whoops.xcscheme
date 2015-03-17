@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "868A304F1A9E972700FC9EF9"
                BuildableName = "Whoops.app"
-               BlueprintName = "Whoops"
-               ReferencedContainer = "container:Whoops.xcodeproj">
+               BlueprintName = "Whoop"
+               ReferencedContainer = "container:Whoop.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -30,8 +30,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "868A30661A9E972700FC9EF9"
                BuildableName = "WhoopsTests.xctest"
-               BlueprintName = "WhoopsTests"
-               ReferencedContainer = "container:Whoops.xcodeproj">
+               BlueprintName = "WhoopTests"
+               ReferencedContainer = "container:Whoop.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -48,8 +48,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "868A30661A9E972700FC9EF9"
                BuildableName = "WhoopsTests.xctest"
-               BlueprintName = "WhoopsTests"
-               ReferencedContainer = "container:Whoops.xcodeproj">
+               BlueprintName = "WhoopTests"
+               ReferencedContainer = "container:Whoop.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -58,8 +58,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "868A304F1A9E972700FC9EF9"
             BuildableName = "Whoops.app"
-            BlueprintName = "Whoops"
-            ReferencedContainer = "container:Whoops.xcodeproj">
+            BlueprintName = "Whoop"
+            ReferencedContainer = "container:Whoop.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -72,13 +72,14 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "868A304F1A9E972700FC9EF9"
             BuildableName = "Whoops.app"
-            BlueprintName = "Whoops"
-            ReferencedContainer = "container:Whoops.xcodeproj">
+            BlueprintName = "Whoop"
+            ReferencedContainer = "container:Whoop.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -90,13 +91,14 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "868A304F1A9E972700FC9EF9"
             BuildableName = "Whoops.app"
-            BlueprintName = "Whoops"
-            ReferencedContainer = "container:Whoops.xcodeproj">
+            BlueprintName = "Whoop"
+            ReferencedContainer = "container:Whoop.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

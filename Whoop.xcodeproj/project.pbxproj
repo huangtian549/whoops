@@ -94,14 +94,14 @@
 		73BB8A011AAF53AE00CAECB5 /* YRSendComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YRSendComment.swift; sourceTree = "<group>"; };
 		86450F3E1AACB254001D6CE8 /* MyPostCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostCommentViewController.swift; sourceTree = "<group>"; };
 		86450F401AACDFB9001D6CE8 /* MyRepliesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRepliesViewController.swift; sourceTree = "<group>"; };
-		868A30501A9E972700FC9EF9 /* Whoops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Whoops.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		868A30501A9E972700FC9EF9 /* Whoop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Whoop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		868A30541A9E972700FC9EF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		868A30551A9E972700FC9EF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		868A30571A9E972700FC9EF9 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		868A305C1A9E972700FC9EF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		868A305E1A9E972700FC9EF9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		868A30611A9E972700FC9EF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		868A30671A9E972700FC9EF9 /* WhoopsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhoopsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		868A30671A9E972700FC9EF9 /* WhoopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhoopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		868A306C1A9E972700FC9EF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		868A306D1A9E972700FC9EF9 /* WhoopsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoopsTests.swift; sourceTree = "<group>"; };
 		8690039C1AA78F1000D46DED /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -201,8 +201,8 @@
 		868A30511A9E972700FC9EF9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				868A30501A9E972700FC9EF9 /* Whoops.app */,
-				868A30671A9E972700FC9EF9 /* WhoopsTests.xctest */,
+				868A30501A9E972700FC9EF9 /* Whoop.app */,
+				868A30671A9E972700FC9EF9 /* WhoopTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -256,9 +256,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		868A304F1A9E972700FC9EF9 /* Whoops */ = {
+		868A304F1A9E972700FC9EF9 /* Whoop */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 868A30711A9E972700FC9EF9 /* Build configuration list for PBXNativeTarget "Whoops" */;
+			buildConfigurationList = 868A30711A9E972700FC9EF9 /* Build configuration list for PBXNativeTarget "Whoop" */;
 			buildPhases = (
 				868A304C1A9E972700FC9EF9 /* Sources */,
 				868A304D1A9E972700FC9EF9 /* Frameworks */,
@@ -268,14 +268,14 @@
 			);
 			dependencies = (
 			);
-			name = Whoops;
+			name = Whoop;
 			productName = Whoops;
-			productReference = 868A30501A9E972700FC9EF9 /* Whoops.app */;
+			productReference = 868A30501A9E972700FC9EF9 /* Whoop.app */;
 			productType = "com.apple.product-type.application";
 		};
-		868A30661A9E972700FC9EF9 /* WhoopsTests */ = {
+		868A30661A9E972700FC9EF9 /* WhoopTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 868A30741A9E972700FC9EF9 /* Build configuration list for PBXNativeTarget "WhoopsTests" */;
+			buildConfigurationList = 868A30741A9E972700FC9EF9 /* Build configuration list for PBXNativeTarget "WhoopTests" */;
 			buildPhases = (
 				868A30631A9E972700FC9EF9 /* Sources */,
 				868A30641A9E972700FC9EF9 /* Frameworks */,
@@ -286,9 +286,9 @@
 			dependencies = (
 				868A30691A9E972700FC9EF9 /* PBXTargetDependency */,
 			);
-			name = WhoopsTests;
+			name = WhoopTests;
 			productName = WhoopsTests;
-			productReference = 868A30671A9E972700FC9EF9 /* WhoopsTests.xctest */;
+			productReference = 868A30671A9E972700FC9EF9 /* WhoopTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -311,7 +311,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 868A304B1A9E972700FC9EF9 /* Build configuration list for PBXProject "Whoops" */;
+			buildConfigurationList = 868A304B1A9E972700FC9EF9 /* Build configuration list for PBXProject "Whoop" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -324,8 +324,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				868A304F1A9E972700FC9EF9 /* Whoops */,
-				868A30661A9E972700FC9EF9 /* WhoopsTests */,
+				868A304F1A9E972700FC9EF9 /* Whoop */,
+				868A30661A9E972700FC9EF9 /* WhoopTests */,
 			);
 		};
 /* End PBXProject section */
@@ -408,7 +408,7 @@
 /* Begin PBXTargetDependency section */
 		868A30691A9E972700FC9EF9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 868A304F1A9E972700FC9EF9 /* Whoops */;
+			target = 868A304F1A9E972700FC9EF9 /* Whoop */;
 			targetProxy = 868A30681A9E972700FC9EF9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -516,7 +516,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Whoops/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Whoop;
 				SWIFT_OBJC_BRIDGING_HEADER = "Whoops/Swift-Bridging-OC.h";
 			};
 			name = Debug;
@@ -527,7 +527,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Whoops/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Whoop;
 				SWIFT_OBJC_BRIDGING_HEADER = "Whoops/Swift-Bridging-OC.h";
 			};
 			name = Release;
@@ -548,9 +548,9 @@
 				);
 				INFOPLIST_FILE = WhoopsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WhoopTests;
 				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Whoops.app/Whoops";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Whoop.app/Whoop";
 			};
 			name = Debug;
 		};
@@ -566,16 +566,16 @@
 				);
 				INFOPLIST_FILE = WhoopsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WhoopTests;
 				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Whoops.app/Whoops";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Whoop.app/Whoop";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		868A304B1A9E972700FC9EF9 /* Build configuration list for PBXProject "Whoops" */ = {
+		868A304B1A9E972700FC9EF9 /* Build configuration list for PBXProject "Whoop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				868A306F1A9E972700FC9EF9 /* Debug */,
@@ -584,7 +584,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		868A30711A9E972700FC9EF9 /* Build configuration list for PBXNativeTarget "Whoops" */ = {
+		868A30711A9E972700FC9EF9 /* Build configuration list for PBXNativeTarget "Whoop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				868A30721A9E972700FC9EF9 /* Debug */,
@@ -593,7 +593,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		868A30741A9E972700FC9EF9 /* Build configuration list for PBXNativeTarget "WhoopsTests" */ = {
+		868A30741A9E972700FC9EF9 /* Build configuration list for PBXNativeTarget "WhoopTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				868A30751A9E972700FC9EF9 /* Debug */,
