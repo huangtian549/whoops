@@ -73,7 +73,7 @@ class YRSendComment:UIView , UITextFieldDelegate{
         }
         
         var url = FileUtility.getUrlDomain() + "comment/add?"
-        var paraData = "content=\(content)&postId=\(postId)"
+        var paraData = "content=\(content)&postId=\(postId)&uid=\(FileUtility.getUserId())"
         
         var data:NSMutableArray = YRHttpRequest.postWithURL(urlString: url, paramData: paraData)
         
