@@ -158,6 +158,11 @@ class UniversityViewController: UITableViewController, YRRefreshViewDelegate {
         return  YRJokeCell.cellHeightByData(data)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var send = segue.destinationViewController as YRNewPostViewController
+        send.schoolId = self.schoolId
+    }
+    
     func imageViewTapped(noti:NSNotification)
     {
         
