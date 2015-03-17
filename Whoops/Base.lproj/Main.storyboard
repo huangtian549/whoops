@@ -109,10 +109,19 @@
                             <outlet property="delegate" destination="n3u-xl-SSi" id="Np3-11-pEr"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="jWQ-9J-flG">
+                        <barButtonItem key="rightBarButtonItem" image="Post" id="iSU-fQ-iHN">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="laY-OX-8v4" kind="show" id="35P-N4-up8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5jT-BW-aKt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3275" y="-172"/>
+            <point key="canvasLocation" x="3313" y="-173"/>
         </scene>
         <!--发现-->
         <scene sceneID="wg7-f3-ORb">
@@ -183,7 +192,7 @@
                                             <outlet property="frontImg" destination="cA2-ik-IRr" id="c4s-2p-2GM"/>
                                             <outlet property="likeButton" destination="914-KR-5Pw" id="GNi-9m-3mD"/>
                                             <outlet property="title" destination="fis-Jg-Pax" id="AH9-hs-kCV"/>
-                                            <segue destination="n3u-xl-SSi" kind="show" id="8fZ-xn-1KT"/>
+                                            <segue destination="n3u-xl-SSi" kind="show" id="NUi-C3-wVh"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="headCell" rowHeight="50" id="vSA-3R-2bV" customClass="SearchHeadCell" customModule="Whoop" customModuleProvider="target">
@@ -831,5 +840,8 @@
         <image name="Search" width="27" height="27"/>
         <image name="Settings" width="34" height="34"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="35P-N4-up8"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
