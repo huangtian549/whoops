@@ -26,7 +26,14 @@ class SearchResultCell: UITableViewCell {
         dispatch_async(dispatch_get_main_queue(),{
             if self.isHighLighted == false
             {
-                self.schoolId = self.data.stringAttributeForKey("id")
+                var location =  self.data.stringAttributeForKey("longitude")
+                if location != "" {
+                    self.schoolId = self.data.stringAttributeForKey("id")
+                } else
+                {
+                    self.schoolId = self.data.stringAttributeForKey("schoolId")
+                }
+                
                 var url = "http://104.131.91.181:8080/whoops/favorSchool/add?uid=\(self.uid)&schoolId=\(self.schoolId)"
                 self.flag = true
                 YRHttpRequest.requestWithURL(url,completionHandler:{ data in
@@ -46,7 +53,10 @@ class SearchResultCell: UITableViewCell {
             }
             else
             {
-                self.schoolId = self.data.stringAttributeForKey("id")
+                self.schoolId = self.data.stringAttributeForKey("schoolId")
+                if self.schoolId == "" {
+                    self.schoolId = self.data.stringAttributeForKey("id")
+                }
                 var url = "http://104.131.91.181:8080/whoops/favorSchool/delete?uid=\(self.uid)&schoolId=\(self.schoolId)"
                 self.flag = true
                 
