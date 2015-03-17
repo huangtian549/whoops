@@ -14,19 +14,20 @@ import CoreLocation
 
 class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate,UITextViewDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,CLLocationManagerDelegate{
     
-   
-
+    
+    
     @IBOutlet weak var contentTextView: UITextView!
- 
+    
     @IBOutlet weak var sendItem: UIBarButtonItem!
-
+    
     @IBOutlet weak var nickName: UITextField!
     
     @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var nickNameText: UITextField!
     
+    @IBOutlet weak var sendButton: UIBarButtonItem!
     let locationManager = CLLocationManager()
- 
+    
     
     var imgView = UIImageView()
     var img = UIImage()
@@ -43,6 +44,9 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         imgView.frame = CGRectMake(100, 240, 100, 100)
         self.view.addSubview(imgView)
         
+        
+        contentTextView.delegate = self
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
@@ -50,7 +54,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         } else {
             locationManager.startUpdatingLocation()
         }
-
+        
         
     }
     
@@ -69,7 +73,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             println("latitude \(location.coordinate.latitude) longitude \(location.coordinate.longitude)")
         }
     }
-
+    
     
     
     @IBAction func photoButtonClick(sender: AnyObject) {
@@ -85,6 +89,29 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         
         
     }
+    
+    @IBAction func sendButtonClick(sender: AnyObject) {
+        var content:String = contentTextView!.text
+        
+        if countElements(content) == 0 {
+            UIView.showAlertView("提示",message:"内容不能为空")
+            return
+        }else{
+            if imgView.image == nil {
+                createNewPost()
+            }else{
+                postWithPic()
+            }
+        }
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("tabBarId") as UIViewController
+        self.presentViewController(vc, animated: true, completion: nil)
+        
+        
+        
+    }
+    
     
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         var sourceType = UIImagePickerControllerSourceType.Camera
@@ -115,32 +142,39 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        println(textView.text)
+        
+        return true
+    }
+    
+    
     //cancel后执行的方法
     func imagePickerControllerDidCancel(picker: UIImagePickerController){
         picker.dismissViewControllerAnimated(true, completion: nil)
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "sendSegue" {
-            var content:String = contentTextView!.text
-            println(content)
-            if countElements(content) == 0 {
-                UIView.showAlertView("提示",message:"内容不能为空")
-                
-            }else{
-                if imgView.image == nil {
-                    createNewPost()
-                }else{
-                    postWithPic()
-                }
-            }
-            
-        }
-        
-    }
-    
+    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    //
+    //        if segue.identifier == "sendSegue" {
+    //            var content:String = contentTextView!.text
+    //            println(content)
+    //            if countElements(content) == 0 {
+    //                UIView.showAlertView("提示",message:"内容不能为空")
+    //
+    //            }else{
+    //                if imgView.image == nil {
+    //                    createNewPost()
+    //                }else{
+    //                    postWithPic()
+    //                }
+    //            }
+    //
+    //        }
+    //
+    //    }
+    //
     func updateLocation(latitude:Double, longitude:Double) {
         self.latitude = latitude
         self.longitude = longitude
@@ -167,57 +201,58 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             paraData += "&schoolId=\(schoolId)"
         }
         
-        
+        paraData += "&uid=\(FileUtility.getUserId())"
         
         var data:NSMutableArray = YRHttpRequest.postWithURL(urlString: url, paramData: paraData)
-
+        
     }
     func postWithPic(){
         var content = contentTextView.text;
         var nickName:String = nickNameText.text
         var request = createRequest(content: content, nickName: nickName)
         NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil)
-
         
-//        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
-//            data, response, error in
-//            
-//            if error != nil {
-//                // handle error here
-//                return
-//            }
-//            
-//            // if response was JSON, then parse it
-//            
-//            var parseError: NSError?
-//            let responseObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &parseError)
-//            
-//            if let responseDictionary = responseObject as? NSDictionary {
-//                // handle the parsed dictionary here
-//            } else {
-//                // handle parsing error here
-//            }
-//            
-//            // if response was text or html, then just convert it to a string
-//            //
-//            // let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
-//            // println("responseString = \(responseString)")
-//            
-//            // note, if you want to update the UI, make sure to dispatch that to the main queue, e.g.:
-//            //
-//            // dispatch_async(dispatch_get_main_queue()) {
-//            //     // update your UI and model objects here
-//            // }
-//        })
-//        task.resume()
+        
+        //        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
+        //            data, response, error in
+        //
+        //            if error != nil {
+        //                // handle error here
+        //                return
+        //            }
+        //
+        //            // if response was JSON, then parse it
+        //
+        //            var parseError: NSError?
+        //            let responseObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &parseError)
+        //
+        //            if let responseDictionary = responseObject as? NSDictionary {
+        //                // handle the parsed dictionary here
+        //            } else {
+        //                // handle parsing error here
+        //            }
+        //
+        //            // if response was text or html, then just convert it to a string
+        //            //
+        //            // let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+        //            // println("responseString = \(responseString)")
+        //
+        //            // note, if you want to update the UI, make sure to dispatch that to the main queue, e.g.:
+        //            //
+        //            // dispatch_async(dispatch_get_main_queue()) {
+        //            //     // update your UI and model objects here
+        //            // }
+        //        })
+        //        task.resume()
         
     }
     
     func createRequest (#content: String, nickName: String) -> NSURLRequest {
         var param = [
             "content"  : content,
-            "nickName" : nickName
-            ]  // build your dictionary however appropriate
+            "nickName" : nickName,
+            "uid" : FileUtility.getUserId()
+        ]  // build your dictionary however appropriate
         if schoolId == "0" {
             param["latitude"] = toString(self.latitude)
             param["longitude"] = toString(self.longitude)
@@ -228,14 +263,14 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         let boundary = generateBoundaryString()
         
         let url:String = FileUtility.getUrlDomain() + "post/add?"
-//        let url:String = "http://192.168.1.4:8080/whoops/" + "post/add?"
+        //        let url:String = "http://192.168.1.4:8080/whoops/" + "post/add?"
         let nsurl = NSURL(string: url)
         let request = NSMutableURLRequest(URL: nsurl!)
         request.HTTPMethod = "POST"
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
-//        let path1 = NSBundle.mainBundle().pathForResource("image1", ofType: "png") as String!
-//        let path2 = NSBundle.mainBundle().pathForResource("image2", ofType: "jpg") as String!
+        //        let path1 = NSBundle.mainBundle().pathForResource("image1", ofType: "png") as String!
+        //        let path2 = NSBundle.mainBundle().pathForResource("image2", ofType: "jpg") as String!
         request.HTTPBody = createBodyWithParameters(param, filePathKey: "file", boundary: boundary)
         
         return request
@@ -261,19 +296,19 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             }
         }
         
-//        if paths != nil {
-//            for path in paths! {
-                let filename = "file"
-                let data:NSData = UIImageJPEGRepresentation(imgView.image, 0.3)
-//                let mimetype = mimeTypeForPath(path)
+        //        if paths != nil {
+        //            for path in paths! {
+        let filename = "file"
+        let data:NSData = UIImageJPEGRepresentation(imgView.image, 0.3)
+        //                let mimetype = mimeTypeForPath(path)
         
-                body.appendString("--\(boundary)\r\n")
-                body.appendString("Content-Disposition: form-data; name=\"\(filePathKey!)\"; filename=\"\(filename)\"\r\n")
-                body.appendString("Content-Type: application/octet-stream\r\n\r\n")
-                body.appendData(data)
-                body.appendString("\r\n")
-//            }
-//        }
+        body.appendString("--\(boundary)\r\n")
+        body.appendString("Content-Disposition: form-data; name=\"\(filePathKey!)\"; filename=\"\(filename)\"\r\n")
+        body.appendString("Content-Type: application/octet-stream\r\n\r\n")
+        body.appendData(data)
+        body.appendString("\r\n")
+        //            }
+        //        }
         
         body.appendString("--\(boundary)--\r\n")
         return body
@@ -319,64 +354,64 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             var bodyData = "content="+contentTextView.text
             
             
-//            request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
-//            request.HTTPBody = NSData(data: UIImagePNGRepresentation(imgView.image))
-//            println("miraqui \(request.debugDescription)")
-//            var response: AutoreleasingUnsafeMutablePointer<NSURLResponse?>=nil
-//            var HTTPError: NSError? = nil
-//            var JSONError: NSError? = nil
-//            
-//            let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
-//                data, response, error in
-//                
-//                if error != nil {
-//                    // handle error here
-//                    return
-//                }
-//                
-//                // if response was JSON, then parse it
-//                
-//                var parseError: NSError?
-//                let responseObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &parseError)
-//                
-//                if let responseDictionary = responseObject as? NSDictionary {
-//                    // handle the parsed dictionary here
-//                } else {
-//                    // handle parsing error here
-//                }
-//                
-//                // if response was text or html, then just convert it to a string
-//                //
-//                // let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
-//                // println("responseString = \(responseString)")
-//                
-//                // note, if you want to update the UI, make sure to dispatch that to the main queue, e.g.:
-//                //
-//                // dispatch_async(dispatch_get_main_queue()) {
-//                //     // update your UI and model objects here
-//                // }
-//            })
-//            task.resume()
+            //            request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
+            //            request.HTTPBody = NSData(data: UIImagePNGRepresentation(imgView.image))
+            //            println("miraqui \(request.debugDescription)")
+            //            var response: AutoreleasingUnsafeMutablePointer<NSURLResponse?>=nil
+            //            var HTTPError: NSError? = nil
+            //            var JSONError: NSError? = nil
+            //
+            //            let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
+            //                data, response, error in
+            //
+            //                if error != nil {
+            //                    // handle error here
+            //                    return
+            //                }
+            //
+            //                // if response was JSON, then parse it
+            //
+            //                var parseError: NSError?
+            //                let responseObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &parseError)
+            //
+            //                if let responseDictionary = responseObject as? NSDictionary {
+            //                    // handle the parsed dictionary here
+            //                } else {
+            //                    // handle parsing error here
+            //                }
+            //
+            //                // if response was text or html, then just convert it to a string
+            //                //
+            //                // let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+            //                // println("responseString = \(responseString)")
+            //
+            //                // note, if you want to update the UI, make sure to dispatch that to the main queue, e.g.:
+            //                //
+            //                // dispatch_async(dispatch_get_main_queue()) {
+            //                //     // update your UI and model objects here
+            //                // }
+            //            })
+            //            task.resume()
             
-//            var dataVal: NSData? =  NSURLConnection.sendSynchronousRequest(request, returningResponse: response, error: &HTTPError)
-//            
-//            if ((dataVal != nil) && (HTTPError == nil)) {
-//                var jsonResult = NSJSONSerialization.JSONObjectWithData(dataVal!, options: NSJSONReadingOptions.MutableContainers, error: &JSONError)
-//                
-//                if (JSONError != nil) {
-//                    println("Bad JSON")
-//                } else {
-//                    println("Synchronous\(jsonResult)")
-//                }
-//            } else if (HTTPError != nil) {
-//                println("Request failed")
-//            } else {
-//                println("No Data returned")
-//            }
+            //            var dataVal: NSData? =  NSURLConnection.sendSynchronousRequest(request, returningResponse: response, error: &HTTPError)
+            //
+            //            if ((dataVal != nil) && (HTTPError == nil)) {
+            //                var jsonResult = NSJSONSerialization.JSONObjectWithData(dataVal!, options: NSJSONReadingOptions.MutableContainers, error: &JSONError)
+            //
+            //                if (JSONError != nil) {
+            //                    println("Bad JSON")
+            //                } else {
+            //                    println("Synchronous\(jsonResult)")
+            //                }
+            //            } else if (HTTPError != nil) {
+            //                println("Request failed")
+            //            } else {
+            //                println("No Data returned")
+            //            }
             
-//            var url:String = FileUtility.getUrlDomain() + "post/add?content=\(contentTextView.text)"
-//            var nsurl = NSURL(fileURLWithPath: url)
-//            var request = NSMutableURLRequest(URL: nsurl!)
+            //            var url:String = FileUtility.getUrlDomain() + "post/add?content=\(contentTextView.text)"
+            //            var nsurl = NSURL(fileURLWithPath: url)
+            //            var request = NSMutableURLRequest(URL: nsurl!)
             var session = NSURLSession.sharedSession()
             
             request.HTTPMethod = "POST"
@@ -413,18 +448,18 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             })
             task.resume()
             
-//            var returnData = NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil)
-//            
-//            if returnData != nil{
-//                var returnString = NSString(data: returnData!, encoding: NSUTF8StringEncoding)
-//            
-//                println("returnString \(returnString)")
-//            }
+            //            var returnData = NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil)
+            //            
+            //            if returnData != nil{
+            //                var returnString = NSString(data: returnData!, encoding: NSUTF8StringEncoding)
+            //            
+            //                println("returnString \(returnString)")
+            //            }
         }
         
         
     }
-
+    
     
     
 }
