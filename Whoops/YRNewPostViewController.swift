@@ -129,6 +129,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             if countElements(content) == 0 {
                 UIView.showAlertView("提示",message:"内容不能为空")
                 
+                
             }else{
                 if imgView.image == nil {
                     createNewPost()
