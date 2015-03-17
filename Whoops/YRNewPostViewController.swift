@@ -148,24 +148,10 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         return true
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "sendSegue" {
-            var content:String = contentTextView!.text
-            println(content)
-            if countElements(content) == 0 {
-                UIView.showAlertView("提示",message:"内容不能为空")
-                
-                
-            }else{
-                if imgView.image == nil {
-                    createNewPost()
-                }else{
-                    postWithPic()
-                }
-            }
-            
-        }
+    
+    //cancel后执行的方法
+    func imagePickerControllerDidCancel(picker: UIImagePickerController){
+        picker.dismissViewControllerAnimated(true, completion: nil)
         
     }
     
