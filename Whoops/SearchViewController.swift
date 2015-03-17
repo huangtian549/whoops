@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating,YRRefreshViewDelegate{
+class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating,YRRefreshViewDelegate,YRRefreshSearchViewDelegate{
     
     
     @IBOutlet weak var searchTableView: UITableView!
@@ -58,7 +58,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
         self.refreshView = arr[0] as? YRRefreshView
         self.refreshView?.delegate = self
-        self.addRefreshControl()
+//        self.addRefreshControl()
+        
     }
     
     func addRefreshControl(){
@@ -108,6 +109,46 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         self.refreshView!.stopLoading()
         
         sender.endRefreshing()
+
+    }
+    
+    
+    func refreshSearchView(){
+        var url = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(self.uid)"
+        self.myFavorite.removeAllObjects()
+        self.refreshView!.startLoading()
+        
+        YRHttpRequest.requestWithURL(url,completionHandler:{ data in
+            
+            if data as NSObject == NSNull()
+            {
+                UIView.showAlertView("Opps",message:"Loading Failed")
+                return
+            }
+            
+            var arr = data["data"] as NSArray
+            
+            self.myFavorite = NSMutableArray()
+            for data : AnyObject  in arr
+            {
+                self.myFavorite.addObject(data)
+                
+            }
+            self.searchTableView.reloadData()
+        })
+        
+        /*self.refreshView?.startLoading()
+        self.myFavorite.removeAllObjects()
+        self.nearby.removeAllObjects()
+        let nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
+        let myFavoriteUrl = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(self.uid)"
+        loadDB(myFavoriteUrl, target: self.myFavorite)
+        loadDB(nearbyUrl, target: self.nearby)*/
+        
+        //self.searchTableView.reloadData()
+        self.refreshView!.stopLoading()
+        
+        
 
     }
     
@@ -213,6 +254,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         var cell = tableView.dequeueReusableCellWithIdentifier("searchResult") as SearchResultCell
         var row = indexPath.row
         cell.currentIndex = indexPath.row
+        cell.delegate = self
         
         if self.resultSearchController.active
         {

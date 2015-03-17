@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol YRRefreshSearchViewDelegate
+{
+    
+    func refreshSearchView()
+}
+
 class SearchResultCell: UITableViewCell {
     var isHighLighted = Bool()
     var flag = true
@@ -16,6 +22,8 @@ class SearchResultCell: UITableViewCell {
     var data = NSDictionary()
     var schoolId = String()
     var uid = String()
+    
+    var delegate:YRRefreshSearchViewDelegate?
     
     @IBOutlet weak var frontImg: UIImageView!
     @IBOutlet weak var title: UILabel!
@@ -63,7 +71,11 @@ class SearchResultCell: UITableViewCell {
                 self.isHighLighted = false
                 self.likeButton.setImage(UIImage(named: "115"), forState: UIControlState.Normal)
             }
+            
+            
         })
+        
+        self.delegate!.refreshSearchView()
     }
     
     override func awakeFromNib() {
