@@ -114,9 +114,10 @@ class YRCommnentsCell: UITableViewCell {
     
     class func cellHeightByData(data:NSDictionary)->CGFloat
     {
+        let mainWidth = UIScreen.mainScreen().bounds.width
         var content = data.stringAttributeForKey("content")
-        var height = content.stringHeightWith(17,width:300)
-        return 53.0 + height + 24.0
+        var height = content.stringHeightWith(17,width:mainWidth-60)
+        return 40.0 + height + 24.0
     }
 
     
