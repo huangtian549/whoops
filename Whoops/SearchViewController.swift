@@ -58,7 +58,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         var arr =  NSBundle.mainBundle().loadNibNamed("YRRefreshView" ,owner: self, options: nil) as Array
         self.refreshView = arr[0] as? YRRefreshView
         self.refreshView?.delegate = self
-        self.addRefreshControl()
+        //self.addRefreshControl()
         
     }
     
