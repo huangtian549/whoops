@@ -39,7 +39,7 @@ class YRCommnentsCell: UITableViewCell {
         self.contentLabel.setHeight(height)
         self.contentLabel.text = content
         
-        self.createdDate.text = self.data.stringAttributeForKey("createDate") as String
+        self.createdDate.text = self.data.stringAttributeForKey("createDateLabel") as String
         
         if self.data.stringAttributeForKey("likeNum") == NSNull(){
             self.likeHot = 0

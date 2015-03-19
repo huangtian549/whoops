@@ -101,11 +101,15 @@ class YRJokeCell: UITableViewCell {
         }
         
         
-        var commentCount = self.data.stringAttributeForKey("commentsCount") as String
-        if commentCount == "" {
-            commentCount = "0"
+        var commentCount = self.data.stringAttributeForKey("commentCount") as String
+        if commentCount == "" || commentCount == "0" {
+            commentCount = "0 Reply"
+        }else if commentCount == "1" {
+            commentCount = "1 Reply"
+        }else {
+            commentCount = "\(commentCount) Replies"
         }
-        self.commentLabel!.text = "\(commentCount) Repies"
+        self.commentLabel!.text = "\(commentCount) "
         
         
         var cellHeight:CGFloat = YRJokeCell.cellHeightByData(self.data);
@@ -169,7 +173,7 @@ class YRJokeCell: UITableViewCell {
     
     @IBAction func likeImageClick(){
         if likeCilcke {
-            var url = FileUtility.getUrlDomain() + "post/like?postId=\(postId)&likeNum=\(likeHot)"
+            var url = FileUtility.getUrlDomain() + "post/like?id=\(postId)&likeNum=\(likeHot)"
             
             YRHttpRequest.requestWithURL(url,completionHandler:{ data in
                 
@@ -192,7 +196,7 @@ class YRJokeCell: UITableViewCell {
     
     @IBAction func unlikeImageClick(){
         if likeCilcke {
-            var url = FileUtility.getUrlDomain() + "post/unlike?postId=\(postId)&dislikeNum=\(likeHot)"
+            var url = FileUtility.getUrlDomain() + "post/unlike?id=\(postId)&dislikeNum=\(likeHot)"
             
             YRHttpRequest.requestWithURL(url,completionHandler:{ data in
                 

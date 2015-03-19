@@ -17,12 +17,16 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    
     let identifier = "cell"
 //    var tableView:UITableView?
     var dataArray = NSMutableArray()
     var page :Int = 1
     var refreshView:YRRefreshView?
-    let locationManager = CLLocationManager()
+    let locationManager: CLLocationManager = CLLocationManager()
     
     var lat:Double = 0
     var lng:Double = 0
@@ -38,15 +42,15 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         super.viewDidLoad()
         
         
-        
+       
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
+        if(ios8()){
+            if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
             locationManager.requestWhenInUseAuthorization()
-        } else {
-            locationManager.startUpdatingLocation()
+            }
         }
-        
+        locationManager.startUpdatingLocation()
         userId = FileUtility.getUserId()
         setupViews()
         
@@ -100,7 +104,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     func actionRefreshHandler(sender:UIRefreshControl){
         page = 1
-        var url = urlString()
+        var url = urlString(self.type)
         self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
@@ -118,6 +122,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
                 self.dataArray.addObject(data)
                 
             }
+            self.page++
             self.tableView!.reloadData()
             self.refreshView!.stopLoading()
             
@@ -126,9 +131,9 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         
     }
     
-    func loadData()
+    func loadData(type:String)
     {
-        var url = urlString()
+        var url = urlString(type)
         self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
@@ -152,17 +157,17 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     
-    func urlString()->String
+    func urlString(typeString:String)->String
     {
         var url:String = FileUtility.getUrlDomain()
         if(school == 0){
-            if self.type == "new"{
+            if typeString == "new"{
                 url += "post/listNewByLocation?latitude=\(lat)&longitude=\(lng)&pageNum=\(page)"
             }else{
                 url += "post/listHotByLocation?latitude=\(lat)&longitude=\(lng)&pageNum=\(page)"
             }
         }else{
-            if self.type == "new" {
+            if typeString == "new" {
                 url += "post/listNewBySchool?schoolId=\(school)&pageNum=\(page)"
             }else{
                 url += "post/listHotBySchool?schoolId=\(school)&pageNum=\(page)"
@@ -233,7 +238,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
     func refreshView(refreshView:YRRefreshView,didClickButton btn:UIButton)
     {
         //refreshView.startLoading()
-        loadData()
+        loadData(self.type)
     }
     
     func imageViewTapped(noti:NSNotification)
@@ -253,7 +258,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         if (location.horizontalAccuracy > 0) {
             lat = location.coordinate.latitude
             lng = location.coordinate.longitude
-            loadData()
+            loadData(self.type)
             self.locationManager.stopUpdatingLocation()
             println(location.coordinate)
             
@@ -266,18 +271,33 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         //        self.textLabel.text = "get location error"
     }
     
-    @IBAction func newClick(){
-        self.type = "new"
-        page = 1
-        self.dataArray = NSMutableArray()
-        loadData()
-    }
+   
 
     @IBAction func hotClick(){
-        self.type = "hot"
-        page = 1
-        self.dataArray = NSMutableArray()
-        loadData()
+        var selectIndex = segmentedControl.selectedSegmentIndex
+        if selectIndex == 1{
+            self.type = "hot"
+            page = 1
+            self.dataArray = NSMutableArray()
+            loadData("hot")
+        }else{
+            self.type = "new"
+            page = 1
+            self.dataArray = NSMutableArray()
+            loadData("new")
+        }
+    }
+    
+    func ios8()->Bool{
+        let version:NSString = UIDevice.currentDevice().systemVersion
+        let bigVersion = version.substringToIndex(1)
+        let intBigVersion = bigVersion.toInt()
+        if intBigVersion >= 8 {
+            return true
+        }else {
+            return false
+        }
+        
     }
 
     
