@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating,YRRefreshViewDelegate,YRRefreshSearchViewDelegate{
+class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating,YRRefreshViewDelegate,YRRefreshSearchViewDelegate, CLLocationManagerDelegate{
     
     
     @IBOutlet weak var searchTableView: UITableView!
@@ -23,9 +24,10 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     var refreshView: YRRefreshView?
     //var sendFavorite:YRSendComment?
 
+    let locationManager = CLLocationManager()
     var uid = String()
-    var lat: Double = 37.9
-    var lng: Double = -122.4
+    var lat = Double()
+    var lng = Double()
 
     
     override func viewDidLoad() {
@@ -40,17 +42,27 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             self.searchTableView.tableHeaderView = controller.searchBar
             return controller
         })()
-        //self.lat = 37.9
-        //self.lng = -122.4
+        
         
         //self.sendFavorite?.delegate = self
         self.uid = FileUtility.getUserId()
         self.dbUrl = "http://104.131.91.181:8080/whoops/school/getAll"
-        self.nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
+        //self.nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
         self.myFavoriteUrl = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(self.uid)"
         
         self.searchTableView.reloadData()
-        loadDB(nearbyUrl, target: nearby)
+        
+        // Get location begins
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        } else {
+            locationManager.startUpdatingLocation()
+        }
+        //Get location Ends
+        
+        //loadDB(nearbyUrl, target: nearby)
         loadDB(dbUrl, target: _db)
         loadDB(myFavoriteUrl, target: myFavorite)
         
@@ -60,6 +72,29 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         self.refreshView?.delegate = self
         //self.addRefreshControl()
         
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!){
+        println("get location")
+        var location:CLLocation = locations[locations.count-1] as CLLocation
+        
+        if (location.horizontalAccuracy > 0) {
+            lat = location.coordinate.latitude
+            lng = location.coordinate.longitude
+            self.nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
+            self.nearby.removeAllObjects()
+            loadDB(nearbyUrl, target: nearby)
+            
+            self.locationManager.stopUpdatingLocation()
+            //println(location.coordinate)
+            
+            //println("latitude \(location.coordinate.latitude) longitude \(location.coordinate.longitude)")
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println(error)
+        //        self.textLabel.text = "get location error"
     }
     
     func addRefreshControl(){
