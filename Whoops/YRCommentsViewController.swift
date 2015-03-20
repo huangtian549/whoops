@@ -190,6 +190,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     
     
     func refreshCommentView(refreshView:YRSendComment,didClickButton btn:UIButton){
+        self.dataArray = NSMutableArray()
         loadData()
         var width = self.view.frame.size.width
         var height = self.view.frame.size.height

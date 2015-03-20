@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -42,7 +42,6 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="hotClick" destination="9pv-A4-QxB" eventType="valueChanged" id="79K-DH-slG"/>
-                                <action selector="newClick" destination="9pv-A4-QxB" eventType="valueChanged" id="Qdz-vy-2Gl"/>
                             </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="Item" style="done" id="y8T-52-dIo">
@@ -59,6 +58,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="segmentedControl" destination="lYS-xv-nwK" id="uyD-I6-y2D"/>
                         <outlet property="tableView" destination="A2Z-bp-gL3" id="qOz-MJ-8fT"/>
                         <segue destination="RhR-4p-SGt" kind="show" identifier="showComment" id="p84-es-z4M"/>
                     </connections>
