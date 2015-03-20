@@ -23,7 +23,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     var resultSearchController = UISearchController()
     var refreshView: YRRefreshView?
     //var sendFavorite:YRSendComment?
-
+    var flag: Bool = false
+    
     let locationManager = CLLocationManager()
     var uid = String()
     var lat = Double()
@@ -45,22 +46,26 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         
         
         //self.sendFavorite?.delegate = self
+        
+        
+        // Get location begins
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
+            self.flag = true
+            locationManager.requestWhenInUseAuthorization()
+        } else {
+            self.flag = true
+            locationManager.startUpdatingLocation()
+        }
+        //Get location Ends
+        
         self.uid = FileUtility.getUserId()
         self.dbUrl = "http://104.131.91.181:8080/whoops/school/getAll"
         //self.nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
         self.myFavoriteUrl = "http://104.131.91.181:8080/whoops/favorSchool/listByUid?uid=\(self.uid)"
         
         self.searchTableView.reloadData()
-        
-        // Get location begins
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
-            locationManager.requestWhenInUseAuthorization()
-        } else {
-            locationManager.startUpdatingLocation()
-        }
-        //Get location Ends
         
         //loadDB(nearbyUrl, target: nearby)
         loadDB(dbUrl, target: _db)
@@ -76,20 +81,26 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!){
         println("get location")
-        var location:CLLocation = locations[locations.count-1] as CLLocation
         
-        if (location.horizontalAccuracy > 0) {
-            lat = location.coordinate.latitude
-            lng = location.coordinate.longitude
-            self.nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
+        if self.flag {
+            self.flag = false
+            var location:CLLocation = locations[locations.count-1] as CLLocation
             self.nearby.removeAllObjects()
-            loadDB(nearbyUrl, target: nearby)
-            
-            self.locationManager.stopUpdatingLocation()
-            //println(location.coordinate)
-            
-            //println("latitude \(location.coordinate.latitude) longitude \(location.coordinate.longitude)")
-        }
+            if (location.horizontalAccuracy > 0) {
+                self.lat = location.coordinate.latitude
+                self.lng = location.coordinate.longitude
+                self.nearbyUrl = "http://104.131.91.181:8080/whoops/school/listSchoolByLocation?latitude=\(self.lat)&longitude=\(self.lng)"
+                
+                //self.nearby.removeAllObjects()
+                loadDB(nearbyUrl, target: nearby)
+                
+                self.locationManager.stopUpdatingLocation()
+                //println(location.coordinate)
+                
+                //println("latitude \(location.coordinate.latitude) longitude \(location.coordinate.longitude)")
+            }
+        } else {return}
+
     }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
@@ -169,6 +180,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     func loadDB(var url:String, var target: NSMutableArray)
     {
         //if target === self.myFavorite {self.myFavorite.removeAllObjects()}
+        target.removeAllObjects()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
             if data as NSObject == NSNull()
