@@ -332,17 +332,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aev-Gh-xwJ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="277"/>
-                                <color key="backgroundColor" red="0.094117656349999995" green="0.36470589040000001" blue="0.5647059083" alpha="1" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="277" id="arM-FN-Sg1"/>
-                                </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
-                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
-                            </textView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="obV-Az-6ZH">
                                 <rect key="frame" x="0.0" y="301" width="375" height="72"/>
                                 <subviews>
@@ -360,15 +349,15 @@
                                             <action selector="photoButtonClick:" destination="laY-OX-8v4" eventType="touchUpInside" id="ywz-OI-abL"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVx-rt-BNH">
-                                        <rect key="frame" x="94" y="19" width="26" height="39"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acr-i5-miC">
+                                        <rect key="frame" x="314" y="23" width="42" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acr-i5-miC">
-                                        <rect key="frame" x="314" y="23" width="42" height="27"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVx-rt-BNH">
+                                        <rect key="frame" x="113" y="18" width="26" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -378,14 +367,25 @@
                                     <constraint firstAttribute="height" constant="72" id="3NB-ex-PIh"/>
                                 </constraints>
                             </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aev-Gh-xwJ">
+                                <rect key="frame" x="0.0" y="16" width="375" height="277"/>
+                                <color key="backgroundColor" red="0.094117656349999995" green="0.36470589040000001" blue="0.5647059083" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="277" id="arM-FN-Sg1"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.094117656349999995" green="0.36470589040000001" blue="0.5647059083" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="dwa-jf-uwl" firstAttribute="top" secondItem="obV-Az-6ZH" secondAttribute="bottom" constant="250" id="BKQ-fT-Nsp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="obV-Az-6ZH" secondAttribute="trailing" constant="-16" id="DcL-Xp-a6g"/>
                             <constraint firstItem="Aev-Gh-xwJ" firstAttribute="top" secondItem="rTB-1f-ENa" secondAttribute="bottom" id="E68-GU-yBF"/>
                             <constraint firstItem="obV-Az-6ZH" firstAttribute="leading" secondItem="AIl-w3-FlR" secondAttribute="leadingMargin" constant="-16" id="PyI-ZF-pis"/>
                             <constraint firstAttribute="trailing" secondItem="Aev-Gh-xwJ" secondAttribute="trailing" id="Rzu-QN-R95"/>
+                            <constraint firstItem="dwa-jf-uwl" firstAttribute="top" secondItem="obV-Az-6ZH" secondAttribute="bottom" constant="260" id="tCN-ws-kBm"/>
                             <constraint firstItem="Aev-Gh-xwJ" firstAttribute="leading" secondItem="AIl-w3-FlR" secondAttribute="leading" id="ujx-U2-pCR"/>
                         </constraints>
                     </view>
@@ -404,6 +404,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="contentTextView" destination="Aev-Gh-xwJ" id="o9U-Gw-hnW"/>
+                        <outlet property="countWordLabel" destination="acr-i5-miC" id="sch-Ki-2cL"/>
                         <outlet property="nickNameText" destination="zwK-Yo-wLK" id="AaG-VL-U7x"/>
                         <outlet property="photoButton" destination="5rU-iV-n28" id="nCD-10-VL3"/>
                         <outlet property="sendItem" destination="9B2-8O-Yug" id="uMN-ma-Frw"/>
@@ -411,7 +412,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VIH-bb-Rjs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-586.5" y="-27.5"/>
+            <point key="canvasLocation" x="-586.5" y="-18.5"/>
         </scene>
         <!--Home-->
         <scene sceneID="xTz-8v-nCD">

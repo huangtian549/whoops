@@ -25,6 +25,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var nickNameText: UITextField!
     
+    @IBOutlet weak var countWordLabel: UILabel!
     @IBOutlet weak var sendButton: UIBarButtonItem!
     let locationManager = CLLocationManager()
     
@@ -143,9 +144,22 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let MAX_WORD_COUNT = 50
         println(textView.text)
+        println(countElements(textView.text))
+        println(text)
+        println(countElements(text))
         
-        return true
+        var formerWordcount = countElements(textView.text)
+        var addWordCount = countElements(text)
+        if formerWordcount + addWordCount <= MAX_WORD_COUNT{
+            self.countWordLabel.text = String(MAX_WORD_COUNT - formerWordcount - addWordCount)
+            return true
+        }else{
+            return false
+        }
+        
+        
     }
     
     
@@ -198,6 +212,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         if schoolId == "0" {
             paraData += "&latitude=\(latitude)&longitude=\(longitude)"
         }else{
+            paraData += "&latitude=\(latitude)&longitude=\(longitude)"
             paraData += "&schoolId=\(schoolId)"
         }
         
@@ -257,6 +272,8 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
             param["latitude"] = toString(self.latitude)
             param["longitude"] = toString(self.longitude)
         }else{
+            param["latitude"] = toString(self.latitude)
+            param["longitude"] = toString(self.longitude)
             param["schoolId"] = toString(self.schoolId)
         }
         
