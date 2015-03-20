@@ -37,7 +37,6 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     var latitude:Double = 0.0
     var longitude:Double = 0.0
-    let pickerViewArray = ["相机","图片库","取消"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,9 +78,12 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
     
     @IBAction func photoButtonClick(sender: AnyObject) {
         var actionSheet = UIActionSheet()
-        actionSheet.addButtonWithTitle("取消")
-        actionSheet.addButtonWithTitle("打开照相机")
-        actionSheet.addButtonWithTitle("从手机相册选择")
+//        actionSheet.addButtonWithTitle("取消")
+//        actionSheet.addButtonWithTitle("打开照相机")
+//        actionSheet.addButtonWithTitle("从手机相册选择")
+        actionSheet.addButtonWithTitle("Cancel")
+        actionSheet.addButtonWithTitle("Camera")
+        actionSheet.addButtonWithTitle("Photo Library")
         actionSheet.cancelButtonIndex = 0
         actionSheet.delegate = self
         
@@ -95,7 +97,7 @@ class YRNewPostViewController: UIViewController, UIImagePickerControllerDelegate
         var content:String = contentTextView!.text
         
         if countElements(content) == 0 {
-            UIView.showAlertView("提示",message:"内容不能为空")
+            UIView.showAlertView("Warning",message:"The Content should not be empty")
             return
         }else{
             if imgView.image == nil {

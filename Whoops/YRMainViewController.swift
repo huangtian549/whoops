@@ -145,6 +145,10 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
             
             var arr = data["data"] as NSArray
             
+            if self.page == 1 {
+                self.dataArray = NSMutableArray()
+            }
+            
             for data : AnyObject  in arr
             {
                 self.dataArray.addObject(data)
@@ -252,7 +256,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
         
     }
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!){
-        println("get location")
+   
         var location:CLLocation = locations[locations.count-1] as CLLocation
         
         if (location.horizontalAccuracy > 0) {
@@ -260,9 +264,8 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
             lng = location.coordinate.longitude
             loadData(self.type)
             self.locationManager.stopUpdatingLocation()
-            println(location.coordinate)
             
-            println("latitude \(location.coordinate.latitude) longitude \(location.coordinate.longitude)")
+          
         }
     }
     
