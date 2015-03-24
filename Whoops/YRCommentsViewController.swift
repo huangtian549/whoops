@@ -16,7 +16,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     var dataArray = NSMutableArray()
     var page :Int = 1
     var refreshView:YRRefreshView?
-    var jokeId:String!
+    var jokeId:String!              //jokeId即为postId
 
     var postData:NSDictionary!
     var headerView:YRJokeCell?
@@ -50,7 +50,8 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         self.tableView!.delegate = self;
         self.tableView!.dataSource = self;
         
-//        self.tableView!.separatorStyle = UITableViewCellSeparatorStyle.None
+        //self.tableView!.separatorStyle = UITableViewCellSeparatorStyle.None
+        //self.tableView?.separatorColor = UIColor.redColor()
         self.tableView?.backgroundColor = UIColor(red: 0.173, green: 0.133, blue: 0.361, alpha: 1.0)
         //var nib = UINib(nibName:"YRJokeCell", bundle: nil)
         var nib = UINib(nibName: "YRCommnentsCell", bundle: nil)

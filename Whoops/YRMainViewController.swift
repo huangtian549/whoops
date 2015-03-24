@@ -77,7 +77,9 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
 //        self.tableView = UITableView(frame:CGRectMake(0,0,width,height-49))
         self.tableView!.delegate = self;
         self.tableView!.dataSource = self;
-        self.tableView!.separatorStyle = UITableViewCellSeparatorStyle.SingleLineEtched
+        //self.tableView!.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+        //self.tableView.separatorColor = UIColor.redColor()
+        
         var nib = UINib(nibName:"YRJokeCell", bundle: nil)
         
         self.tableView?.registerNib(nib, forCellReuseIdentifier: identifier)
@@ -110,7 +112,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
             
             if data as NSObject == NSNull()
             {
-                UIView.showAlertView("提示",message:"加载失败")
+                UIView.showAlertView("Alert",message:"Loading Failed")
                 return
             }
             
@@ -139,7 +141,7 @@ class YRMainViewController: UIViewController,UITableViewDelegate,UITableViewData
             
             if data as NSObject == NSNull()
             {
-                UIView.showAlertView("提示",message:"加载失败")
+                UIView.showAlertView("Alert",message:"Loading Failed")
                 return
             }
             

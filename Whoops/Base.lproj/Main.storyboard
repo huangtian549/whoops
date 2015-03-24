@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -17,17 +17,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="A2Z-bp-gL3">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="A2Z-bp-gL3">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="606"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.17221837600000001" green="0.13255698960000001" blue="0.36251183710000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="A2Z-bp-gL3" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="RfU-jl-SPM"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="A2Z-bp-gL3" secondAttribute="bottom" constant="-6" id="Wcu-pT-2BN"/>
-                            <constraint firstItem="A2Z-bp-gL3" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="mKO-kP-oJu"/>
-                            <constraint firstAttribute="trailing" secondItem="A2Z-bp-gL3" secondAttribute="trailing" id="oNy-wq-55a"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="A2Z-bp-gL3" secondAttribute="bottom" constant="-6" id="0ka-iF-Qj2"/>
+                            <constraint firstItem="A2Z-bp-gL3" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="2La-sU-2Sx"/>
+                            <constraint firstItem="A2Z-bp-gL3" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="Adh-ID-c1e"/>
+                            <constraint firstAttribute="trailing" secondItem="A2Z-bp-gL3" secondAttribute="trailing" id="SYJ-kN-HzA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1W5-vV-9HW">
@@ -138,7 +140,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="searchResult" id="5ba-jh-7aG" customClass="SearchResultCell" customModule="Whoop" customModuleProvider="target">
@@ -590,7 +592,7 @@
                             </tableViewSection>
                             <tableViewSection id="IDx-dA-N5s">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="55" id="egl-r4-mpQ">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="55" id="egl-r4-mpQ">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="egl-r4-mpQ" id="lxb-eC-A5E">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -614,7 +616,7 @@
                                             <segue destination="daP-pz-D65" kind="show" id="TF6-Zu-rQt"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="55" id="uCw-gC-PLr">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="55" id="uCw-gC-PLr">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uCw-gC-PLr" id="MxD-jF-ECD">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -634,7 +636,7 @@
                                             <segue destination="Lvh-BA-oUc" kind="show" id="6Td-yh-RfJ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="55" id="GQ1-0h-Oq9">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="55" id="GQ1-0h-Oq9">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GQ1-0h-Oq9" id="LnK-5V-u7w">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -704,10 +706,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="1" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ilX-Sb-ZcD">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="1" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ilX-Sb-ZcD">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="myPost" rowHeight="320" id="ICs-Ua-37T" customClass="PostTableViewCell" customModule="Whoop" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>

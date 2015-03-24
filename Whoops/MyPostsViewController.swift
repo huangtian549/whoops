@@ -24,7 +24,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         loadData()
         setupViews()
-        self.title = "我的状态"
+        //self.title = "Profile"
         //uid = FileUtility.getUserId()
         //self.uid = "1"
         //self.addRefreshControl()
@@ -166,7 +166,7 @@ class MyPostsViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var index = indexPath.row
         var data = self.dataArray[index] as NSDictionary
-        return  PostTableViewCell.cellHeightByData(data)
+        return  YRJokeCell.cellHeightByData(data)
     }
     
      /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
